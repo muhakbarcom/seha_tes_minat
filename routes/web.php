@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// if laravel sanctum is login, then redirect to home
+Route::middleware('auth:sanctum')->get('/', function (Request $request) {
+    return view('v_home');
+});
+
+Route::get('/login', function () {
+    return view('v_login');
+});
 
 Route::get('/', function () {
     return view('v_home');
@@ -32,3 +43,4 @@ Route::get('/program-study', function () {
 Route::get('/contact', function () {
     return view('v_contact');
 });
+

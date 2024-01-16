@@ -25,9 +25,11 @@
   <link href="{{asset('template')}}/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="{{asset('template')}}/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="{{asset('template')}}/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="{{asset('module')}}/toastr/toastr.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="{{asset('template')}}/css/style.css" rel="stylesheet">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- =======================================================
   * Template Name: Bikin
@@ -83,12 +85,69 @@
 
   <script src="{{asset('js')}}/jquery-3.7.1.min.js"></script>
 
+  <script src="{{asset('module')}}/toastr/toastr.min.js"></script>
   <!-- Template Main JS File -->
   <script src="{{asset('template')}}/js/main.js"></script>
 
+  <script>
+    // Logout
+    $('#logoutBtn').click(function () {
+      let token = localStorage.getItem('token');
+
+      $.ajax({
+        url: "{{ url('api/logout') }}",
+        type: "POST",
+        data: {
+          _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        success: function(result){
+          let message = result.message;
+          let data = result.data;
+          let success = result.success;
+
+          if(success){
+            toastr.success(message, 'Success');
+
+            // hapus token dari local storage
+            localStorage.removeItem('token');
+
+            // setTimeout(function(){
+              window.location.href = "{{ url('/') }}";
+            // }, 1000);
+          }else{
+            // object to array
+            message = Object.values(message);
+
+
+            for(let i=0; i<message.length; i++){
+              toastr.error(message[i], 'Error');
+            }
+          }
+        },
+        error: function(xhr, status, error){
+          let message = xhr.responseJSON.message;
+          let errors = xhr.responseJSON.errors;
+          let success = xhr.responseJSON.success;
+
+          if(success == false){
+            $.each(errors, function(key, value){
+              toastr.error(value, 'Error');
+            });
+          }else{
+            toastr.error(message, 'Error');
+          }
+        }
+      });
+    });
+  </script>
+
   {{--tampilkan jika ada yield script --}}
   @yield('script');
-
 </body>
 
 </html>

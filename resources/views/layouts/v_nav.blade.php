@@ -6,7 +6,18 @@
       <a class="nav-link scrollto {{ request()->is($url) ? 'active' : '' }}" href="{{ url($url) }}">{{ $label }}</a>
     </li>
     @endforeach
-    <li><a class="getstarted scrollto" href="#about">Login</a></li>
+
+    @auth('sanctum')
+    {{-- Tampilkan konten untuk pengguna yang sudah login --}}
+    <li><a class="getstarted scrollto">{{ Auth::user()->name }} </a></li>
+    <li>
+      <a type="button" class="getstarted scrollto" id="logoutBtn">Logout</a>
+    </li>
+    @else
+    {{-- Tampilkan konten untuk pengguna yang belum login --}}
+    <li><a class="getstarted scrollto" href="{{ url('login') }}">Login</a></li>
+    @endauth
+
   </ul>
   <i class="bi bi-list mobile-nav-toggle"></i>
 </nav><!-- .navbar -->
