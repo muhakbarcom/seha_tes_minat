@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 16, 2024 at 02:45 PM
+-- Generation Time: Jan 17, 2024 at 05:12 AM
 -- Server version: 10.4.30-MariaDB-log
 -- PHP Version: 7.4.33
 
@@ -59,10 +59,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2016_06_01_000003_create_oauth_refresh_tokens_table', 1),
 (6, '2016_06_01_000004_create_oauth_clients_table', 1),
 (7, '2016_06_01_000005_create_oauth_personal_access_clients_table', 1),
-(10, '2014_10_12_000000_create_users_table', 2),
-(11, '2014_10_12_100000_create_password_resets_table', 2),
-(12, '2019_08_19_000000_create_failed_jobs_table', 2),
-(13, '2019_12_14_000001_create_personal_access_tokens_table', 2);
+(14, '2014_10_12_000000_create_users_table', 2),
+(15, '2014_10_12_100000_create_password_resets_table', 2),
+(16, '2019_08_19_000000_create_failed_jobs_table', 2),
+(17, '2019_12_14_000001_create_personal_access_tokens_table', 2);
 
 -- --------------------------------------------------------
 
@@ -93,6 +93,15 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `personal_access_tokens`
+--
+
+INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
+(1, 'App\\Models\\User', 1, 'auth_token', '8557e3169ca78297ca92acc952dd73c2984cbb249bbfe5b890e920625e2bde69', '[\"*\"]', NULL, '2024-01-16 21:11:37', '2024-01-16 21:11:37'),
+(4, 'App\\Models\\User', 2, 'auth_token', '30bbb6896a7f91b6dc745746eedd0fbadb6e420572d0e130ba9684118d3d1a88', '[\"*\"]', NULL, '2024-01-16 21:31:36', '2024-01-16 21:31:36'),
+(5, 'App\\Models\\User', 2, 'auth_token', '41c69750044902fe9d3adf74b7902eee136827beb316d2e83e4bd78fd7bf6c46', '[\"*\"]', NULL, '2024-01-16 21:31:48', '2024-01-16 21:31:48');
 
 -- --------------------------------------------------------
 
@@ -304,29 +313,6 @@ INSERT INTO `tb_m_skor` (`ID`, `NAME`, `CODE`, `POINT`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_m_user`
---
-
-CREATE TABLE `tb_m_user` (
-  `ID` int(11) NOT NULL,
-  `FULL_NAME` varchar(100) NOT NULL,
-  `EMAIL` varchar(100) NOT NULL,
-  `PASSWORD` text NOT NULL,
-  `ROLE` int(11) NOT NULL COMMENT '1:ADMIN, 2:USER',
-  `updated_at` datetime DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `tb_m_user`
---
-
-INSERT INTO `tb_m_user` (`ID`, `FULL_NAME`, `EMAIL`, `PASSWORD`, `ROLE`, `updated_at`, `created_at`) VALUES
-(2, 'akbar', 'akbar@gmail.com', '$2y$10$zpNLpwfS2izUUSmhYs9YhuVgoEVa46nsMGdJs7Ctn75inSJxbZcTW', 2, '2024-01-16 06:30:19', '2024-01-16 06:30:19');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -335,6 +321,8 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
+  `asal_sekolah` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -345,9 +333,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'akbar', 'akbar@gmail.com', NULL, '$2y$10$q3SuoQAm7j8VdAWdrLZC1./2yzp8JISNQdz3wJoCYNo3HDppWk5Iq', NULL, '2024-01-16 01:10:59', '2024-01-16 01:10:59'),
-(2, 'akbar', 'akbar2@gmail.com', NULL, '$2y$10$on/r7kBP5kHeRpC0cC7jH.7n2zm1g7npcpOEb5yDnnDH/L3mWySrG', NULL, '2024-01-16 06:38:20', '2024-01-16 06:38:20');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `tanggal_lahir`, `asal_sekolah`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'Akbar Muhammad', 'akbar@gmail.com', NULL, '2024-01-17', 'Poltekpos', '$2y$10$me3xQftFEvk8LxKLUvYYUuH70hWB7n3PLjR1uyjeSgdqlihNKp7OC', NULL, '2024-01-16 21:31:36', '2024-01-16 21:31:36');
 
 --
 -- Indexes for dumped tables
@@ -399,12 +386,6 @@ ALTER TABLE `tb_m_skor`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `tb_m_user`
---
-ALTER TABLE `tb_m_user`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -425,13 +406,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_m_aspek`
@@ -450,12 +431,6 @@ ALTER TABLE `tb_m_indikator`
 --
 ALTER TABLE `tb_m_skor`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `tb_m_user`
---
-ALTER TABLE `tb_m_user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

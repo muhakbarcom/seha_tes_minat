@@ -24,17 +24,25 @@ class AuthController extends Controller
             'email' => 'required|string|email|unique:users,email',
             'password' => 'required|string',
             'confirm_password' => 'required|string|same:password',
+            'education' => 'required|string',
+            'date' => 'required|string'
         ]);
 
         if ($validator->fails()) {
             $this->response['success'] = false;
             $this->response['message'] = $validator->errors();
-            return response()->json($this->response, 400);
+            return response()->json($this->response, 200);
         }
 
         $input = $req->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        $data =[];
+        $data['password'] = bcrypt($input['password']);
+        $data['name'] = $input['name'];
+        $data['email'] = $input['email'];
+        $data['asal_sekolah'] = $input['education'];
+        $data['tanggal_lahir'] = $input['date'];
+        
+        $user = User::create($data);
 
         $success['token'] = $user->createToken('auth_token')->plainTextToken;
         $success['name'] = $user->name;

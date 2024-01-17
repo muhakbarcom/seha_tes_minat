@@ -26,8 +26,19 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <form>
-          <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
+          <h1 class="h3 mb-3 fw-normal">Register</h1>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="name">
+            <label for="floatingInput">Full Name</label>
+          </div>
+          <div class="form-floating">
+            <input type="date" class="form-control" id="date">
+            <label for="floatingInput">Birthday</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="education">
+            <label for="floatingInput">School or University</label>
+          </div>
           <div class="form-floating">
             <input type="email" class="form-control" id="email" placeholder="name@example.com">
             <label for="floatingInput">Email address</label>
@@ -36,12 +47,16 @@
             <input type="password" class="form-control" id="password" placeholder="Password">
             <label for="floatingPassword">Password</label>
           </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="confirm_password" placeholder="confirm_password">
+            <label for="floatingPassword">Confirm Password</label>
+          </div>
 
 
-          <button class="w-100 btn btn-lg mt-2 btn-primary" id="signin" type="submit">Sign in</button>
+          <button class="w-100 btn btn-lg mt-2 btn-primary" id="signup" type="submit">Sign up</button>
 
           <div class="mt-3">
-            <a href="{{ url('register') }}">Don't have account? Register here!</a>
+            <a href="{{ url('login') }}">Already have an account? login here!</a>
           </div>
         </form>
       </div>
@@ -55,17 +70,26 @@
 @section('script')
 <script>
   $(document).ready(function(){
-    $('#signin').click(function(e){
+    $('#signup').click(function(e){
       e.preventDefault();
       var email = $('#email').val();
       var password = $('#password').val();
+      var confirm_password = $('#confirm_password').val();
+      var name = $('#name').val();
+      var date = $('#date').val();
+      var education = $('#education').val();
+
       $.ajax({
-        url: "{{ url('api/login') }}",
+        url: "{{ url('api/register') }}",
         type: "POST",
         data: {
           _token: $('meta[name="csrf-token"]').attr('content'),
           email: email,
-          password: password
+          password: password,
+          confirm_password: confirm_password,
+          name: name,
+          date: date,
+          education: education
         },
         success: function(result){
           let message = result.message;
@@ -78,9 +102,14 @@
           if(success){
             toastr.success(message, 'Success');
 
-            // setTimeout(function(){
-              window.location.href = "{{ url('/') }}";
-            // }, 1000);
+            // hapus form
+            $('#email').val('');
+            $('#password').val('');
+            $('#confirm_password').val('');
+            $('#name').val('');
+            $('#date').val('');
+            $('#education').val('');
+
           }else{
             // object to array
             message = Object.values(message);
