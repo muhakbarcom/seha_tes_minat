@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/', function (Request $request) {
 
 Route::get('/login', function () {
     return view('v_login');
-});
+})->name('login');
 
 Route::get('/register', function () {
     return view('v_register');
@@ -36,9 +36,11 @@ Route::get('/test-info', function () {
     return view('v_info');
 });
 
+// login terlebih dahulu
 Route::get('/consultation', function () {
     return view('v_consultation');
-});
+})->middleware('auth:sanctum');
+
 
 Route::get('/program-study', function () {
     return view('v_program_study');

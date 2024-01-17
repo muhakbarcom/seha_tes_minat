@@ -7,6 +7,305 @@
 <!-- Demo CSS -->
 <link rel="stylesheet" href="{{asset('module')}}/stepper/css/demo.css">
 
+
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:900');
+
+  /* body {
+    margin: 0;
+    padding: 0;
+    background-color: #292929;
+    font-family: 'Montserrat', sans-serif;
+  } */
+
+  .wrapper {
+    /* width: 100vw; */
+    height: 50vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .my-super-cool-btn {
+    position: relative;
+    text-decoration: none;
+    color: #ccc;
+    letter-spacing: 1px;
+    font-size: 2rem;
+    box-sizing: border-box;
+  }
+
+  .my-super-cool-btn span {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+  }
+
+  .my-super-cool-btn span:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    border-radius: 100%;
+    border: 7px solid #3481ff;
+    box-sizing: border-box;
+    transition: all .85s cubic-bezier(0.25, 1, 0.33, 1);
+    box-shadow: 0 30px 85px rgba(0, 0, 0, 0.14), 0 15px 35px rgba(0, 0, 0, 0.14);
+  }
+
+  .my-super-cool-btn:hover span:before {
+    transform: scale(0.8);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.14), 0 15px 35px rgba(0, 0, 0, 0.14);
+  }
+
+  .my-super-cool-btn .dots-container {
+    opacity: 0;
+    animation: intro 1.6s;
+    animation-fill-mode: forwards;
+  }
+
+  .my-super-cool-btn .dot {
+    width: 8px;
+    height: 8px;
+    display: block;
+    background-color: #3481ff;
+    border-radius: 100%;
+    position: absolute;
+    transition: all .85s cubic-bezier(0.25, 1, 0.33, 1);
+  }
+
+  .my-super-cool-btn .dot:nth-child(1) {
+    top: 50px;
+    left: 50px;
+    transform: rotate(-140deg);
+    animation: swag1-out 0.3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+
+  .my-super-cool-btn .dot:nth-child(2) {
+    top: 50px;
+    right: 50px;
+    transform: rotate(140deg);
+    animation: swag2-out 0.3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+
+  .my-super-cool-btn .dot:nth-child(3) {
+    bottom: 50px;
+    left: 50px;
+    transform: rotate(140deg);
+    animation: swag3-out 0.3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+
+  .my-super-cool-btn .dot:nth-child(4) {
+    bottom: 50px;
+    right: 50px;
+    transform: rotate(-140deg);
+    animation: swag4-out 0.3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+
+  .my-super-cool-btn:hover .dot:nth-child(1) {
+    animation: swag1 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  .my-super-cool-btn:hover .dot:nth-child(2) {
+    animation: swag2 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  .my-super-cool-btn:hover .dot:nth-child(3) {
+    animation: swag3 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  .my-super-cool-btn:hover .dot:nth-child(4) {
+    animation: swag4 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes intro {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes swag1 {
+    0% {
+      top: 50px;
+      left: 50px;
+      width: 8px;
+    }
+
+    50% {
+      width: 30px;
+      opacity: 1;
+    }
+
+    100% {
+      top: 20px;
+      left: 20px;
+      width: 8px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes swag1-out {
+    0% {
+      top: 20px;
+      left: 20px;
+      width: 8px;
+    }
+
+    50% {
+      width: 30px;
+      opacity: 1;
+    }
+
+    100% {
+      top: 50px;
+      left: 50px;
+      width: 8px;
+      opacity: 0;
+    }
+  }
+
+  @keyframes swag2 {
+    0% {
+      top: 50px;
+      right: 50px;
+      width: 8px;
+    }
+
+    50% {
+      width: 30px;
+      opacity: 1;
+    }
+
+    100% {
+      top: 20px;
+      right: 20px;
+      width: 8px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes swag2-out {
+    0% {
+      top: 20px;
+      right: 20px;
+      width: 8px;
+    }
+
+    50% {
+      width: 30px;
+      opacity: 1;
+    }
+
+    100% {
+      top: 50px;
+      right: 50px;
+      width: 8px;
+      opacity: 0;
+    }
+  }
+
+  @keyframes swag3 {
+    0% {
+      bottom: 50px;
+      left: 50px;
+      width: 8px;
+    }
+
+    50% {
+      width: 30px;
+      opacity: 1;
+    }
+
+    100% {
+      bottom: 20px;
+      left: 20px;
+      width: 8px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes swag3-out {
+    0% {
+      bottom: 20px;
+      left: 20px;
+      width: 8px;
+    }
+
+    50% {
+      width: 30px;
+      opacity: 1;
+    }
+
+    100% {
+      bottom: 50px;
+      left: 50px;
+      width: 8px;
+      opacity: 0;
+    }
+  }
+
+  @keyframes swag4 {
+    0% {
+      bottom: 50px;
+      right: 50px;
+      width: 8px;
+    }
+
+    50% {
+      width: 30px;
+      opacity: 1;
+    }
+
+    100% {
+      bottom: 20px;
+      right: 20px;
+      width: 8px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes swag4-out {
+    0% {
+      bottom: 20px;
+      right: 20px;
+      width: 8px;
+    }
+
+    50% {
+      width: 30px;
+      opacity: 1;
+    }
+
+    100% {
+      bottom: 50px;
+      right: 50px;
+      width: 8px;
+      opacity: 0;
+    }
+  }
+</style>
 @endsection
 
 @section('content')
@@ -65,25 +364,29 @@
                 <div class="card mt-5">
                   <div class="card-body">
                     <h1 class="h3 mb-3 fw-normal">Form Consultation</h1>
-                    <div class="form-floating">
+                    <div class="form-floating mt-2">
                       <input type="text" class="form-control" id="name" value="{{ Auth::user()->name }}">
                       <label for="floatingInput">Full Name</label>
                     </div>
-                    <div class="form-floating">
+                    <div class="form-floating mt-2">
                       <input type="date" class="form-control" id="date" value="{{ Auth::user()->tanggal_lahir }}">
                       <label for=" floatingInput">Birthday</label>
                     </div>
-                    <div class="form-floating">
+                    <div class="form-floating mt-2">
                       <input type="text" class="form-control" id="education" value="{{ Auth::user()->asal_sekolah }}">
                       <label for="floatingInput">School or University</label>
                     </div>
-                    <div class="form-floating">
+                    <div class="form-floating mt-2">
                       <input type="email" class="form-control" id="email" placeholder=" "
                         value="{{ Auth::user()->email }}">
                       <label for="floatingInput">Email address</label>
                     </div>
 
-                    <button id="next" class="btn btn-primary">Next</button>
+                    <div class="d-flex justify-content-end">
+                      <button id="next-1" class="btn btn-primary mt-3"> <i class="fa fa-save"></i> Save & Next</button>
+                    </div>
+
+
                   </div>
                 </div>
               </div>
@@ -93,7 +396,6 @@
       </div>
       <div class="card">
         <div id="headingTwo">
-
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
           <div class="card-body">
@@ -105,6 +407,12 @@
               beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
               lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
               probably haven't heard of them accusamus labore sustainable VHS.</p>
+
+            {{-- buatkan saya tombol di kanan --}}
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary mt-3" id="next-2"> <i class="fa fa-arrow-right"></i>
+            </div>
+
           </div>
         </div>
       </div>
@@ -114,13 +422,22 @@
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
           <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
-            probably haven't heard of them accusamus labore sustainable VHS.
+            <div class="row">
+              <div class="col">
+                <div class="wrapper">
+                  <a href="#" class="my-super-cool-btn">
+                    <div class="dots-container">
+                      <div class="dot"></div>
+                      <div class="dot"></div>
+                      <div class="dot"></div>
+                      <div class="dot"></div>
+                    </div>
+                    <span>Mulai!</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            {{-- tempat pertanyaan --}}
           </div>
         </div>
       </div>
@@ -168,5 +485,163 @@
           })
       })
   })
+</script>
+
+<script>
+  $(document).ready(function () {
+
+    // setiap inputan selesai di isi
+    $('#name, #date, #education, #email').on('blur', function() {
+    updateDataConsultation();
+    });
+      
+
+      $('#next-1').click(function () {
+        next1();
+      });
+
+      $('button[data-bs-target="#collapseTwo"]').click(function () {
+          if (!$('button[data-bs-target="#collapseTwo').hasClass('done')) {
+            if(validation1()  == false){
+
+              // wait 1 detik
+              setTimeout(function () {
+                  
+              // collapseTwo hide
+              $('#collapseTwo').collapse('hide');
+
+              // progress bar
+              $('#progress').val(0);
+
+              // buka collapseOne
+              $('#collapseOne').collapse('show');
+
+              }, 1000);
+            }
+          }
+      });
+
+      $('button[data-bs-target="#collapseThree"],button[data-bs-target="#collapseFour"]').click(function () {
+          var errNumber = localStorage.getItem('errNumber');
+
+          if(!validation1() || errNumber > 0){
+            back1();
+          }
+      });
+
+      $('#next-2').click(function () {
+          // collapseThree show
+          $('#collapseThree').collapse('show');
+
+          // progress bar
+          $('#progress').val(67);
+
+          // beri class "done" pada button yang mempunyai data-bs-target = collapseTwo 
+          $('button[data-bs-target="#collapseTwo"]').addClass('done');
+      });
+  });
+
+  function next1() {
+         updateDataConsultation();
+
+          if(!validation1()){
+            return false;
+          }
+
+          // toastr.success('Data Berhasil Disimpan');
+
+          // beri class "done" pada button yang mempunyai data-bs-target = collapseOne 
+          $('button[data-bs-target="#collapseOne"]').addClass('done');
+
+          // collapseTwo show
+          $('#collapseTwo').collapse('show');
+
+          // progress bar
+          $('#progress').val(34);
+          localStorage.setItem('errNumber', 0);
+  }
+
+  function validation1(){
+      var storage = localStorage.getItem('data');
+          var data = JSON.parse(storage);
+
+          
+          var name = data.name;
+          var date = data.date;
+          var education = data.education;
+          var email = data.email;
+
+          // validasi semua inputan tidak boleh kosong
+          if (name == '') {
+              toastr.error('Nama Lengkap Tidak Boleh Kosong');
+              localStorage.setItem('errNumber', 1);
+              return false;
+          } else if (date == '') {
+              toastr.error('Tanggal Lahir Tidak Boleh Kosong');
+              localStorage.setItem('errNumber', 1);
+              return false;
+          } else if (education == '') {
+              toastr.error('Asal Sekolah Tidak Boleh Kosong');
+              localStorage.setItem('errNumber', 1);
+              return false;
+          } else if (email == '') {
+              toastr.error('Email Tidak Boleh Kosong');
+              localStorage.setItem('errNumber', 1);
+              return false;
+          }
+
+          // validasi email
+          if (validateEmail(email) == false) {
+              toastr.error('Format Email Salah');
+              localStorage.setItem('errNumber', 1);
+              return false;
+          }
+          localStorage.setItem('errNumber', 0);
+
+          return true;
+  }
+
+  validateEmail = function (email) {
+      var re = /\S+@\S+\.\S+/;
+      return re.test(email);
+  }
+
+  function back1() {
+      // wait 1 detik
+      setTimeout(function () {
+                  // progress bar
+                  $('#progress').val(0);
+
+                  // hilangkan class "done" pada button yang mempunyai data-bs-target = collapseTwo Three Four
+                  $('button[data-bs-target="#collapseTwo"],button[data-bs-target="#collapseThree"],button[data-bs-target="#collapseFour"]').removeClass('done');
+    
+                  // buka collapseTwo
+                  $('#collapseOne').collapse('show');
+    
+                  }, 1000);
+  }
+
+
+  function updateDataConsultation() {
+      var name = $('#name').val();
+      var date = $('#date').val();
+      var education = $('#education').val();
+      var email = $('#email').val();
+
+      var data = {
+          name: name,
+          date: date,
+          education: education,
+          email: email
+      }
+
+      localStorage.setItem('data', JSON.stringify(data));
+
+      if(!validation1()){
+        return false;
+      }
+
+      toastr.success('Data Berhasil Disimpan');
+  }
 </script>
 @endsection
