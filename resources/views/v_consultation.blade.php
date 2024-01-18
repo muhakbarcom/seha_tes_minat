@@ -657,6 +657,7 @@
 
 <script>
   var dataOption = [];
+  var dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan');
 
   $(document).ready(function () {
 
@@ -679,6 +680,16 @@
 
     $('#tes-kecerdasan').hide();
     $('#container-pagination-tes-kecerdasan').hide();
+
+
+    if(dataTestKecerdasan != null){
+      $('#tes-kecerdasan').show();
+      $('#container-pagination-tes-kecerdasan').show();
+
+      $('#start-3').hide();
+
+      fillTestKecerdasan(1)
+    }
 
 
     $('#start-3').click(function () {
@@ -789,9 +800,15 @@
     let row_number = indikator.row_number;
     let indikator_desc = indikator.INDIKATOR;
 
+    // cek di dataTestKecerdasan berdasaarkan indikator_id, jika ada maka active
+    let dataTestKecerdasanTemp = JSON.parse(dataTestKecerdasan);
+    let temp = dataTestKecerdasanTemp.find(x => x.indikator_id == indikator_id);
+
     option.forEach(function(item,index){
-      optionHtml+= `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="indikator_${indikator_id}" id="${indikator_id}_${item.CODE}" value="${item.POINT}">
+       let active = (temp != undefined && temp.indikator_res == item.CODE) ? 'checked' : '';
+
+        optionHtml+= `<div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="indikator_${indikator_id}" id="${indikator_id}_${item.CODE}" value="${item.POINT}" ${active}>
                         <label class="form-check-label" for="${indikator_id}_${item.CODE}">${item.NAME}</label>
                       </div>`
     })
