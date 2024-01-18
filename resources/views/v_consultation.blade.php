@@ -306,6 +306,7 @@
     }
   }
 </style>
+
 @endsection
 
 @section('content')
@@ -422,7 +423,7 @@
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
           <div class="card-body">
-            <div class="row">
+            <div class="row" id="start-3">
               <div class="col">
                 <div class="wrapper">
                   <a href="#" class="my-super-cool-btn">
@@ -437,7 +438,16 @@
                 </div>
               </div>
             </div>
+
             {{-- tempat pertanyaan --}}
+            <div id="tes-kecerdasan">
+
+            </div>
+            <nav aria-label="Page navigation example" id="container-pagination-tes-kecerdasan">
+              <ul class="pagination justify-content-center" id="pagination-tes-kecerdasan">
+              </ul>
+            </nav>
+
           </div>
         </div>
       </div>
@@ -643,5 +653,163 @@
 
       toastr.success('Data Berhasil Disimpan');
   }
+</script>
+
+<script>
+  var dataOption = [];
+
+  $(document).ready(function () {
+
+    // isi data option
+    $.ajax({
+      url: "{{ url('api/skor') }}",
+      type: "GET",
+      success: function(result){
+        let message = result.message;
+        let data = result.data;
+        let success = result.success;
+        
+        if(success == true){
+          dataOption = data;
+        }else{
+          console.log(message)
+        }
+      }
+    });
+
+    $('#tes-kecerdasan').hide();
+    $('#container-pagination-tes-kecerdasan').hide();
+
+
+    $('#start-3').click(function () {
+      $('#tes-kecerdasan').show();
+      $('#container-pagination-tes-kecerdasan').show();
+
+      $('#start-3').hide();
+
+      fillTestKecerdasan(1)
+    });
+
+    // trigger ketika form-check-input di click maka console.log semua isinya
+    $(document).on('click', '.form-check-input', function () {
+      // Get the label's "for" attribute
+      let name = $(this).attr('id');
+      // Find the associated input value using the "for" attribute
+      let value = $(this).val();
+      // Extract indikator_id from the name attribute
+      let indikator_id = name.split('_')[0];
+      let indikator_res = name.split('_')[1];
+
+      var res = {
+        'indikator_id' : indikator_id,
+        'indikator_res' : indikator_res,
+        'value' : value
+      }
+      
+      // update atau insert ke local storage
+      updateDataTestKecerdasan(res);
+    });
+  });
+
+  function updateDataTestKecerdasan(res){
+    var storage = localStorage.getItem('dataTestKecerdasan');
+    var data = JSON.parse(storage);
+
+    if(data == null){
+      data = [];
+    }
+
+    // cari index dari indikator_id
+    var index = data.findIndex(x => x.indikator_id == res.indikator_id);
+
+    // jika index tidak ditemukan
+    if(index == -1){
+      data.push(res);
+    }else{
+      data[index] = res;
+    }
+
+    localStorage.setItem('dataTestKecerdasan', JSON.stringify(data));
+  }
+
+  // tes kecerdasan
+  function fillTestKecerdasan(page){
+    var url = "{{ url('api/indikator/1') }}";
+    
+    $.ajax({
+      url: url,
+      type: "GET",
+      data : {
+        'page' : page
+      },
+      success: function(result){
+        let message = result.message;
+        let data = result.data.data;
+        let success = result.success;
+        let linksPagination = result.data.links;
+        
+        if(success == true){
+          let html = '';
+          
+          data.forEach(function(item,index){
+            html += stringTemplateIndikator(item,dataOption);
+          });
+
+          fillPaginationTestKecerdasan(linksPagination);
+
+          $('#tes-kecerdasan').html(html);
+          
+        }else{
+          console.log(message)
+        }
+      }
+    });
+  }
+
+  function fillPaginationTestKecerdasan(links){
+
+    let html = '';
+
+    links.forEach(function(item,index){
+      // hanya angka
+      if(item.label != '&laquo; Previous' && item.label != 'Next &raquo;'){
+        let page = item.label;
+        let active = (item.active) ? 'active' : '';
+        html += `<li class="page-item ${active}"><a class="page-link" href="#" onclick="fillTestKecerdasan(${page})">${page}</a></li>`;
+      }
+    })
+
+    $('#pagination-tes-kecerdasan').html(html);
+  }
+
+  function stringTemplateIndikator(indikator,option){
+
+    let optionHtml = '';
+    let indikator_id = indikator.ID;
+    let row_number = indikator.row_number;
+    let indikator_desc = indikator.INDIKATOR;
+
+    option.forEach(function(item,index){
+      optionHtml+= `<div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="indikator_${indikator_id}" id="${indikator_id}_${item.CODE}" value="${item.POINT}">
+                        <label class="form-check-label" for="${indikator_id}_${item.CODE}">${item.NAME}</label>
+                      </div>`
+    })
+
+    return `<div class="row mb-5">
+                <div class="col">
+                  <p>${row_number}. ${indikator_desc}
+                  </p>
+                  <div class="card">
+                    <div class="card-body">
+                      ${optionHtml}
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+  }
+
+  
+
 </script>
 @endsection

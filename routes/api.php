@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\LogoutController;
+use App\Http\Controllers\Api\IndikatorController;
+use App\Http\Controllers\Api\SkorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +37,10 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 Route::post('/register', [AuthController::class, 'register']);
+
+Route::get('/indikator/{aspek}', [IndikatorController::class, 'getByAspekType']);
+Route::get('/skor', [SkorController::class, 'getAll']);
+
+
 
 // Route::apiResource('users', UserController::class);
