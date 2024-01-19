@@ -34,7 +34,10 @@ class InfoController extends Controller
 
     public function getByType($type){
         try {
-            $Infos = Info::where('TYPE', $type)->get();
+            // $Infos = Info::where('TYPE', $type)->get();
+
+            // ambil data info berdasarkan type dan join dengan tb_m_aspek ambil NAME
+            $Infos = Info::where('tb_m_info.TYPE', $type)->join('tb_m_aspek', 'tb_m_info.CODE', '=', 'tb_m_aspek.ID')->select('tb_m_info.*', 'tb_m_aspek.NAME')->get();
 
             $this->response['success'] = true;
             $this->response['message'] = 'Success';

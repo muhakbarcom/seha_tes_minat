@@ -45,6 +45,7 @@ Route::get('/indikator/{aspek}', [IndikatorController::class, 'getByAspekType'])
 Route::get('/skor', [SkorController::class, 'getAll']);
 
 Route::post('/report/getResult', [ReportController::class, 'getResult']);
+Route::post('/report/getResultByCodeTest', [ReportController::class, 'getResultByCodeTest']);
 
 Route::get('/info/{type}', [InfoController::class, 'getByType']);
 Route::get('/info', [InfoController::class, 'getAll']);

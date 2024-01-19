@@ -14,4 +14,10 @@ class Info extends Model
 
     // Tidak menggunakan timestamp (created_at, updated_at)
     public $timestamps = false;
+
+    // tb_m_info.CODE = tb_m_aspek.ID
+    public function aspek()
+    {
+        return $this->belongsTo('App\Models\Aspek', 'CODE', 'ID');
+    }
 }

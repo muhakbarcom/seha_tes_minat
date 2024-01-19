@@ -558,11 +558,97 @@
 {{-- consultation and validation --}}
 <script>
   $(document).ready(function () {
+    var step = localStorage.getItem('step') ?? localStorage.setItem('step', 1);
+    var collapseOne = $('#collapseOne');
+    var collapseTwo = $('#collapseTwo');
+    var collapseThree = $('#collapseThree');
+    var collapseFour = $('#collapseFour');
+    var collapseFive = $('#collapseFive');
+    var btnCollapseOne = $('button[data-bs-target="#collapseOne"]');
+    var btnCollapseTwo = $('button[data-bs-target="#collapseTwo"]');
+    var btnCollapseThree = $('button[data-bs-target="#collapseThree"]');
+    var btnCollapseFour = $('button[data-bs-target="#collapseFour"]');
+    var btnCollapseFive = $('button[data-bs-target="#collapseFive"]');
+    var progress = $('#progress');
+
+    switch (step) {
+      case '1':
+        collapseOne.collapse('show');
+        btnCollapseOne.addClass('done');
+        progress.val(0);
+        break;
+      case '2':
+        collapseOne.collapse('hide');
+        collapseTwo.collapse('show');
+        btnCollapseOne.addClass('done');
+        btnCollapseTwo.addClass('done');
+        progress.val(34);
+        break;
+      case '3':
+        collapseOne.collapse('hide');
+        collapseTwo.collapse('hide');
+        collapseThree.collapse('show');
+        btnCollapseOne.addClass('done');
+        btnCollapseTwo.addClass('done');
+        btnCollapseThree.addClass('done');
+        progress.val(67);
+        break;
+      case '4':
+        collapseOne.collapse('hide');
+        collapseTwo.collapse('hide');
+        collapseThree.collapse('hide');
+        collapseFour.collapse('show');
+        btnCollapseOne.addClass('done');
+        btnCollapseTwo.addClass('done');
+        btnCollapseThree.addClass('done');
+        btnCollapseFour.addClass('done');
+        progress.val(80);
+        break;
+      case '5':
+        collapseOne.collapse('hide');
+        collapseTwo.collapse('hide');
+        collapseThree.collapse('hide');
+        collapseFour.collapse('hide');
+        collapseFive.collapse('show');
+        btnCollapseOne.addClass('done');
+        btnCollapseTwo.addClass('done');
+        btnCollapseThree.addClass('done');
+        btnCollapseFour.addClass('done');
+        btnCollapseFive.addClass('done');
+        progress.val(100);
+        break;
+      case '10':
+        collapseOne.collapse('hide');
+        collapseTwo.collapse('hide');
+        collapseThree.collapse('hide');
+        collapseFour.collapse('hide');
+        collapseFive.collapse('show');
+        btnCollapseOne.addClass('done');
+        btnCollapseTwo.addClass('done');
+        btnCollapseThree.addClass('done');
+        btnCollapseFour.addClass('done');
+        btnCollapseFive.addClass('done');
+        progress.val(100);
+
+        // hide button get result
+        $('#get_result').prop('disabled', true);
+
+        // load result
+        loadResult();
+        break;
+      default:
+        collapseOne.collapse('show');
+        $('#get_result').prop('disabled', false);
+        break;
+    }
+    
+    $('button[data-bs-target="#collapseOne"],button[data-bs-target="#collapseTwo"],button[data-bs-target="#collapseThree"],button[data-bs-target="#collapseFour"],button[data-bs-target="#collapseFive"]').prop('disabled', true);
+
     updateDataConsultation();
     validation1()
     // setiap inputan selesai di isi
     $('#name, #date, #education, #email').on('blur', function() {
-    updateDataConsultation();
+      updateDataConsultation();
     });
       
 
@@ -571,6 +657,7 @@
       });
 
       $('button[data-bs-target="#collapseTwo"]').click(function () {
+          $('#progress').val(40);
           if (!$('button[data-bs-target="#collapseTwo').hasClass('done')) {
             if(validation1()  == false){
 
@@ -591,6 +678,10 @@
           }
       });
 
+      $('button[data-bs-target="#collapseThree"]').click(function () {
+        $('#progress').val(60);
+      });
+
       $('button[data-bs-target="#collapseThree"],button[data-bs-target="#collapseFour"],button[data-bs-target="#collapseFive"]').click(function () {
           var errNumber = localStorage.getItem('errNumber');
 
@@ -608,7 +699,92 @@
 
           // beri class "done" pada button yang mempunyai data-bs-target = collapseTwo 
           $('button[data-bs-target="#collapseTwo"]').addClass('done');
+
+          localStorage.setItem('step', 3);
       });
+
+      $('#btn-submit,button[data-bs-target="#collapseFour').click(function () {
+        $('#progress').val(80);
+        var totalIndikator = localStorage.getItem('totalIndikator_kecerdasan');
+        var dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan');
+        var dataTestKecerdasanTemp = (dataTestKecerdasan != null) ? JSON.parse(dataTestKecerdasan) : [];
+
+        if(dataTestKecerdasanTemp.length != totalIndikator){
+          toastr.error('Tes Bakat Belum Selesai');
+          
+          // balik ke collapseThree
+          $('#collapseThree').collapse('show');
+          
+          // hilanhkan done pada collapseFour
+          $('button[data-bs-target="#collapseFour"]').removeClass('done');
+          
+          // progress bar
+          $('#progress').val(67);
+        }
+
+        $('#collapseThree').collapse('hide');
+        $('#collapseFour').collapse('show');
+
+        // beri class "done" pada button yang mempunyai data-bs-target = collapseThree
+        $('button[data-bs-target="#collapseThree"]').addClass('done');
+        $('button[data-bs-target="#collapseFour"]').addClass('done');
+
+        localStorage.setItem('step', 4);
+
+      });
+      
+      
+
+      $('button[data-bs-target="#collapseFive"],#btn-submit-bakat').click(function () {
+        $('#progress').val(100);
+        var totalIndikator_bakat = localStorage.getItem('totalIndikator_bakat') ?? 0;
+        var dataTestbakat = localStorage.getItem('dataTestbakat') ?? null;
+        var dataTestbakatTemp = (dataTestbakat != null) ? JSON.parse(dataTestbakat) : [];
+
+        var totalIndikator = localStorage.getItem('totalIndikator_kecerdasan');
+        var dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan');
+        var dataTestKecerdasanTemp = (dataTestKecerdasan != null) ? JSON.parse(dataTestKecerdasan) : [];
+
+        if(dataTestKecerdasanTemp.length != totalIndikator){
+          toastr.error('Tes Kecerdasan Belum Selesai');
+          
+          // balik ke collapseThree
+          $('#collapseThree').collapse('show');
+
+          // hilanhkan done pada collapseFour
+          $('button[data-bs-target="#collapseFour"],button[data-bs-target="#collapseFive"]').removeClass('done');
+          
+
+          // progress bar
+          $('#progress').val(67);
+          return false;
+        }
+
+        if(dataTestbakatTemp.length != totalIndikator_bakat){
+          toastr.error('Tes Bakat Belum Selesai');
+          
+          // balik ke collapseThree
+          $('#collapseFive').collapse('hide');
+          $('#collapseFour').collapse('show');
+
+          // hilanhkan done pada collapseFour
+          $('button[data-bs-target="#collapseFive"]').removeClass('done');
+
+          // progress bar
+          $('#progress').val(80);
+          return false;
+        }
+
+        $('#collapseFour').collapse('hide');
+        $('#collapseFive').collapse('show');
+
+        // beri class "done" pada button yang mempunyai data-bs-target = collapseThree
+        $('button[data-bs-target="#collapseFour"]').addClass('done');
+        $('button[data-bs-target="#collapseFive"]').addClass('done');
+
+        localStorage.setItem('step', 5);
+      });
+
   });
 
   function next1() {
@@ -629,6 +805,7 @@
           // progress bar
           $('#progress').val(34);
           localStorage.setItem('errNumber', 0);
+          localStorage.setItem('step', 2);
   }
 
   function validation1(){
@@ -1116,25 +1293,25 @@
     var dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan');
     var dataTestbakat = localStorage.getItem('dataTestbakat');
 
-    // if(dataTestKecerdasan.length != totalIndikator_kecerdasan){
-
-    //   get_result_icon.removeClass('fa-spinner fa-spin');
-    //   get_result_icon.addClass('fa-circle');
-
-    //   toastr.error('Data Tes Kecerdasan Belum Lengkap');
-    //   return false;
-    // }
-
-    // if(dataTestbakat != totalIndikator_bakat){
-    //   get_result_icon.removeClass('fa-spinner fa-spin');
-    //   get_result_icon.addClass('fa-circle');
-    //   toastr.error('Data Tes Bakat Belum Lengkap');
-    //   return false;
-    // }
-
     // object to array
-    // var dataTestKecerdasanTemp = JSON.parse(dataTestKecerdasan);
-    // var dataTestbakatTemp = JSON.parse(dataTestbakat);
+    var dataTestKecerdasanTemp = JSON.parse(dataTestKecerdasan);
+    var dataTestbakatTemp = JSON.parse(dataTestbakat);
+
+    if(dataTestKecerdasanTemp.length != totalIndikator_kecerdasan){
+
+      get_result_icon.removeClass('fa-spinner fa-spin');
+      get_result_icon.addClass('fa-circle');
+
+      toastr.error('Data Tes Kecerdasan Belum Lengkap');
+      return false;
+    }
+
+    if(dataTestbakatTemp.length != totalIndikator_bakat){
+      get_result_icon.removeClass('fa-spinner fa-spin');
+      get_result_icon.addClass('fa-circle');
+      toastr.error('Data Tes Bakat Belum Lengkap');
+      return false;
+    }
 
     let data = {
       'dataTestKecerdasan' : dataTestKecerdasan,
@@ -1146,7 +1323,32 @@
       type: "POST",
       data : data,
       success: function(result){
-        console.log(result)
+        get_result_icon.removeClass('fa-spinner fa-spin');
+        get_result_icon.addClass('fa-circle');
+       if(result.success == true){
+          // hide #get_result
+          $('#get_result').prop('disabled', true);
+
+          console.log(result.data)
+
+          localStorage.removeItem('dataTestKecerdasan');
+          localStorage.removeItem('dataTestbakat');
+          localStorage.removeItem('totalIndikator_bakat');
+          localStorage.removeItem('totalIndikator_kecerdasan');
+          localStorage.removeItem('errNumber');
+          localStorage.removeItem('data');
+
+          localStorage.setItem('step', 10);
+          localStorage.setItem('codeTest', result.data.codeTest);
+
+
+
+
+
+        }else{
+          $('#get_result').prop('disabled', false);
+          toastr.error(result.message);
+        }
           
       }
     });
@@ -1154,5 +1356,28 @@
     get_result_icon.removeClass('fa-spinner fa-spin');
     get_result_icon.addClass('fa-circle');
   })
+
+  function loadResult(){
+    var codeTest = localStorage.getItem('codeTest');
+    var data = {
+      'codeTest' : codeTest
+    }
+
+    $.ajax({
+      url: "{{ url('api/report/getResultByCodeTest') }}",
+      type: "POST",
+      data : data,
+      success: function(result){
+       if(result.success == true){
+
+          localStorage.setItem('step', 10);
+          localStorage.setItem('codeTest', result.data.codeTest);
+
+       }else{
+          toastr.error(result.message);
+       }
+      }
+    });
+  };
 </script>
 @endsection

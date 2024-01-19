@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Test;
 
 class ReportController extends Controller
 {
@@ -56,15 +57,51 @@ class ReportController extends Controller
             // ambil 3 aspek_id dari $group_dataTestBakat berdasarkan presentase tertinggi
             $max_presentase_dataTestBakat = $this->sortByBiggest($group_dataTestBakat);
             $max_presentase_dataTestBakat = array_slice($max_presentase_dataTestBakat, 0, 3);
+
+            $result_tes_kecerdasan = [
+                'aspek_id' => $max_presentase_dataTestKecerdasan,
+                'info' => $this->getDataInfoByAspekId($max_presentase_dataTestKecerdasan),
+                'presentase' => $group_dataTestKecerdasan[$max_presentase_dataTestKecerdasan]['presentase'],
+                'aspek_name' => $this->getDataAspekByID($max_presentase_dataTestKecerdasan)->NAME
+            ];
+
+            $result_tes_bakat = [];
+            foreach ($max_presentase_dataTestBakat as $data) {
+                $result_tes_bakat[] = [
+                    'aspek_id' => $data['aspek_id'],
+                    'info' => $this->getDataInfoByAspekId($data['aspek_id']),
+                    'presentase' => $data['presentase'],
+                    'aspek_name' => $this->getDataAspekByID($data['aspek_id'])->NAME
+                ];
+            }
             
+            $prepareDataToSave = [
+                'code_test' => uniqid(),
+                'kc_aspek_id' => $result_tes_kecerdasan['aspek_id'],
+                'kc_presentase' => $result_tes_kecerdasan['presentase'],
+                'bk_1_aspek_id' => $result_tes_bakat[0]['aspek_id'],
+                'bk_1_presentase' => $result_tes_bakat[0]['presentase'],
+                'bk_2_aspek_id' => $result_tes_bakat[1]['aspek_id'],
+                'bk_2_presentase' => $result_tes_bakat[1]['presentase'],
+                'bk_3_aspek_id' => $result_tes_bakat[2]['aspek_id'],
+                'bk_3_presentase' => $result_tes_bakat[2]['presentase'],
+            ];
 
+            $save = $this->saveToTest($prepareDataToSave);
 
+            if (!$save['success']) {
+                throw new \Exception($save['message']);
+            }
 
-           \dd($max_presentase_dataTestBakat);
+            $result_final = [
+                'tes_kecerdasan' => $result_tes_kecerdasan,
+                'tes_bakat' => $result_tes_bakat,
+                'CodeTest' => $save['data']['CODE_TEST'] ?? ''
+            ];
 
             $this->response['success'] = true;
             $this->response['message'] = 'Success';
-            $this->response['data'] = $req;
+            $this->response['data'] = $result_final;
 
             return response()->json($this->response, 200);
         } catch (\Exception $e) {
@@ -74,6 +111,122 @@ class ReportController extends Controller
 
             return response()->json($this->response, 500);
         }
+    }
+
+    public function getResultByCodeTest(Request $req)
+    {
+        try {
+            $validator = Validator::make($req->all(), [
+                'codeTest' => 'required|string',
+            ]);
+
+            if ($validator->fails()) {
+                $this->response['success'] = false;
+                $this->response['message'] = $validator->errors();
+                return response()->json($this->response, 200);
+            }
+
+            $code_test = $req->codeTest;
+
+            $data = DB::table('tb_r_test')
+                ->where('CODE_TEST', $code_test)
+                ->first();
+
+            $result_tes_kecerdasan = [
+                'aspek_id' => $data->KC_ASPEK_ID,
+                'info' => $this->getDataInfoByAspekId($data->KC_ASPEK_ID),
+                'presentase' => $data->KC_PRESENTASE,
+                'aspek_name' => $this->getDataAspekByID($data->KC_ASPEK_ID)->NAME
+            ];
+
+            $result_tes_bakat = [];
+            $result_tes_bakat[] = [
+                'aspek_id' => $data->BK_1_ASPEK_ID,
+                'info' => $this->getDataInfoByAspekId($data->BK_1_ASPEK_ID),
+                'presentase' => $data->BK_1_PRESENTASE,
+                'aspek_name' => $this->getDataAspekByID($data->BK_1_ASPEK_ID)->NAME
+            ];
+
+            $result_tes_bakat[] = [
+                'aspek_id' => $data->BK_2_ASPEK_ID,
+                'info' => $this->getDataInfoByAspekId($data->BK_2_ASPEK_ID),
+                'presentase' => $data->BK_2_PRESENTASE,
+                'aspek_name' => $this->getDataAspekByID($data->BK_2_ASPEK_ID)->NAME
+            ];
+
+            $result_tes_bakat[] = [
+                'aspek_id' => $data->BK_3_ASPEK_ID,
+                'info' => $this->getDataInfoByAspekId($data->BK_3_ASPEK_ID),
+                'presentase' => $data->BK_3_PRESENTASE,
+                'aspek_name' => $this->getDataAspekByID($data->BK_3_ASPEK_ID)->NAME
+            ];
+
+            $result_final = [
+                'tes_kecerdasan' => $result_tes_kecerdasan,
+                'tes_bakat' => $result_tes_bakat,
+                'CodeTest' => $code_test
+            ];
+
+            $this->response['success'] = true;
+            $this->response['message'] = 'Success';
+            $this->response['data'] = $result_final;
+
+            return response()->json($this->response, 200);
+        } catch (\Exception $e) {
+            $this->response['success'] = false;
+            $this->response['message'] = $e->getMessage();
+            $this->response['data'] = [];
+
+            return response()->json($this->response, 500);
+        }
+    }
+
+    private function saveToTest($data)
+    {
+        try {
+            $prepare_data = [
+                'USER_ID' => auth()->user()->id ?? '',
+                'CODE_TEST' => $data['code_test'],
+                'KC_ASPEK_ID' => $data['kc_aspek_id'],
+                'KC_PRESENTASE' => $data['kc_presentase'],
+                'BK_1_ASPEK_ID' => $data['bk_1_aspek_id'],
+                'BK_1_PRESENTASE' => $data['bk_1_presentase'],
+                'BK_2_ASPEK_ID' => $data['bk_2_aspek_id'],
+                'BK_2_PRESENTASE' => $data['bk_2_presentase'],
+                'BK_3_ASPEK_ID' => $data['bk_3_aspek_id'],
+                'BK_3_PRESENTASE' => $data['bk_3_presentase'],
+            ];
+            
+            $res = Test::create($prepare_data);
+            
+            $this->response['success'] = true;
+            $this->response['message'] = 'Success';
+            $this->response['data'] = $prepare_data;
+        } catch (\Exception $e) {
+            $this->response['success'] = false;
+            $this->response['message'] = $e->getMessage();
+            $this->response['data'] = [];
+        }
+
+        return $this->response;
+    }
+
+    private function getDataAspekByID($id)
+    {
+        $res = DB::table('tb_m_aspek')
+            ->where('ID', $id)
+            ->first();
+
+        return $res;
+    }
+
+    private function getDataInfoByAspekId($aspek_id)
+    {
+        $res = DB::table('tb_m_info')
+            ->where('CODE', $aspek_id)
+            ->first();
+
+        return $res;
     }
 
     private function sortByBiggest($array)

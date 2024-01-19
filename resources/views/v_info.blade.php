@@ -181,7 +181,7 @@
         //ambil data dari dataRIASEC
         var data = dataRIASEC.find(item => item.ID == 1);
         
-        $('#reasec-title').text(data.CODE)
+        $('#reasec-title').text(data.NAME)
         //tampilkan data ke dalam table
         $('#table-riasec tbody').html(`
           <tr>
@@ -218,7 +218,7 @@
 
           MIList += `
             <li>
-              <div data-bs-toggle="collapse" class="collapsed question" href="#faq${num}">${item.CODE} <i
+              <div data-bs-toggle="collapse" class="collapsed question" href="#faq${num}">${item.NAME} <i
                   class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
               <div id="faq${num}" class="collapse" data-bs-parent=".faq-list">
                 <table class="table table-bordered">
@@ -263,7 +263,7 @@
     var id = $(this).data('id');
     //cari data dari dataRIASEC berdasarkan id
     var data = dataRIASEC.find(item => item.ID == id);
-    $('#reasec-title').text(data.CODE)
+    $('#reasec-title').text(data.NAME)
     
     //tampilkan data ke dalam table
     $('#table-riasec tbody').html(`

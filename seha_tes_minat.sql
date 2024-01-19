@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 19, 2024 at 01:20 PM
+-- Generation Time: Jan 19, 2024 at 04:17 PM
 -- Server version: 10.4.30-MariaDB-log
 -- PHP Version: 7.4.33
 
@@ -104,7 +104,8 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (5, 'App\\Models\\User', 2, 'auth_token', '41c69750044902fe9d3adf74b7902eee136827beb316d2e83e4bd78fd7bf6c46', '[\"*\"]', NULL, '2024-01-16 21:31:48', '2024-01-16 21:31:48'),
 (6, 'App\\Models\\User', 2, 'auth_token', '811080f0d2d7dcc6a190f26c713bf90ba9e925bfab1b294fde040ac4a91db009', '[\"*\"]', NULL, '2024-01-17 07:02:49', '2024-01-17 07:02:49'),
 (7, 'App\\Models\\User', 2, 'auth_token', '98dd023b6f973a110c16399873059a2a58b963b85a1051e583661f506b457a1f', '[\"*\"]', NULL, '2024-01-17 19:14:31', '2024-01-17 19:14:31'),
-(8, 'App\\Models\\User', 2, 'auth_token', '93d9f0e6d3e02e7a0b9619f1d79f54633e8acde46930374beefe39f3c5f8537c', '[\"*\"]', NULL, '2024-01-18 23:22:34', '2024-01-18 23:22:34');
+(8, 'App\\Models\\User', 2, 'auth_token', '93d9f0e6d3e02e7a0b9619f1d79f54633e8acde46930374beefe39f3c5f8537c', '[\"*\"]', NULL, '2024-01-18 23:22:34', '2024-01-18 23:22:34'),
+(9, 'App\\Models\\User', 2, 'auth_token', 'f45b52f9b8055c7c77870094832b434a1523263707585c2db3e51b06b7525f42', '[\"*\"]', NULL, '2024-01-19 09:17:17', '2024-01-19 09:17:17');
 
 -- --------------------------------------------------------
 
@@ -136,7 +137,8 @@ INSERT INTO `tb_m_aspek` (`ID`, `NAME`, `TYPE`) VALUES
 (12, 'Artistic', 2),
 (13, 'SOCIAL', 2),
 (14, 'Enterprising', 2),
-(15, 'Conventional', 2);
+(15, 'Conventional', 2),
+(16, 'Eksistensial', 1);
 
 -- --------------------------------------------------------
 
@@ -305,7 +307,7 @@ INSERT INTO `tb_m_indikator` (`ID`, `CODE`, `INDIKATOR`, `ASPEK_ID`) VALUES
 
 CREATE TABLE `tb_m_info` (
   `ID` int(11) NOT NULL,
-  `CODE` text NOT NULL,
+  `CODE` int(11) NOT NULL COMMENT 'TB_M_ASPEK.ID',
   `DESKRIPSI_BIDANG_MINAT` text NOT NULL,
   `KETERAMPILAN_KUNCI` text NOT NULL,
   `KOMPONEN_PEKERJAAN` text NOT NULL,
@@ -318,21 +320,21 @@ CREATE TABLE `tb_m_info` (
 --
 
 INSERT INTO `tb_m_info` (`ID`, `CODE`, `DESKRIPSI_BIDANG_MINAT`, `KETERAMPILAN_KUNCI`, `KOMPONEN_PEKERJAAN`, `PROGRAM_STUDY`, `TYPE`) VALUES
-(1, 'REALISTIC', 'Suka bekerja terutama dengan tangan, membuat, memperbaiki, merakit atau membangun sesuatu, menggunakan dan mengoperasikan peralatan, alat atau mesin. Seringkali suka bekerja di luar ruangan', 'Menggunakan dan mengoperasikan alat, peralatan dan mesin, merancang, membangun, memperbaiki, memelihara, bekerja secara manual, mengukur, bekerja secara detail, mengemudi, bergerak, merawat hewan, bekerja dengan tanaman', 'Pilot, petani, hortikultura, pembangun, insinyur, personel angkatan bersenjata, mekanik, tukang melapis, listrik, teknolog komputer, penjaga taman, olahragawan', 'Bahasa Inggris, Matematika, Sains, Workshop, Teknologi, Komputer, Studi Bisnis, Pertanian, Hortikultura, Pendidikan Jasmani', 2),
-(2, 'INVESTIGATIVE', 'Suka menemukan dan meneliti ide, mengamati, menyelidiki, dan bereksperimen, mengajukan pertanyaan, dan menyelesaikan masalah', 'Berpikir analitis dan logis, menghitung, berkomunikasi dengan menulis dan berbicara, merancang, merumuskan, menghitung, mendiagnosis, bereksperimen, menyelidiki', 'Ilmu pengetahuan, penelitian, pekerjaan medis dan kesehatan, ahli kimia, ilmuwan kelautan, teknisi kehutanan, teknisi laboratorium medis atau pertanian, ahli zoologi, dokter gigi, dokter', 'Bahasa Inggris, Matematika, Sains, Komputer, Teknologi', 2),
-(3, 'ARTISTIC', 'Suka menggunakan kata-kata, seni, musik atau drama untuk berkomunikasi, melakukan, atau mengekspresikan diri, membuat dan merancang sesuatu', 'Mengekspresikan secara artistik atau fisik, berbicara, menulis, menyanyi, tampil, merancang, menyajikan, merencanakan, menyusun, bermain, menari', 'Artis, ilustrator, fotografer, penulis lagu, komposer, penyanyi, pemain instrumen, penari, aktor, reporter, penulis, editor, pengiklan, penata rambut, perancang busana', 'Bahasa Inggris, Ilmu Sosial, Musik, Drama, Seni, Desain Grafis, Komputer, Studi Bisnis, Bahasa', 2),
-(4, 'SOCIAL', 'Suka mengajar, melatih dan memberi informasi, membantu, mengobati, menyembuhkan dan melayani dan menyapa, peduli dengan kesejahteraan diri dan kesejahteraan orang lain', 'Berkomunikasi secara lisan atau tertulis, peduli dan mendukung, melatih, bertemu, menyapa, membantu, mengajar, memberi informasi, mewawancarai, melatih', 'Guru, perawat, asisten perawat, penasihat, petugas polisi, pekerja sosial, tenaga penjualan, petugas layanan pelanggan, pelayan, sekretaris', 'Bahasa Inggris, Ilmu Sosial, Matematika, Sains, Kesehatan, Pendidikan Jasmani, Seni, Komputer, Studi Bisnis, Bahasa', 2),
-(5, 'ENTERPRISING', 'Suka bertemu orang, memimpin, berbicara dan mempengaruhi orang lain, mendorong orang lain, bekerja dalam bisnis', 'Menjual, mempromosikan dan membujuk, mengembangkan ide-ide, berbicara di depan umum, mengelola, mengatur, memimpin dan menangkap, menghitung, merencanakan', 'Tenaga penjual, pengacara, politisi, akuntan, pemilik bisnis, eksekutif atau manajer, agen perjalanan, musik atau promotor olahraga', 'Bahasa Inggris, Matematika, Studi Bisnis, Akuntansi, Ekonomi, Ilmu Sosial, Drama, Komputasi, Manajemen Informasi Teks, Bahasa', 2),
-(6, 'CONVENTIONAL', 'Suka bekerja di dalam ruangan dan pada tugas-tugas yang melibatkan pengorganisasian dan akurasi, mengikuti prosedur, bekerja dengan data atau angka, pekerjaan perencanaan dan acara', 'Komputasi dan keyboarding, merekam dan menyimpan catatan, memperhatikan detail, bertemu dan menyapa, melakukan perhitungan, menangani uang, mengatur, mengatur, bekerja secara mandiri', 'Sekretaris, resepsionis, pekerja kantor, pustakawan, petugas bank, operator komputer, toko dan petugas pengiriman', 'Bahasa Inggris, Matematika, Studi Bisnis, Akuntansi, Ekonomi, Komputer, Manajemen Informasi Teks', 2),
-(7, 'Linguistik', 'Kemampuan untuk menganalisis informasi dan membuat produk yang melibatkan Bahasa lisan, tulisan seperti pidato, buku dan memo.', 'Mengerti urutan dan arti kata-kata., Menjelaskan, mengajar, bercerita, berdebat., Humor., Mengingat dan menghafal., Analisis linguistik., Menulis dan berbicara., Main drama, berpuisi, berpidato., Mahir dalam perbendaharaan kata.', 'Dramawan, editor,pengarang, jurnalis, sastrawan, orator, ahli sastra, novelis.', 'Komunikasi, sastra, jurnalistik, pariwisata dan hukum.', 1),
-(8, 'Matematis- logis', 'Memuat kemampuan seseorang dalam berpikir secara induktif dan deduktif, berpikir menurut aturan logika, memahami dan menganalisis pola angka-angka serta memecahkan masalah dengan menggunakan kemampuan berpikir.', 'Logika., Reasioning, pola sebab akibat., Klasifikasi dan kategorisasi., Abstraksi, simbolisasi., Pemikiran induktif dan deduktif., Menghitung dan bermain angka., Pemikiran ilmiah., Problem solving., Silogisme', 'Logikus, matematikus, saintis, programer, negosiator', 'Akuntansi, matematika, sains, aktuaria atau programmer.', 1),
-(9, 'Visual', 'Kemampuan untuk menganalisis informasi dan membuat produk yang melibatkan Bahasa lisan, tulisan seperti pidato, buku dan memo.', 'Mengenal relasi benda-benda dalam ruang dengan tepat., Punya persepsi yang tepat dari berbagai sudut., Representasi grafik., Manipulasi gambar, menggambar., Mudah menemukan jalan dalam ruang., Imajinasinya aktif., Peka terhadap warna, garis, dan bentuk.', 'Pemburu, arsitek, dekorator, navigator, ahli peta, pelukis, pemahat, pengambar, pemain catur', 'Arsitektur, seni rupa, DKV, Teknik atau pilot.', 1),
-(10, 'Tubuh - Kinestetik', 'Kemampuan untuk menggunakan tubuh sendiri untuk menciptakan produk atau memecahkan masalah.', 'Mudah berekspresi dengan tubuh., Mengkaitkan pikiran dan tubuh., Kemampuan bermain mimik., Main drama, main peran., Aktif bergerak, olahraga, menari., Koordinasi dan fleksibilitas tubuh tinggi.', 'Aktor, atlet, penari, pemahat, ahli bedah, olahragawan', 'Jurusan keolahragaan, seni kriya, seni tari, tata busana, dokter bedah.', 1),
-(11, 'Musikal', 'Kemampuan untuk menghasilkan, mengingat, dan memaknai pola suara yang berbeda.', 'Kepekaan terhadap suara dan musik., Tahu struktur musik dengan baik., Mudah menangkap musik., Mencipta melodi., Peka dengan intonasi, ritmik., Menyanyi, pentas musik., Mencipta musik., Pemain alat musik.', 'Musikus, penyanyi, pemain opera, komponis, dirigen, pemain musik', 'Musik', 1),
-(12, 'Interpersonal', 'Kemampuan untuk mengenali dan memahami suasana hati, keinginan, motivasi dan niat orang lain.', 'Mudah kerjasama dengan teman., Mudah mengenal dan membedakan perasaan dan pribadi teman., Komunikasi verbal dan non-verbal., Peka terhadap teman, empatis., Suka memberikan feedback.', 'Komunikator, fasilitator, penggerak massa, pemersatu', 'Perawat, Kesehatan Masyarakat, gizi, Pendidikan dan psikologi.', 1),
-(13, 'Intrapersonal', 'Kemampuan untuk mengenali dan memahami suasana hati, keinginan, motivasi, dan niat seseorang.', 'Dapat berkonsentrasi dengan baik., Kesadaran dan ekspresi perasaan-perasaan yang berbeda., Pengenalan diri yang dalam., Keseimbangan diri., Kesadaran akan realitas spiritual., Reflektif, suka kerja sendiri.', 'Sufi, pendoa batin, spiritual yang mendalam, pendamai', 'Psikologi, bimbingan konseling,', 1),
-(14, 'Naturalistik', 'Kemampuan untuk mengidentifikasi dan membedakan berbagai jenis tanaman, hewan dan formasi cuaca yang ditemukan dialam.', 'Mengenal flora-fauna., Mengklasifikasi dan identifikasi tumbuhan dan binatang., Suka pada alam., Hidup di luar rumah.', 'Botanis, anatomis', 'Dokter hewan, peternakan, kelautan dan kehutanan.', 1),
-(15, 'Eksistensial', 'kemampuan untuk memahami pertanyaan abstrak tentang keberadaan, makna, dan tujuan hidup. cenderung memiliki keinginan kuat untuk mengeksplorasi pertanyaan-pertanyaan filosofis dan mencari jawaban atas pertanyaan tentang hakikat keberadaan manusia', 'Memiliki pandangan jangka panjang., Memikirkan sebab akibat., Tertarik mendalami ilmu atau pelajaran agama., Suka menolong orang lain., Sangat peka terhadap masalah sosial.', 'Psikolog, ahli filsuf', 'Psikologi atau filsafat', 1);
+(1, 10, 'Suka bekerja terutama dengan tangan, membuat, memperbaiki, merakit atau membangun sesuatu, menggunakan dan mengoperasikan peralatan, alat atau mesin. Seringkali suka bekerja di luar ruangan', 'Menggunakan dan mengoperasikan alat, peralatan dan mesin, merancang, membangun, memperbaiki, memelihara, bekerja secara manual, mengukur, bekerja secara detail, mengemudi, bergerak, merawat hewan, bekerja dengan tanaman', 'Pilot, petani, hortikultura, pembangun, insinyur, personel angkatan bersenjata, mekanik, tukang melapis, listrik, teknolog komputer, penjaga taman, olahragawan', 'Bahasa Inggris, Matematika, Sains, Workshop, Teknologi, Komputer, Studi Bisnis, Pertanian, Hortikultura, Pendidikan Jasmani', 2),
+(2, 11, 'Suka menemukan dan meneliti ide, mengamati, menyelidiki, dan bereksperimen, mengajukan pertanyaan, dan menyelesaikan masalah', 'Berpikir analitis dan logis, menghitung, berkomunikasi dengan menulis dan berbicara, merancang, merumuskan, menghitung, mendiagnosis, bereksperimen, menyelidiki', 'Ilmu pengetahuan, penelitian, pekerjaan medis dan kesehatan, ahli kimia, ilmuwan kelautan, teknisi kehutanan, teknisi laboratorium medis atau pertanian, ahli zoologi, dokter gigi, dokter', 'Bahasa Inggris, Matematika, Sains, Komputer, Teknologi', 2),
+(3, 12, 'Suka menggunakan kata-kata, seni, musik atau drama untuk berkomunikasi, melakukan, atau mengekspresikan diri, membuat dan merancang sesuatu', 'Mengekspresikan secara artistik atau fisik, berbicara, menulis, menyanyi, tampil, merancang, menyajikan, merencanakan, menyusun, bermain, menari', 'Artis, ilustrator, fotografer, penulis lagu, komposer, penyanyi, pemain instrumen, penari, aktor, reporter, penulis, editor, pengiklan, penata rambut, perancang busana', 'Bahasa Inggris, Ilmu Sosial, Musik, Drama, Seni, Desain Grafis, Komputer, Studi Bisnis, Bahasa', 2),
+(4, 13, 'Suka mengajar, melatih dan memberi informasi, membantu, mengobati, menyembuhkan dan melayani dan menyapa, peduli dengan kesejahteraan diri dan kesejahteraan orang lain', 'Berkomunikasi secara lisan atau tertulis, peduli dan mendukung, melatih, bertemu, menyapa, membantu, mengajar, memberi informasi, mewawancarai, melatih', 'Guru, perawat, asisten perawat, penasihat, petugas polisi, pekerja sosial, tenaga penjualan, petugas layanan pelanggan, pelayan, sekretaris', 'Bahasa Inggris, Ilmu Sosial, Matematika, Sains, Kesehatan, Pendidikan Jasmani, Seni, Komputer, Studi Bisnis, Bahasa', 2),
+(5, 14, 'Suka bertemu orang, memimpin, berbicara dan mempengaruhi orang lain, mendorong orang lain, bekerja dalam bisnis', 'Menjual, mempromosikan dan membujuk, mengembangkan ide-ide, berbicara di depan umum, mengelola, mengatur, memimpin dan menangkap, menghitung, merencanakan', 'Tenaga penjual, pengacara, politisi, akuntan, pemilik bisnis, eksekutif atau manajer, agen perjalanan, musik atau promotor olahraga', 'Bahasa Inggris, Matematika, Studi Bisnis, Akuntansi, Ekonomi, Ilmu Sosial, Drama, Komputasi, Manajemen Informasi Teks, Bahasa', 2),
+(6, 15, 'Suka bekerja di dalam ruangan dan pada tugas-tugas yang melibatkan pengorganisasian dan akurasi, mengikuti prosedur, bekerja dengan data atau angka, pekerjaan perencanaan dan acara', 'Komputasi dan keyboarding, merekam dan menyimpan catatan, memperhatikan detail, bertemu dan menyapa, melakukan perhitungan, menangani uang, mengatur, mengatur, bekerja secara mandiri', 'Sekretaris, resepsionis, pekerja kantor, pustakawan, petugas bank, operator komputer, toko dan petugas pengiriman', 'Bahasa Inggris, Matematika, Studi Bisnis, Akuntansi, Ekonomi, Komputer, Manajemen Informasi Teks', 2),
+(7, 2, 'Kemampuan untuk menganalisis informasi dan membuat produk yang melibatkan Bahasa lisan, tulisan seperti pidato, buku dan memo.', 'Mengerti urutan dan arti kata-kata., Menjelaskan, mengajar, bercerita, berdebat., Humor., Mengingat dan menghafal., Analisis linguistik., Menulis dan berbicara., Main drama, berpuisi, berpidato., Mahir dalam perbendaharaan kata.', 'Dramawan, editor,pengarang, jurnalis, sastrawan, orator, ahli sastra, novelis.', 'Komunikasi, sastra, jurnalistik, pariwisata dan hukum.', 1),
+(8, 3, 'Memuat kemampuan seseorang dalam berpikir secara induktif dan deduktif, berpikir menurut aturan logika, memahami dan menganalisis pola angka-angka serta memecahkan masalah dengan menggunakan kemampuan berpikir.', 'Logika., Reasioning, pola sebab akibat., Klasifikasi dan kategorisasi., Abstraksi, simbolisasi., Pemikiran induktif dan deduktif., Menghitung dan bermain angka., Pemikiran ilmiah., Problem solving., Silogisme', 'Logikus, matematikus, saintis, programer, negosiator', 'Akuntansi, matematika, sains, aktuaria atau programmer.', 1),
+(9, 4, 'Kemampuan untuk menganalisis informasi dan membuat produk yang melibatkan Bahasa lisan, tulisan seperti pidato, buku dan memo.', 'Mengenal relasi benda-benda dalam ruang dengan tepat., Punya persepsi yang tepat dari berbagai sudut., Representasi grafik., Manipulasi gambar, menggambar., Mudah menemukan jalan dalam ruang., Imajinasinya aktif., Peka terhadap warna, garis, dan bentuk.', 'Pemburu, arsitek, dekorator, navigator, ahli peta, pelukis, pemahat, pengambar, pemain catur', 'Arsitektur, seni rupa, DKV, Teknik atau pilot.', 1),
+(10, 5, 'Kemampuan untuk menggunakan tubuh sendiri untuk menciptakan produk atau memecahkan masalah.', 'Mudah berekspresi dengan tubuh., Mengkaitkan pikiran dan tubuh., Kemampuan bermain mimik., Main drama, main peran., Aktif bergerak, olahraga, menari., Koordinasi dan fleksibilitas tubuh tinggi.', 'Aktor, atlet, penari, pemahat, ahli bedah, olahragawan', 'Jurusan keolahragaan, seni kriya, seni tari, tata busana, dokter bedah.', 1),
+(11, 6, 'Kemampuan untuk menghasilkan, mengingat, dan memaknai pola suara yang berbeda.', 'Kepekaan terhadap suara dan musik., Tahu struktur musik dengan baik., Mudah menangkap musik., Mencipta melodi., Peka dengan intonasi, ritmik., Menyanyi, pentas musik., Mencipta musik., Pemain alat musik.', 'Musikus, penyanyi, pemain opera, komponis, dirigen, pemain musik', 'Musik', 1),
+(12, 7, 'Kemampuan untuk mengenali dan memahami suasana hati, keinginan, motivasi dan niat orang lain.', 'Mudah kerjasama dengan teman., Mudah mengenal dan membedakan perasaan dan pribadi teman., Komunikasi verbal dan non-verbal., Peka terhadap teman, empatis., Suka memberikan feedback.', 'Komunikator, fasilitator, penggerak massa, pemersatu', 'Perawat, Kesehatan Masyarakat, gizi, Pendidikan dan psikologi.', 1),
+(13, 8, 'Kemampuan untuk mengenali dan memahami suasana hati, keinginan, motivasi, dan niat seseorang.', 'Dapat berkonsentrasi dengan baik., Kesadaran dan ekspresi perasaan-perasaan yang berbeda., Pengenalan diri yang dalam., Keseimbangan diri., Kesadaran akan realitas spiritual., Reflektif, suka kerja sendiri.', 'Sufi, pendoa batin, spiritual yang mendalam, pendamai', 'Psikologi, bimbingan konseling,', 1),
+(14, 9, 'Kemampuan untuk mengidentifikasi dan membedakan berbagai jenis tanaman, hewan dan formasi cuaca yang ditemukan dialam.', 'Mengenal flora-fauna., Mengklasifikasi dan identifikasi tumbuhan dan binatang., Suka pada alam., Hidup di luar rumah.', 'Botanis, anatomis', 'Dokter hewan, peternakan, kelautan dan kehutanan.', 1),
+(15, 16, 'kemampuan untuk memahami pertanyaan abstrak tentang keberadaan, makna, dan tujuan hidup. cenderung memiliki keinginan kuat untuk mengeksplorasi pertanyaan-pertanyaan filosofis dan mencari jawaban atas pertanyaan tentang hakikat keberadaan manusia', 'Memiliki pandangan jangka panjang., Memikirkan sebab akibat., Tertarik mendalami ilmu atau pelajaran agama., Suka menolong orang lain., Sangat peka terhadap masalah sosial.', 'Psikolog, ahli filsuf', 'Psikologi atau filsafat', 1);
 
 -- --------------------------------------------------------
 
@@ -356,6 +358,35 @@ INSERT INTO `tb_m_skor` (`ID`, `NAME`, `CODE`, `POINT`) VALUES
 (2, 'Sesuai', 'S', 3),
 (3, 'Tidak Sesuai', 'TS', 2),
 (4, 'Sangat Tidak Sesuai', 'STS', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_r_test`
+--
+
+CREATE TABLE `tb_r_test` (
+  `ID` int(11) NOT NULL,
+  `USER_ID` int(11) NOT NULL,
+  `CODE_TEST` varchar(255) NOT NULL,
+  `KC_ASPEK_ID` int(11) NOT NULL,
+  `KC_PRESENTASE` decimal(10,1) NOT NULL,
+  `BK_1_ASPEK_ID` int(11) NOT NULL,
+  `BK_1_PRESENTASE` decimal(10,1) NOT NULL,
+  `BK_2_ASPEK_ID` int(11) NOT NULL,
+  `BK_2_PRESENTASE` decimal(10,1) NOT NULL,
+  `BK_3_ASPEK_ID` int(11) NOT NULL,
+  `BK_3_PRESENTASE` decimal(10,1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `tb_r_test`
+--
+
+INSERT INTO `tb_r_test` (`ID`, `USER_ID`, `CODE_TEST`, `KC_ASPEK_ID`, `KC_PRESENTASE`, `BK_1_ASPEK_ID`, `BK_1_PRESENTASE`, `BK_2_ASPEK_ID`, `BK_2_PRESENTASE`, `BK_3_ASPEK_ID`, `BK_3_PRESENTASE`, `created_at`, `updated_at`) VALUES
+(11, 2, '65aa99de65fda', 9, '82.5', 12, '80.0', 10, '77.5', 13, '72.5', '2024-01-19 15:48:46', '2024-01-19 15:48:46');
 
 -- --------------------------------------------------------
 
@@ -439,6 +470,13 @@ ALTER TABLE `tb_m_skor`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `tb_r_test`
+--
+ALTER TABLE `tb_r_test`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `CODE TEST` (`CODE_TEST`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -465,13 +503,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tb_m_aspek`
 --
 ALTER TABLE `tb_m_aspek`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tb_m_indikator`
@@ -490,6 +528,12 @@ ALTER TABLE `tb_m_info`
 --
 ALTER TABLE `tb_m_skor`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tb_r_test`
+--
+ALTER TABLE `tb_r_test`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
