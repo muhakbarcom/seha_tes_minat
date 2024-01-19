@@ -319,7 +319,7 @@
         <div class="step-item">
           <button class="step-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
             aria-expanded="true" aria-controls="collapseOne">
-            1
+            <i class="fa fa-pencil"></i>
           </button>
           <div class="step-title">
             Form Consultation
@@ -328,7 +328,7 @@
         <div class="step-item">
           <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            2
+            <i class="fa fa-book"></i>
           </button>
           <div class="step-title">
             Guide and Information
@@ -337,7 +337,7 @@
         <div class="step-item">
           <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            3
+            <i class="fa fa-refresh"></i>
           </button>
           <div class="step-title">
             Tes Kecerdasan
@@ -346,10 +346,19 @@
         <div class="step-item">
           <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-            4
+            <i class="fa fa-refresh"></i>
           </button>
           <div class="step-title">
             Tes Bakat
+          </div>
+        </div>
+        <div class="step-item">
+          <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            <i class="fa fa-trophy"></i>
+          </button>
+          <div class="step-title">
+            Result
           </div>
         </div>
       </div>
@@ -448,6 +457,13 @@
               </ul>
             </nav>
 
+            <div class="row ">
+              <div class="col d-flex justify-content-center">
+                <button type="button" class="btn btn-success" id="btn-submit"><i class="fa fa-arrow-right"></i>
+                  Next Test</button>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -457,13 +473,54 @@
         </div>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
           <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
-            probably haven't heard of them accusamus labore sustainable VHS.
+            <div class="row" id="start-4">
+              <div class="col">
+                <div class="wrapper">
+                  <a href="#" class="my-super-cool-btn">
+                    <div class="dots-container">
+                      <div class="dot"></div>
+                      <div class="dot"></div>
+                      <div class="dot"></div>
+                      <div class="dot"></div>
+                    </div>
+                    <span>Mulai!</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {{-- tempat pertanyaan --}}
+            <div id="tes-bakat">
+
+            </div>
+            <nav aria-label="Page navigation example" id="container-pagination-tes-bakat">
+              <ul class="pagination justify-content-center" id="pagination-tes-bakat">
+              </ul>
+            </nav>
+
+            <div class="row ">
+              <div class="col d-flex justify-content-center">
+                <button type="button" class="btn btn-success" id="btn-submit-bakat"><i class="fa fa-arrow-right"></i>
+                  Next</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div id="headingFive">
+
+        </div>
+        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+          <div class="card-body">
+            <div class="row">
+              <div class="col d-flex justify-content-center">
+                <button class="btn btn-warning" id="get_result">
+                  <i class="fa fa-circle" id="get_result_icon"></i>
+                  Get Result</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -477,6 +534,7 @@
 
 
 @section('script')
+{{-- script for step --}}
 <script>
   const stepButtons = document.querySelectorAll('.step-button');
   const progress = document.querySelector('#progress');
@@ -497,9 +555,11 @@
   })
 </script>
 
+{{-- consultation and validation --}}
 <script>
   $(document).ready(function () {
-
+    updateDataConsultation();
+    validation1()
     // setiap inputan selesai di isi
     $('#name, #date, #education, #email').on('blur', function() {
     updateDataConsultation();
@@ -531,7 +591,7 @@
           }
       });
 
-      $('button[data-bs-target="#collapseThree"],button[data-bs-target="#collapseFour"]').click(function () {
+      $('button[data-bs-target="#collapseThree"],button[data-bs-target="#collapseFour"],button[data-bs-target="#collapseFive"]').click(function () {
           var errNumber = localStorage.getItem('errNumber');
 
           if(!validation1() || errNumber > 0){
@@ -655,12 +715,13 @@
   }
 </script>
 
+{{-- tes kecedasan --}}
 <script>
   var dataOption = [];
-  var dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan');
+  var dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan') ?? null;
 
   $(document).ready(function () {
-
+    toggleButtonSubmit_kecerdasan();
     // isi data option
     $.ajax({
       url: "{{ url('api/skor') }}",
@@ -699,10 +760,12 @@
       $('#start-3').hide();
 
       fillTestKecerdasan(1)
+
+      toggleButtonSubmit_kecerdasan();
     });
 
     // trigger ketika form-check-input di click maka console.log semua isinya
-    $(document).on('click', '.form-check-input', function () {
+    $(document).on('click', '.option-kecerdasan', function () {
       // Get the label's "for" attribute
       let name = $(this).attr('id');
       // Find the associated input value using the "for" attribute
@@ -710,17 +773,33 @@
       // Extract indikator_id from the name attribute
       let indikator_id = name.split('_')[0];
       let indikator_res = name.split('_')[1];
-
+      
       var res = {
         'indikator_id' : indikator_id,
         'indikator_res' : indikator_res,
         'value' : value
       }
+      console.log(res)
       
       // update atau insert ke local storage
       updateDataTestKecerdasan(res);
+
+      toggleButtonSubmit_kecerdasan();
     });
   });
+
+  // 
+  function toggleButtonSubmit_kecerdasan(){
+    var totalIndikator = localStorage.getItem('totalIndikator_kecerdasan');
+    var dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan');
+    var dataTestKecerdasanTemp = (dataTestKecerdasan != null) ? JSON.parse(dataTestKecerdasan) : [];
+
+    if(dataTestKecerdasanTemp.length == totalIndikator){
+      $('#btn-submit').prop('disabled', false);
+    }else{
+      $('#btn-submit').prop('disabled', true);
+    }
+  }
 
   function updateDataTestKecerdasan(res){
     var storage = localStorage.getItem('dataTestKecerdasan');
@@ -743,7 +822,7 @@
     localStorage.setItem('dataTestKecerdasan', JSON.stringify(data));
   }
 
-  // tes kecerdasan
+  // load pertanyaan
   function fillTestKecerdasan(page){
     var url = "{{ url('api/indikator/1') }}";
     
@@ -758,6 +837,9 @@
         let data = result.data.data;
         let success = result.success;
         let linksPagination = result.data.links;
+        let total = result.data.total;
+
+        localStorage.setItem('totalIndikator_kecerdasan', total);
         
         if(success == true){
           let html = '';
@@ -802,13 +884,13 @@
 
     // cek di dataTestKecerdasan berdasaarkan indikator_id, jika ada maka active
     let dataTestKecerdasanTemp = JSON.parse(dataTestKecerdasan);
-    let temp = dataTestKecerdasanTemp.find(x => x.indikator_id == indikator_id);
+    let temp = (dataTestKecerdasanTemp !=null) ? dataTestKecerdasanTemp.find(x => x.indikator_id == indikator_id) : undefined;
 
     option.forEach(function(item,index){
        let active = (temp != undefined && temp.indikator_res == item.CODE) ? 'checked' : '';
 
         optionHtml+= `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="indikator_${indikator_id}" id="${indikator_id}_${item.CODE}" value="${item.POINT}" ${active}>
+                        <input class="form-check-input option-kecerdasan" type="radio" name="indikator_${indikator_id}" id="${indikator_id}_${item.CODE}" value="${item.POINT}" ${active}>
                         <label class="form-check-label" for="${indikator_id}_${item.CODE}">${item.NAME}</label>
                       </div>`
     })
@@ -825,8 +907,252 @@
                 </div>
               </div>`;
   }
+</script>
 
-  
+{{-- tes bakat --}}
+<script>
+  var dataOption = [];
+  var dataTestbakat = localStorage.getItem('dataTestbakat') ?? null;
 
+  $(document).ready(function () {
+    toggleButtonSubmit_bakat();
+    // isi data option
+    $.ajax({
+      url: "{{ url('api/skor') }}",
+      type: "GET",
+      success: function(result){
+        let message = result.message;
+        let data = result.data;
+        let success = result.success;
+        
+        if(success == true){
+          dataOption = data;
+        }else{
+          console.log(message)
+        }
+      }
+    });
+
+    $('#tes-bakat').hide();
+    $('#container-pagination-tes-bakat').hide();
+
+
+    if(dataTestbakat != null){
+      $('#tes-bakat').show();
+      $('#container-pagination-tes-bakat').show();
+
+      $('#start-4').hide();
+
+      fillTestbakat(1)
+    }
+
+
+    $('#start-4').click(function () {
+      $('#tes-bakat').show();
+      $('#container-pagination-tes-bakat').show();
+
+      $('#start-4').hide();
+
+      fillTestbakat(1)
+
+      toggleButtonSubmit_bakat();
+    });
+
+    // trigger ketika form-check-input di click maka console.log semua isinya
+    $(document).on('click', '.option-bakat', function () {
+      // Get the label's "for" attribute
+      let name = $(this).attr('id');
+      // Find the associated input value using the "for" attribute
+      let value = $(this).val();
+      // Extract indikator_id from the name attribute
+      let indikator_id = name.split('_')[0];
+      let indikator_res = name.split('_')[1];
+
+      var res = {
+        'indikator_id' : indikator_id,
+        'indikator_res' : indikator_res,
+        'value' : value
+      }
+      
+      // update atau insert ke local storage
+      updateDataTestbakat(res);
+
+      toggleButtonSubmit_bakat();
+    });
+  });
+
+  // 
+  function toggleButtonSubmit_bakat(){
+    var totalIndikator = localStorage.getItem('totalIndikator_bakat') ?? 0;
+    var dataTestbakat = localStorage.getItem('dataTestbakat') ?? null;
+    var dataTestbakatTemp = (dataTestbakat != null) ? JSON.parse(dataTestbakat) : [];
+
+    if(dataTestbakatTemp.length == totalIndikator){
+      $('#btn-submit-bakat').prop('disabled', false);
+    }else{
+      $('#btn-submit-bakat').prop('disabled', true);
+    }
+  }
+
+  function updateDataTestbakat(res){
+    var storage = localStorage.getItem('dataTestbakat');
+    var data = JSON.parse(storage);
+
+    if(data == null){
+      data = [];
+    }
+
+    // cari index dari indikator_id
+    var index = data.findIndex(x => x.indikator_id == res.indikator_id);
+
+    // jika index tidak ditemukan
+    if(index == -1){
+      data.push(res);
+    }else{
+      data[index] = res;
+    }
+
+    localStorage.setItem('dataTestbakat', JSON.stringify(data));
+  }
+
+  // load pertanyaan
+  function fillTestbakat(page){
+    var url = "{{ url('api/indikator/2') }}";
+    
+    $.ajax({
+      url: url,
+      type: "GET",
+      data : {
+        'page' : page
+      },
+      success: function(result){
+        let message = result.message;
+        let data = result.data.data;
+        let success = result.success;
+        let linksPagination = result.data.links;
+        let total = result.data.total;
+
+        localStorage.setItem('totalIndikator_bakat', total);
+        
+        if(success == true){
+          let html = '';
+          
+          data.forEach(function(item,index){
+            html += stringTemplateIndikator_bakat(item,dataOption);
+          });
+
+          fillPaginationTestbakat(linksPagination);
+
+          $('#tes-bakat').html(html);
+          
+        }else{
+          console.log(message)
+        }
+      }
+    });
+  }
+
+  function fillPaginationTestbakat(links){
+
+    let html = '';
+
+    links.forEach(function(item,index){
+      // hanya angka
+      if(item.label != '&laquo; Previous' && item.label != 'Next &raquo;'){
+        let page = item.label;
+        let active = (item.active) ? 'active' : '';
+        html += `<li class="page-item ${active}"><a class="page-link" href="#" onclick="fillTestbakat(${page})">${page}</a></li>`;
+      }
+    })
+
+    $('#pagination-tes-bakat').html(html);
+  }
+
+  function stringTemplateIndikator_bakat(indikator,option){
+
+    let optionHtml = '';
+    let indikator_id = indikator.ID;
+    let row_number = indikator.row_number;
+    let indikator_desc = indikator.INDIKATOR;
+
+    // cek di dataTestbakat berdasaarkan indikator_id, jika ada maka active
+    let dataTestbakatTemp = JSON.parse(dataTestbakat);
+    
+    let temp = (dataTestbakatTemp !=null) ? dataTestbakatTemp.find(x => x.indikator_id == indikator_id) : undefined;
+
+    option.forEach(function(item,index){
+       let active = (temp != undefined && temp.indikator_res == item.CODE) ? 'checked' : '';
+
+        optionHtml+= `<div class="form-check form-check-inline">
+                        <input class="form-check-input option-bakat" type="radio" name="indikator_${indikator_id}" id="${indikator_id}_${item.CODE}" value="${item.POINT}" ${active}>
+                        <label class="form-check-label" for="${indikator_id}_${item.CODE}">${item.NAME}</label>
+                      </div>`
+    })
+
+    return `<div class="row mb-5">
+                <div class="col">
+                  <p>${row_number}. ${indikator_desc}
+                  </p>
+                  <div class="card">
+                    <div class="card-body">
+                      ${optionHtml}
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+  }
+</script>
+
+<script>
+  $('#get_result').on('click',function(){
+    var get_result_icon = $('#get_result_icon');
+
+    get_result_icon.removeClass('fa-circle');
+    get_result_icon.addClass('fa-spinner fa-spin');
+
+    // validasi apakah total indikator kecerdasan dan bakat sudah terisi semua
+    var totalIndikator_kecerdasan = localStorage.getItem('totalIndikator_kecerdasan');
+    var totalIndikator_bakat = localStorage.getItem('totalIndikator_bakat');
+    var dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan');
+    var dataTestbakat = localStorage.getItem('dataTestbakat');
+
+    // if(dataTestKecerdasan.length != totalIndikator_kecerdasan){
+
+    //   get_result_icon.removeClass('fa-spinner fa-spin');
+    //   get_result_icon.addClass('fa-circle');
+
+    //   toastr.error('Data Tes Kecerdasan Belum Lengkap');
+    //   return false;
+    // }
+
+    // if(dataTestbakat != totalIndikator_bakat){
+    //   get_result_icon.removeClass('fa-spinner fa-spin');
+    //   get_result_icon.addClass('fa-circle');
+    //   toastr.error('Data Tes Bakat Belum Lengkap');
+    //   return false;
+    // }
+
+    // object to array
+    // var dataTestKecerdasanTemp = JSON.parse(dataTestKecerdasan);
+    // var dataTestbakatTemp = JSON.parse(dataTestbakat);
+
+    let data = {
+      'dataTestKecerdasan' : dataTestKecerdasan,
+      'dataTestBakat' : dataTestbakat
+    }
+
+    $.ajax({
+      url: "{{ url('api/report/getResult') }}",
+      type: "POST",
+      data : data,
+      success: function(result){
+        console.log(result)
+          
+      }
+    });
+
+    get_result_icon.removeClass('fa-spinner fa-spin');
+    get_result_icon.addClass('fa-circle');
+  })
 </script>
 @endsection

@@ -7,6 +7,9 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\LogoutController;
 use App\Http\Controllers\Api\IndikatorController;
 use App\Http\Controllers\Api\SkorController;
+use App\Http\Controllers\Api\ReportController;
+use App\Http\Controllers\Api\InfoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +43,12 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/indikator/{aspek}', [IndikatorController::class, 'getByAspekType']);
 Route::get('/skor', [SkorController::class, 'getAll']);
+
+Route::post('/report/getResult', [ReportController::class, 'getResult']);
+
+Route::get('/info/{type}', [InfoController::class, 'getByType']);
+Route::get('/info', [InfoController::class, 'getAll']);
+
 
 
 
