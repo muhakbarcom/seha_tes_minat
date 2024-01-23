@@ -305,6 +305,69 @@
       opacity: 0;
     }
   }
+
+  .estetik-background-right {
+    background: linear-gradient(45deg, #0c047d, #5c47ff);
+    background-size: 400% 400%;
+    animation: gradientBackground 5s infinite;
+    clip-path: polygon(10% 0%, 100% 0, 90% 100%, 0 100%);
+  }
+
+  .estetik-background-left {
+    background: linear-gradient(45deg, #0c047d, #5c47ff);
+    background-size: 400% 400%;
+    animation: gradientBackground 10s infinite;
+    clip-path: polygon(10% 100%, 100% 100%, 90% 0, 0 0);
+  }
+
+  /* riasec 1 grey metalic */
+  .estetik-background-RIASEC-1 {
+    background: linear-gradient(45deg, #242424, #7ED7C1);
+    background-size: 400% 400%;
+    animation: gradientBackground 5s infinite;
+  }
+
+  .estetik-background-RIASEC-2 {
+    background: linear-gradient(45deg, #7ED7C1, #F0DBAF);
+    background-size: 400% 400%;
+    animation: gradientBackground 5s infinite;
+  }
+
+  .estetik-background-RIASEC-3 {
+    background: linear-gradient(45deg, #F0DBAF, #F0A500);
+    background-size: 400% 400%;
+    animation: gradientBackground 5s infinite;
+  }
+
+  .estetik-background-RIASEC-header {
+    background: linear-gradient(45deg, #242424, #7ED7C1);
+    background-size: 400% 400%;
+    animation: gradientBackground 10s infinite;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+
+
+
+
+
+
+
+  @keyframes gradientBackground {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 </style>
 
 @endsection
@@ -409,14 +472,56 @@
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
           <div class="card-body">
-            CodeHim is one of the BEST developer websites that provide web designers and developers with a simple way
-            to preview and download a variety of free code & scripts.<br>
-            <p class="text-muted">nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
-              squid
-              single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-              beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-              lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
-              probably haven't heard of them accusamus labore sustainable VHS.</p>
+            <center>TES KECERDASAN MAJEMUK</center>
+            <br>
+            <p class="text-muted">
+              Hai sobat karir! <br><br>
+              kamu masih bingung mengenai apa kelebihan mu? Atau kamu sedang penasaran karier masadepan yang cocok
+              untukmu? Atau sedang bingung cara belajar yang sesuai denganmu? Sobat, setiap manusia memiliki kecerdasan
+              yang beragam loh, karena cerdas tidak terbatas pada satu bidang saja. Kamu bisa saja memiliki kecerdasan
+              yang baik pada satu bidang spesifik, atau mungkin juga kamu memiliki potensi kecerdasan dalam beberapa
+              bidang sekaligus. <br>
+              Howard Gardner seorang ahli psikologi dari Harvard University, telah melakukan penelitian mendalam bahwa
+              manusia setidaknya memiliki 8 macam kecerdasan. Yang berbeda satu sama lain. Yaitu kecerdasan berbahasa,
+              logis – matematis, bayang ruang, olah tubuh, bermusik, menjalin hubungan dengan orang lain, memahami diri,
+              dan lingkungan. Penasaran denga napa jenis kecerdasanmu? Yuk ikuti tesnya sobattt!! <br><br>
+
+              Petunjuk: <br>
+            <ol>
+              <li>Dibutuhkan waktu sekitar 15-20 menit untuk memberikan respon semua pernyataan.</li>
+              <li>Isilah data dirimu dengan benar</li>
+              <li>Kamu hanya memiliki 1 (satu) kali kesempatan untuk memberikan respon masing-masing pernyataan</li>
+              <li>Bacalah setiap pernyataan secara perlahan dengan kondisi tenang, kemudian berikan respon yang sesuai
+                dengan dirimu.</li>
+              <li>Tidak ada respon yang salah selama kamu jujur sesuai dengan dirimu.</li>
+            </ol>
+            </p>
+
+            <br><br>
+            <center>Tes Minat – Riasec Holland</center>
+            <br>
+            <p class="text-muted">
+              Hai sobat karir! <br><br>
+              Kamu masih bingung apa minat pekerjaanmu? Kamu juga merasa cemas dan khawatir apabila kariermu nanti tidak
+              sesuai dengan keterampilan dan kemampuanmu? Jangan khawatir ya sobatt! <br>
+              John L. Holland memperkenalkan teori karier yang menyatakan bahwa dalam memilih karir, orang lebih suka
+              pekerjaan dimana mereka bisa berada disekitar orang lain yang seperti mereka. Mereka mencari lingkungan
+              yang akan memungkinkan mereka menggunakan keterampilan dan kemampuan mereka. Model pilihan karier Holland
+              menunjukan bahwa individu akan mencari pekerjaan yang sesuai dengan keterampilan, kemampuan, sikap, dan
+              nilai mereka harus mendapat kesesuaian antara RIASEC dengan lingkungan. Holland membagi kepribadian
+              tersebut dalam enam tipe yaitu Realistic (R), Investigative (I), Artistik (A), Social (S), Enterprising
+              (E). Yukk langsung ikuti tesnya sobatt!!<br><br>
+
+              Petunjuk: <br>
+            <ol>
+              <li>Dibutuhkan waktu sekitar 15-20 menit untuk memberikan respon semua pernyataan.</li>
+              <li>Isilah data dirimu dengan benar</li>
+              <li>Kamu hanya memiliki 1 (satu) kali kesempatan untuk memberikan respon masing-masing pernyataan</li>
+              <li>Bacalah setiap pernyataan secara perlahan dengan kondisi tenang, kemudian berikan respon yang sesuai
+                dengan dirimu.</li>
+              <li>Tidak ada respon yang salah selama kamu jujur sesuai dengan dirimu.</li>
+            </ol>
+            </p>
 
             {{-- buatkan saya tombol di kanan --}}
             <div class="d-flex justify-content-end">
@@ -515,11 +620,28 @@
         <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
           <div class="card-body">
             <div class="row">
+              <div class="d-flex col justify-content-end">
+                <button class="btn btn-sm btn-danger" id="btn_print">
+                  <i class="fa fa-download"></i> PDF
+                </button>
+                &nbsp;
+                <button class="btn btn-sm btn-secondary" id="btn_ulang">
+                  <i class="bi bi-arrow-counterclockwise"></i> Test Ulang
+                </button>
+              </div>
+            </div>
+            <div class="row mt-2">
               <div class="col d-flex justify-content-center">
                 <button class="btn btn-warning" id="get_result">
                   <i class="fa fa-circle" id="get_result_icon"></i>
-                  Get Result</button>
+                  Get Result
+                </button>
+
               </div>
+            </div>
+
+            <div class="row mt-5" id="bodyTestResult">
+
             </div>
           </div>
         </div>
@@ -534,6 +656,7 @@
 
 
 @section('script')
+
 {{-- script for step --}}
 <script>
   const stepButtons = document.querySelectorAll('.step-button');
@@ -554,7 +677,6 @@
       })
   })
 </script>
-
 {{-- consultation and validation --}}
 <script>
   $(document).ready(function () {
@@ -570,6 +692,8 @@
     var btnCollapseFour = $('button[data-bs-target="#collapseFour"]');
     var btnCollapseFive = $('button[data-bs-target="#collapseFive"]');
     var progress = $('#progress');
+
+    switchBtn(false);
 
     switch (step) {
       case '1':
@@ -632,6 +756,7 @@
 
         // hide button get result
         $('#get_result').prop('disabled', true);
+        switchBtn(true);
 
         // load result
         loadResult();
@@ -786,6 +911,33 @@
       });
 
   });
+
+  function getLastCodeTestByUserId(user_id) {
+  var result = '';
+
+    $.ajax({
+      url: "{{ url('api/report/getLastCodeTestbyUserId') }}/" + user_id,
+      type: "GET",
+      async: false,
+      success: function(response) {
+        let message = response.message;
+        let data = response.data;
+        let success = response.success;
+
+        if (success == true) {
+          result = data;
+        } else {
+          console.log(message);
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error(xhr.responseJSON.message);
+      }
+    });
+
+    return result;
+  }
+
 
   function next1() {
          updateDataConsultation();
@@ -1329,8 +1481,6 @@
           // hide #get_result
           $('#get_result').prop('disabled', true);
 
-          console.log(result.data)
-
           localStorage.removeItem('dataTestKecerdasan');
           localStorage.removeItem('dataTestbakat');
           localStorage.removeItem('totalIndikator_bakat');
@@ -1341,10 +1491,7 @@
           localStorage.setItem('step', 10);
           localStorage.setItem('codeTest', result.data.codeTest);
 
-
-
-
-
+          window.location.reload();
         }else{
           $('#get_result').prop('disabled', false);
           toastr.error(result.message);
@@ -1358,26 +1505,215 @@
   })
 
   function loadResult(){
-    var codeTest = localStorage.getItem('codeTest');
-    var data = {
-      'codeTest' : codeTest
+
+    var codeTest = getLastCodeTestByUserId({{ Auth::user()->id }});
+
+    if(codeTest != '')
+    {
+      localStorage.setItem('codeTest', codeTest);
+      var data = {
+        'codeTest' : codeTest
+      }
+
+      $.ajax({
+        url: "{{ url('api/report/getResultByCodeTest') }}",
+        type: "POST",
+        data : data,
+        success: function(result){
+        if(result.success == true){
+
+            localStorage.setItem('step', 10);
+            resultInterface(result.data);
+            // localStorage.setItem('codeTest', result.data.codeTest);
+
+        }else{
+            toastr.error(result.message);
+        }
+        }
+      });
     }
+  };
 
+  function switchBtn($status = false){
+    if($status == true){
+      $('#btn_print').prop('disabled', false);
+      $('#btn_ulang').prop('disabled', false);
+    }else{
+      $('#btn_print').prop('disabled', true);
+      $('#btn_ulang').prop('disabled', true);
+    }
+  }
+
+  $('#btn_print').on('click',function(){
+    var html = localStorage.getItem('resultHTML');
+    
+    // post to /api/report/downloadReportWithDomPDFByHTML
     $.ajax({
-      url: "{{ url('api/report/getResultByCodeTest') }}",
+      url: "{{ url('api/report/downloadReportWithDomPDFByHTML') }}",
       type: "POST",
-      data : data,
+      data : {
+        'html' : html
+      },
       success: function(result){
-       if(result.success == true){
-
-          localStorage.setItem('step', 10);
-          localStorage.setItem('codeTest', result.data.codeTest);
-
-       }else{
+        if(result.success == true){
+          toastr.success(result.message);
+          window.open(result.data.url, '_blank');
+        }else{
           toastr.error(result.message);
-       }
+        }
       }
     });
-  };
+
+
+    
+    
+
+
+  })
+
+  $('#btn_ulang').on('click',function(){
+    localStorage.removeItem('dataTestKecerdasan');
+    localStorage.removeItem('dataTestbakat');
+    localStorage.removeItem('totalIndikator_bakat');
+    localStorage.removeItem('totalIndikator_kecerdasan');
+    localStorage.removeItem('errNumber');
+    localStorage.removeItem('data');
+
+    localStorage.setItem('step', 1);
+    localStorage.setItem('codeTest', '');
+    localStorage.setItem('resultHTML', '');
+
+    switchBtn(false);
+
+    // hide button get result
+    $('#get_result').prop('disabled', false);
+
+    // load result
+    window.location.reload();
+  })
+
+  function resultInterface(data){
+    var bodyTestResult = $('#bodyTestResult');
+    var data_tes_kecerdasan = data.tes_kecerdasan;
+    var data_tes_bakat = data.tes_bakat;
+    // pisahkan data dengan koma
+    var prodi_kecerdasan = loopProdi(data.tes_kecerdasan.info.PROGRAM_STUDY.split(','));
+    var prodi_bakat_1 = loopProdi(data.tes_bakat[0].info.PROGRAM_STUDY.split(','));
+    var prodi_bakat_2 = loopProdi(data.tes_bakat[1].info.PROGRAM_STUDY.split(','));
+    var prodi_bakat_3 = loopProdi(data.tes_bakat[2].info.PROGRAM_STUDY.split(','));
+
+    var html = '';
+
+    // tes kecerdasan
+    html += `{{-- RESULT TES KECERDASAN --}}
+                <div class="row mt-3">
+                  <div
+                    class="col-12 d-flex flex-column align-items-center text-white justify-content-center estetik-background-right"
+                    style="height: 250px; border-radius: 15px; padding: 20px;">
+                    <small>Hasil Tes Kecerdasan :</small>
+                    <h3 class="mb-2 mt-1"><b>${data_tes_kecerdasan.aspek_name}</b> <i class="bi bi-patch-check-fill text-warning"></i></h3>
+                    <small class="text-center mt-2 col-9">
+                      ${data_tes_kecerdasan.info.DESKRIPSI_BIDANG_MINAT}
+                    </small>
+                    <hr>
+                    <small>
+                      Program Studi :
+                      ${prodi_kecerdasan}
+                    </small>
+                  </div>
+                </div>
+                <div class="row mt-1">
+                  <div
+                    class="col-12 d-flex flex-column align-items-center text-white justify-content-center estetik-background-left"
+                    style="height: 50px; border-radius: 15px; padding: 20px;">
+                  </div>
+                </div>
+                {{-- END RESULT TES KECERDASAN --}}`;
+
+    // tes bakat
+    html += `{{-- RESULT TES BAKAT --}}
+                <div class="row mt-5 estetik-background-RIASEC-header">
+                  Hasil Tes Bakat :
+                </div>`;
+
+    html+= `<div class="row mt-2">
+                      <div
+                        class="col-6 d-flex flex-column align-items-center text-dark justify-content-center estetik-background-RIASEC-1"
+                        style="height: 250px; padding: 20px;">
+                        {{-- div with circle background --}}
+                        <div class="d-flex justify-content-center align-items-center"
+                          style="width: 150px; height: 150px; border-radius: 100%; background-color: #242424;">
+                          <h1 class="text-white" style="font-size: 100px"><b>${(data_tes_bakat[0].aspek_name).charAt(0)}</b></h1>
+                        </div>
+                        <h3 class="mb-2 mt-1"><b>${data_tes_bakat[0].aspek_name}</b> <i class="bi bi-patch-check-fill text-dark"></i></h3>
+
+                      </div>
+                      <div class="col-6 bg-secondary p-3 text-light">
+                        <p>${data_tes_bakat[0].info.DESKRIPSI_BIDANG_MINAT}</p>
+                        <small class="mt-3">
+                          Program Studi :
+                          ${prodi_bakat_1}
+                        </small>
+                      </div>
+                    </div>`;
+
+      html+= `<div class="row mt-2">
+                      <div
+                        class="col-6 d-flex flex-column align-items-center text-dark justify-content-center estetik-background-RIASEC-2"
+                        style="height: 250px; padding: 20px;">
+                        {{-- div with circle background --}}
+                        <div class="d-flex justify-content-center align-items-center"
+                          style="width: 150px; height: 150px; border-radius: 100%; background-color: #242424;">
+                          <h1 class="text-white" style="font-size: 100px"><b>${(data_tes_bakat[1].aspek_name).charAt(0)}</b></h1>
+                        </div>
+                        <h3 class="mb-2 mt-1"><b>${data_tes_bakat[1].aspek_name}</b> <i class="bi bi-patch-check-fill text-dark"></i></h3>
+
+                      </div>
+                      <div class="col-6 bg-secondary p-3 text-light">
+                        <p>${data_tes_bakat[1].info.DESKRIPSI_BIDANG_MINAT}</p>
+                        <small class="mt-3">
+                          Program Studi :
+                          ${prodi_bakat_2}
+                        </small>
+                      </div>
+                    </div>`;
+        html+= `<div class="row mt-2">
+                      <div
+                        class="col-6 d-flex flex-column align-items-center text-dark justify-content-center estetik-background-RIASEC-3"
+                        style="height: 250px; padding: 20px;">
+                        {{-- div with circle background --}}
+                        <div class="d-flex justify-content-center align-items-center"
+                          style="width: 150px; height: 150px; border-radius: 100%; background-color: #242424;">
+                          <h1 class="text-white" style="font-size: 100px"><b>${(data_tes_bakat[2].aspek_name).charAt(0)}</b></h1>
+                        </div>
+                        <h3 class="mb-2 mt-1"><b>${data_tes_bakat[2].aspek_name}</b> <i class="bi bi-patch-check-fill text-dark"></i></h3>
+
+                      </div>
+                      <div class="col-6 bg-secondary p-3 text-light">
+                        <p>${data_tes_bakat[2].info.DESKRIPSI_BIDANG_MINAT}</p>
+                        <small class="mt-3">
+                          Program Studi :
+                          ${prodi_bakat_3}
+                        </small>
+                      </div>
+                    </div>{{-- END RESULT TES BAKAT --}}`;
+
+                    html = `<div class="col">${html}</div>`;
+
+  
+    // append html to #bodyTestResult .col
+    bodyTestResult.html(html);
+    localStorage.setItem('resultHTML', html);
+  
+              }
+
+  function loopProdi(prodi){
+    var html = '';
+    prodi.forEach(function(item,index){
+      html += `<a href=""><span class="badge bg-primary">${item}</span></a>`;
+    })
+
+    return html;
+  }
 </script>
 @endsection

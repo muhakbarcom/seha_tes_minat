@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Test;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReportController extends Controller
 {
@@ -15,6 +16,40 @@ class ReportController extends Controller
         'message' => 'Success',
         'data' => []
     ];
+
+    public function getLastCodeTestbyUserId($user_id)
+    {
+        try {
+            $res = Test::where('USER_ID', $user_id)
+                ->orderBy('ID', 'DESC')
+                ->first();
+
+            if ($res) {
+                $response = [
+                    'success' => true,
+                    'message' => 'Success',
+                    'data' => $res->CODE_TEST ?? '',
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'Data not found',
+                    'data' => '',
+                ];
+            }
+
+            return response()->json($response);
+        } catch (\Exception $e) {
+            $response = [
+                'success' => false,
+                'message' => $e->getMessage(),
+                'data' => '',
+            ];
+
+            return response()->json($response, 500);
+        }
+    }
+
 
     public function getResult(Request $req)
     {
@@ -318,6 +353,15 @@ class ReportController extends Controller
         $max_point = $max_point * $count_indikator;
         
         return $max_point;
+    }
+
+    public function downloadReportWithDomPDFByHTML(Request $req)
+    {
+        $html = $req->html;
+
+        $pdf = PDF::loadHTML($html);
+
+        return $pdf->download('result.pdf');
     }
 
 

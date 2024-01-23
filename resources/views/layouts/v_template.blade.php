@@ -41,6 +41,75 @@
 
   {{--tampilkan jika ada yield style --}}
   @yield('style');
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #000;
+
+      /* background dark blue */
+      background: #0A1D56;
+    }
+
+    #hero {
+      /* dark blue elegant */
+      background: #0A1D56;
+      color: #fff;
+      border-bottom: 2px solid #49438d;
+    }
+
+    #hero h1 {
+      color: #fff;
+    }
+
+    #hero h2 {
+      color: #d1d1d1;
+    }
+
+    /* custom header, biru tua dan warna text menyesuaikan */
+    #header,
+    #footer {
+      background: #3B3486;
+      border-bottom: 2px solid #49438d;
+      color: #fff;
+    }
+
+    .footer-top {
+      background: #1D2B53 !important;
+      border-top: 2px solid #49438d !important;
+      color: #fff !important;
+    }
+
+    .credits {
+      /* background: #3B3486; */
+      /* border-top: 2px solid #49438d; */
+      color: #fff !important;
+    }
+
+    #header h1.logo a {
+      color: #fff;
+    }
+
+    #navbar ul li a {
+      color: #fff;
+    }
+
+    .navbar .getstarted {
+      background: #F2F597 !important;
+      color: #000000 !important;
+    }
+
+    .navbar .getstarted:hover {
+      background: #d2d582 !important;
+      color: #000 !important;
+    }
+
+    .navbar .active {
+      /* background: #F2F597 !important; */
+      color: #F2F597 !important;
+      /* bold */
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
@@ -49,7 +118,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.html">{{ env('APP_NAME', 'Apps'); }}</a></h1>
+      <h1 class="logo"><a href="{{ url('/') }}">{{ env('APP_NAME', 'Apps'); }}</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="{{asset('template')}}/img/logo.png" alt="" class="img-fluid"></a>-->
 
