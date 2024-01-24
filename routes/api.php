@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\IndikatorController;
 use App\Http\Controllers\Api\SkorController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\InfoController;
+use App\Http\Controllers\Api\ProdiController;
 
 
 /*
@@ -49,6 +50,8 @@ Route::post('/report/getResultByCodeTest', [ReportController::class, 'getResultB
 Route::get('/report/getLastCodeTestbyUserId/{user_id}', [ReportController::class, 'getLastCodeTestbyUserId']);
 Route::post('/report/downloadReportWithDomPDFByHTML', [ReportController::class, 'downloadReportWithDomPDFByHTML']);
 
+Route::get('/prodi', [ProdiController::class, 'index']);
+Route::get('/prodi/{id}', [ProdiController::class, 'getById']);
 
 
 

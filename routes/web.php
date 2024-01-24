@@ -41,10 +41,17 @@ Route::get('/consultation', function () {
     return view('v_consultation');
 })->middleware('auth:sanctum');
 
+// program study by id
+Route::get('/program-study/{id}', function () {
+    $id = request()->route('id');
+    return view('v_program_study_detail', ['id' => $id]);
+});
 
 Route::get('/program-study', function () {
     return view('v_program_study');
 });
+
+
 
 Route::get('/contact', function () {
     return view('v_contact');

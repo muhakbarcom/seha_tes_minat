@@ -109,6 +109,10 @@
       /* bold */
       font-weight: bold;
     }
+
+    .section-title h2 {
+      color: #fff;
+    }
   </style>
 </head>
 

@@ -5,9 +5,9 @@
 @section('style')
 <style>
   .custom-box {
-    background-color: #001f3f;
+    background-color: #F2F597;
     /* Warna biru tua */
-    color: #ffffff;
+    color: #2c2c2c;
     /* Warna teks putih */
     text-align: center;
     padding: 20px;
@@ -20,9 +20,9 @@
   }
 
   .custom-box:hover {
-    background-color: #0074D9;
+    background-color: #d2d582;
     /* Warna biru muda */
-    color: #ffffff;
+    color: #2c2c2c;
     /* Warna teks putih */
   }
 
@@ -58,6 +58,39 @@
     to {
       opacity: 1;
     }
+  }
+
+  h3 {
+    color: #e6e6e6;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .small {
+    color: #e6e6e6;
+    font-size: 14px;
+  }
+
+  .faq .faq-list .collapsed {
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .faq .faq-list .question {
+    color: #fff;
+  }
+
+  .faq .faq-list .collapsed:hover {
+    color: #F2F597;
+  }
+
+  /* focus */
+  .faq .faq-list .collapsed:focus {
+    color: #F2F597;
   }
 </style>
 @endsection
@@ -106,7 +139,7 @@
 
       <div class="col-md-12 mt-5" data-aos="fade-right" data-aos-delay="100">
         <h3 id="reasec-title"></h3>
-        <table class="table table-bordered" id="table-riasec">
+        <table class="table table-dark table-striped" id="table-riasec">
           <thead>
             <tr>
               <th scope="col">Deskripsi bidang minat </th>

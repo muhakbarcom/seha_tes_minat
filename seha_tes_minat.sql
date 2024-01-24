@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 23, 2024 at 04:56 PM
+-- Generation Time: Jan 24, 2024 at 11:05 AM
 -- Server version: 10.4.30-MariaDB-log
 -- PHP Version: 7.4.33
 
@@ -107,7 +107,8 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (8, 'App\\Models\\User', 2, 'auth_token', '93d9f0e6d3e02e7a0b9619f1d79f54633e8acde46930374beefe39f3c5f8537c', '[\"*\"]', NULL, '2024-01-18 23:22:34', '2024-01-18 23:22:34'),
 (9, 'App\\Models\\User', 2, 'auth_token', 'f45b52f9b8055c7c77870094832b434a1523263707585c2db3e51b06b7525f42', '[\"*\"]', NULL, '2024-01-19 09:17:17', '2024-01-19 09:17:17'),
 (10, 'App\\Models\\User', 2, 'auth_token', '9ab2e0644217ed5509efa87d1c996f7087c12108977a1826bd7e4cadf304b075', '[\"*\"]', NULL, '2024-01-20 03:37:14', '2024-01-20 03:37:14'),
-(11, 'App\\Models\\User', 2, 'auth_token', '73183a0664c5ed2ae090ca48aab06302b37ed465fede97ddf0352efd8313a315', '[\"*\"]', NULL, '2024-01-23 00:51:08', '2024-01-23 00:51:08');
+(11, 'App\\Models\\User', 2, 'auth_token', '73183a0664c5ed2ae090ca48aab06302b37ed465fede97ddf0352efd8313a315', '[\"*\"]', NULL, '2024-01-23 00:51:08', '2024-01-23 00:51:08'),
+(12, 'App\\Models\\User', 2, 'auth_token', '5107fc76548511db08d8bfbef2ee2a8291a2ca76a4a41f56106ab810c7068736', '[\"*\"]', NULL, '2024-01-24 01:57:56', '2024-01-24 01:57:56');
 
 -- --------------------------------------------------------
 
@@ -579,7 +580,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tb_m_aspek`

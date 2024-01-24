@@ -4,6 +4,19 @@
 
 @section('style')
 
+<style>
+  .section-bg {
+    background-color: #0A1D56;
+  }
+
+  .section-title
+
+  /* .section-title h2 */
+    {
+    color: #fff;
+  }
+</style>
+
 @endsection
 
 @section('script')
