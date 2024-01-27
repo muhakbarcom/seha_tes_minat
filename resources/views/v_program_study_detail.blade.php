@@ -32,6 +32,13 @@
               </div>
             </div>
 
+            {{-- GAMBAR --}}
+            <div class="row mt-3">
+              <div class="col" id="GAMBAR">
+                <img src="{{ asset('/img/jurusan/DEFAULT.jpg') }}" class="img-fluid" alt="">
+              </div>
+            </div>
+
             <div class="row mt-3">
               <div class="col text-justify" id="DESKRIPSI">
 
@@ -95,12 +102,15 @@
     var PENGETAHUAN_DAN_KEAHLIAN = $('#PENGETAHUAN_DAN_KEAHLIAN');
     var PROSPEK_KERJA = $('#PROSPEK_KERJA');
     var DUNIA_PERKULIAHAN = $('#DUNIA_PERKULIAHAN');
+    var GAMBAR = $('#GAMBAR');
 
     $.ajax({
       url: "{{ url('/api/prodi/') }}" + "/" + id,
       type: "GET",
       dataType: "JSON",
       success: function (result) {
+
+        GAMBAR.html(`<img src="{{ asset('/img/jurusan/') }}/${result.data.GAMBAR}" class="img-fluid" alt="">`);
 
         NAMA_JURUSAN.html(result.data.NAMA_JURUSAN);
         DESKRIPSI.html(result.data.DESKRIPSI);

@@ -26,7 +26,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <form>
-          <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+          <h1 class="h3 mb-3 fw-normal text-light">Please sign in</h1>
 
           <div class="form-floating">
             <input type="email" class="form-control" id="email" placeholder="name@example.com">
@@ -56,6 +56,10 @@
 <script>
   $(document).ready(function(){
     $('#signin').click(function(e){
+      // ubah tombol jadi spinner
+      $('#signin').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Loading...`);
+      
       e.preventDefault();
       var email = $('#email').val();
       var password = $('#password').val();

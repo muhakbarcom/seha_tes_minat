@@ -307,14 +307,16 @@
   }
 
   .estetik-background-right {
-    background: linear-gradient(45deg, #0c047d, #5c47ff);
+    /* background: linear-gradient(45deg, #0c047d, #5c47ff); */
+    background: linear-gradient(45deg, #FC6736, #ff9e7e);
     background-size: 400% 400%;
     animation: gradientBackground 5s infinite;
     clip-path: polygon(10% 0%, 100% 0, 90% 100%, 0 100%);
   }
 
   .estetik-background-left {
-    background: linear-gradient(45deg, #0c047d, #5c47ff);
+    /* background: linear-gradient(45deg, #0c047d, #5c47ff); */
+    background: linear-gradient(45deg, #FC6736, #ff9e7e);
     background-size: 400% 400%;
     animation: gradientBackground 10s infinite;
     clip-path: polygon(10% 100%, 100% 100%, 90% 0, 0 0);
@@ -390,15 +392,6 @@
         </div>
         <div class="step-item">
           <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            <i class="fa fa-book"></i>
-          </button>
-          <div class="step-title">
-            Guide and Information
-          </div>
-        </div>
-        <div class="step-item">
-          <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
             <i class="fa fa-refresh"></i>
           </button>
@@ -413,6 +406,15 @@
           </button>
           <div class="step-title">
             Tes Bakat
+          </div>
+        </div>
+        <div class="step-item">
+          <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+            <i class="fa fa-book"></i>
+          </button>
+          <div class="step-title">
+            LKPD
           </div>
         </div>
         <div class="step-item">
@@ -472,56 +474,6 @@
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
           <div class="card-body">
-            <center>TES KECERDASAN MAJEMUK</center>
-            <br>
-            <p class="text-muted">
-              Hai sobat karir! <br><br>
-              kamu masih bingung mengenai apa kelebihan mu? Atau kamu sedang penasaran karier masadepan yang cocok
-              untukmu? Atau sedang bingung cara belajar yang sesuai denganmu? Sobat, setiap manusia memiliki kecerdasan
-              yang beragam loh, karena cerdas tidak terbatas pada satu bidang saja. Kamu bisa saja memiliki kecerdasan
-              yang baik pada satu bidang spesifik, atau mungkin juga kamu memiliki potensi kecerdasan dalam beberapa
-              bidang sekaligus. <br>
-              Howard Gardner seorang ahli psikologi dari Harvard University, telah melakukan penelitian mendalam bahwa
-              manusia setidaknya memiliki 8 macam kecerdasan. Yang berbeda satu sama lain. Yaitu kecerdasan berbahasa,
-              logis – matematis, bayang ruang, olah tubuh, bermusik, menjalin hubungan dengan orang lain, memahami diri,
-              dan lingkungan. Penasaran denga napa jenis kecerdasanmu? Yuk ikuti tesnya sobattt!! <br><br>
-
-              Petunjuk: <br>
-            <ol>
-              <li>Dibutuhkan waktu sekitar 15-20 menit untuk memberikan respon semua pernyataan.</li>
-              <li>Isilah data dirimu dengan benar</li>
-              <li>Kamu hanya memiliki 1 (satu) kali kesempatan untuk memberikan respon masing-masing pernyataan</li>
-              <li>Bacalah setiap pernyataan secara perlahan dengan kondisi tenang, kemudian berikan respon yang sesuai
-                dengan dirimu.</li>
-              <li>Tidak ada respon yang salah selama kamu jujur sesuai dengan dirimu.</li>
-            </ol>
-            </p>
-
-            <br><br>
-            <center>Tes Minat – Riasec Holland</center>
-            <br>
-            <p class="text-muted">
-              Hai sobat karir! <br><br>
-              Kamu masih bingung apa minat pekerjaanmu? Kamu juga merasa cemas dan khawatir apabila kariermu nanti tidak
-              sesuai dengan keterampilan dan kemampuanmu? Jangan khawatir ya sobatt! <br>
-              John L. Holland memperkenalkan teori karier yang menyatakan bahwa dalam memilih karir, orang lebih suka
-              pekerjaan dimana mereka bisa berada disekitar orang lain yang seperti mereka. Mereka mencari lingkungan
-              yang akan memungkinkan mereka menggunakan keterampilan dan kemampuan mereka. Model pilihan karier Holland
-              menunjukan bahwa individu akan mencari pekerjaan yang sesuai dengan keterampilan, kemampuan, sikap, dan
-              nilai mereka harus mendapat kesesuaian antara RIASEC dengan lingkungan. Holland membagi kepribadian
-              tersebut dalam enam tipe yaitu Realistic (R), Investigative (I), Artistik (A), Social (S), Enterprising
-              (E). Yukk langsung ikuti tesnya sobatt!!<br><br>
-
-              Petunjuk: <br>
-            <ol>
-              <li>Dibutuhkan waktu sekitar 15-20 menit untuk memberikan respon semua pernyataan.</li>
-              <li>Isilah data dirimu dengan benar</li>
-              <li>Kamu hanya memiliki 1 (satu) kali kesempatan untuk memberikan respon masing-masing pernyataan</li>
-              <li>Bacalah setiap pernyataan secara perlahan dengan kondisi tenang, kemudian berikan respon yang sesuai
-                dengan dirimu.</li>
-              <li>Tidak ada respon yang salah selama kamu jujur sesuai dengan dirimu.</li>
-            </ol>
-            </p>
 
             {{-- buatkan saya tombol di kanan --}}
             <div class="d-flex justify-content-end">
@@ -537,6 +489,40 @@
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
           <div class="card-body">
+            <div class="row" id="guide_tes_kecerdasan">
+              <div class="col">
+                <center>TES KECERDASAN MAJEMUK</center>
+                <br>
+                <p class="text-muted">
+                  Hai sobat karir! <br><br>
+                  kamu masih bingung mengenai apa kelebihan mu? Atau kamu sedang penasaran karier masadepan yang cocok
+                  untukmu? Atau sedang bingung cara belajar yang sesuai denganmu? Sobat, setiap manusia memiliki
+                  kecerdasan
+                  yang beragam loh, karena cerdas tidak terbatas pada satu bidang saja. Kamu bisa saja memiliki
+                  kecerdasan
+                  yang baik pada satu bidang spesifik, atau mungkin juga kamu memiliki potensi kecerdasan dalam beberapa
+                  bidang sekaligus. <br>
+                  Howard Gardner seorang ahli psikologi dari Harvard University, telah melakukan penelitian mendalam
+                  bahwa
+                  manusia setidaknya memiliki 8 macam kecerdasan. Yang berbeda satu sama lain. Yaitu kecerdasan
+                  berbahasa,
+                  logis – matematis, bayang ruang, olah tubuh, bermusik, menjalin hubungan dengan orang lain, memahami
+                  diri,
+                  dan lingkungan. Penasaran denga napa jenis kecerdasanmu? Yuk ikuti tesnya sobattt!! <br><br>
+
+                  Petunjuk: <br>
+                <ol>
+                  <li>Dibutuhkan waktu sekitar 15-20 menit untuk memberikan respon semua pernyataan.</li>
+                  <li>Isilah data dirimu dengan benar</li>
+                  <li>Kamu hanya memiliki 1 (satu) kali kesempatan untuk memberikan respon masing-masing pernyataan</li>
+                  <li>Bacalah setiap pernyataan secara perlahan dengan kondisi tenang, kemudian berikan respon yang
+                    sesuai
+                    dengan dirimu.</li>
+                  <li>Tidak ada respon yang salah selama kamu jujur sesuai dengan dirimu.</li>
+                </ol>
+                </p>
+              </div>
+            </div>
             <div class="row" id="start-3">
               <div class="col">
                 <div class="wrapper">
@@ -578,6 +564,41 @@
         </div>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
           <div class="card-body">
+            <div class="row" id="guide_tes_minat">
+              <div class="col">
+                <center>Tes Minat – Riasec Holland</center>
+                <br>
+                <p class="text-muted">
+                  Hai sobat karir! <br><br>
+                  Kamu masih bingung apa minat pekerjaanmu? Kamu juga merasa cemas dan khawatir apabila kariermu nanti
+                  tidak
+                  sesuai dengan keterampilan dan kemampuanmu? Jangan khawatir ya sobatt! <br>
+                  John L. Holland memperkenalkan teori karier yang menyatakan bahwa dalam memilih karir, orang lebih
+                  suka
+                  pekerjaan dimana mereka bisa berada disekitar orang lain yang seperti mereka. Mereka mencari
+                  lingkungan
+                  yang akan memungkinkan mereka menggunakan keterampilan dan kemampuan mereka. Model pilihan karier
+                  Holland
+                  menunjukan bahwa individu akan mencari pekerjaan yang sesuai dengan keterampilan, kemampuan, sikap,
+                  dan
+                  nilai mereka harus mendapat kesesuaian antara RIASEC dengan lingkungan. Holland membagi kepribadian
+                  tersebut dalam enam tipe yaitu Realistic (R), Investigative (I), Artistik (A), Social (S),
+                  Enterprising
+                  (E). Yukk langsung ikuti tesnya sobatt!!<br><br>
+
+                  Petunjuk: <br>
+                <ol>
+                  <li>Dibutuhkan waktu sekitar 15-20 menit untuk memberikan respon semua pernyataan.</li>
+                  <li>Isilah data dirimu dengan benar</li>
+                  <li>Kamu hanya memiliki 1 (satu) kali kesempatan untuk memberikan respon masing-masing pernyataan</li>
+                  <li>Bacalah setiap pernyataan secara perlahan dengan kondisi tenang, kemudian berikan respon yang
+                    sesuai
+                    dengan dirimu.</li>
+                  <li>Tidak ada respon yang salah selama kamu jujur sesuai dengan dirimu.</li>
+                </ol>
+                </p>
+              </div>
+            </div>
             <div class="row" id="start-4">
               <div class="col">
                 <div class="wrapper">
@@ -621,6 +642,10 @@
           <div class="card-body">
             <div class="row">
               <div class="d-flex col justify-content-end">
+                <button class="btn btn-sm btn-warning" id="btn_print_lkpd">
+                  <i class="fa fa-download"></i> LKDP
+                </button>
+                &nbsp;
                 <button class="btn btn-sm btn-danger" id="btn_print">
                   <i class="fa fa-download"></i> PDF
                 </button>
@@ -646,22 +671,83 @@
           </div>
         </div>
       </div>
+      <div class="card">
+        <div id="headingSix">
+
+        </div>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+          <div class="card-body">
+            <div id="LKPD_QUESTION_MASTER"></div>
+            <div class="row">
+              <div class="col">
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="btn btn-primary btn-sm" id="btn_save_lkpd"> <i class="fa fa-save"></i>
+                    Save & Next</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- End Start Stepper HTML -->
 </section>
-
 
 @endsection
 
 
 @section('script')
 
+{{-- variable --}}
+<script>
+  // var codeTest from $codeTest
+  var codeTest = "{{ $codeTest }}";
+
+  const stepButtons = document.querySelectorAll('.step-button');
+  var dataOption = [];
+  var dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan') ?? null;
+  var start_3 = $('#start-3');
+  var start_4 = $('#start-4');
+  var guide_tes_kecerdasan = $('#guide_tes_kecerdasan');
+  var guide_tes_minat = $('#guide_tes_minat');
+  var tes_bakat = $('#tes-bakat');
+  var tes_kecerdasan = $('#tes-kecerdasan');
+  var collapseOne = $('#collapseOne');
+    var collapseTwo = $('#collapseTwo');
+    var collapseThree = $('#collapseThree');
+    var collapseFour = $('#collapseFour');
+    var collapseFive = $('#collapseFive');
+    var collapseSix = $('#collapseSix');
+    var btnCollapseOne = $('button[data-bs-target="#collapseOne"]');
+    var btnCollapseTwo = $('button[data-bs-target="#collapseTwo"]');
+    var btnCollapseThree = $('button[data-bs-target="#collapseThree"]');
+    var btnCollapseFour = $('button[data-bs-target="#collapseFour"]');
+    var btnCollapseFive = $('button[data-bs-target="#collapseFive"]');
+    var btnCollapseSix = $('button[data-bs-target="#collapseSix"]');
+    var progress = $('#progress');
+    var btn_submit = $('#btn-submit');
+    var btn_submit_bakat = $('#btn-submit-bakat');
+    var next_1 = $('#next-1');
+    var get_result = $('#get_result');
+    var container_pagination_tes_kecerdasan = $('#container-pagination-tes-kecerdasan');
+    var container_pagination_tes_bakat = $('#container-pagination-tes-bakat');
+
+    var LKPD_QUESTION_MASTER = $('#LKPD_QUESTION_MASTER');
+    var btn_print_lkpd = $('#btn_print_lkpd');
+    var btn_save_lkpd = $('#btn_save_lkpd');
+
+    var get_result = $('#get_result');
+    var get_result_icon = $('#get_result_icon');
+
+    var btn_ulang = $('#btn_ulang');
+    var btn_print = $('#btn_print');
+
+    var progress_status = [0, 34, 60, 80, 100];
+</script>
+
 {{-- script for step --}}
 <script>
-  const stepButtons = document.querySelectorAll('.step-button');
-  const progress = document.querySelector('#progress');
-  
   Array.from(stepButtons).forEach((button,index) => {
       button.addEventListener('click', () => {
           progress.setAttribute('value', index * 100 /(stepButtons.length - 1) );//there are 3 buttons. 2 spaces.
@@ -681,17 +767,6 @@
 <script>
   $(document).ready(function () {
     var step = localStorage.getItem('step') ?? localStorage.setItem('step', 1);
-    var collapseOne = $('#collapseOne');
-    var collapseTwo = $('#collapseTwo');
-    var collapseThree = $('#collapseThree');
-    var collapseFour = $('#collapseFour');
-    var collapseFive = $('#collapseFive');
-    var btnCollapseOne = $('button[data-bs-target="#collapseOne"]');
-    var btnCollapseTwo = $('button[data-bs-target="#collapseTwo"]');
-    var btnCollapseThree = $('button[data-bs-target="#collapseThree"]');
-    var btnCollapseFour = $('button[data-bs-target="#collapseFour"]');
-    var btnCollapseFive = $('button[data-bs-target="#collapseFive"]');
-    var progress = $('#progress');
 
     switchBtn(false);
 
@@ -699,14 +774,14 @@
       case '1':
         collapseOne.collapse('show');
         btnCollapseOne.addClass('done');
-        progress.val(0);
+        progress.val(progress_status[0]);
         break;
       case '2':
-        collapseOne.collapse('hide');
-        collapseTwo.collapse('show');
-        btnCollapseOne.addClass('done');
-        btnCollapseTwo.addClass('done');
-        progress.val(34);
+        // collapseOne.collapse('hide');
+        // collapseTwo.collapse('show');
+        // btnCollapseOne.addClass('done');
+        // btnCollapseTwo.addClass('done');
+        // progress.val(34);
         break;
       case '3':
         collapseOne.collapse('hide');
@@ -715,7 +790,7 @@
         btnCollapseOne.addClass('done');
         btnCollapseTwo.addClass('done');
         btnCollapseThree.addClass('done');
-        progress.val(67);
+        progress.val(progress_status[1]);
         break;
       case '4':
         collapseOne.collapse('hide');
@@ -726,36 +801,53 @@
         btnCollapseTwo.addClass('done');
         btnCollapseThree.addClass('done');
         btnCollapseFour.addClass('done');
-        progress.val(80);
+        progress.val(progress_status[2]);
         break;
       case '5':
         collapseOne.collapse('hide');
         collapseTwo.collapse('hide');
         collapseThree.collapse('hide');
         collapseFour.collapse('hide');
+        collapseSix.collapse('hide');
         collapseFive.collapse('show');
         btnCollapseOne.addClass('done');
         btnCollapseTwo.addClass('done');
         btnCollapseThree.addClass('done');
         btnCollapseFour.addClass('done');
         btnCollapseFive.addClass('done');
-        progress.val(100);
+        btnCollapseSix.addClass('done');
+        progress.val(progress_status[4]);
         break;
+      case '6':
+        collapseOne.collapse('hide');
+        collapseTwo.collapse('hide');
+        collapseThree.collapse('hide');
+        collapseFour.collapse('hide');
+        collapseSix.collapse('show');
+        btnCollapseOne.addClass('done');
+        btnCollapseTwo.addClass('done');
+        btnCollapseThree.addClass('done');
+        btnCollapseFour.addClass('done');
+        btnCollapseSix.addClass('done');
+        progress.val(progress_status[3]);
+      break;
       case '10':
         collapseOne.collapse('hide');
         collapseTwo.collapse('hide');
         collapseThree.collapse('hide');
         collapseFour.collapse('hide');
+        collapseSix.collapse('hide');
         collapseFive.collapse('show');
         btnCollapseOne.addClass('done');
         btnCollapseTwo.addClass('done');
         btnCollapseThree.addClass('done');
         btnCollapseFour.addClass('done');
         btnCollapseFive.addClass('done');
-        progress.val(100);
+        btnCollapseSix.addClass('done');
+        progress.val(progress_status[4]);
 
         // hide button get result
-        $('#get_result').prop('disabled', true);
+        get_result.prop('disabled', true);
         switchBtn(true);
 
         // load result
@@ -763,11 +855,13 @@
         break;
       default:
         collapseOne.collapse('show');
-        $('#get_result').prop('disabled', false);
+        get_result.prop('disabled', false);
         break;
     }
     
-    $('button[data-bs-target="#collapseOne"],button[data-bs-target="#collapseTwo"],button[data-bs-target="#collapseThree"],button[data-bs-target="#collapseFour"],button[data-bs-target="#collapseFive"]').prop('disabled', true);
+    const collapseButtons = [btnCollapseOne, btnCollapseTwo, btnCollapseThree, btnCollapseFour, btnCollapseFive, btnCollapseSix];
+    collapseButtons.forEach(button => button.prop('disabled', true));
+
 
     updateDataConsultation();
     validation1()
@@ -777,59 +871,13 @@
     });
       
 
-      $('#next-1').click(function () {
+      next_1.click(function () {
         next1();
       });
 
-      $('button[data-bs-target="#collapseTwo"]').click(function () {
-          $('#progress').val(40);
-          if (!$('button[data-bs-target="#collapseTwo').hasClass('done')) {
-            if(validation1()  == false){
 
-              // wait 1 detik
-              setTimeout(function () {
-                  
-              // collapseTwo hide
-              $('#collapseTwo').collapse('hide');
-
-              // progress bar
-              $('#progress').val(0);
-
-              // buka collapseOne
-              $('#collapseOne').collapse('show');
-
-              }, 1000);
-            }
-          }
-      });
-
-      $('button[data-bs-target="#collapseThree"]').click(function () {
-        $('#progress').val(60);
-      });
-
-      $('button[data-bs-target="#collapseThree"],button[data-bs-target="#collapseFour"],button[data-bs-target="#collapseFive"]').click(function () {
-          var errNumber = localStorage.getItem('errNumber');
-
-          if(!validation1() || errNumber > 0){
-            back1();
-          }
-      });
-
-      $('#next-2').click(function () {
-          // collapseThree show
-          $('#collapseThree').collapse('show');
-
-          // progress bar
-          $('#progress').val(67);
-
-          // beri class "done" pada button yang mempunyai data-bs-target = collapseTwo 
-          $('button[data-bs-target="#collapseTwo"]').addClass('done');
-
-          localStorage.setItem('step', 3);
-      });
-
-      $('#btn-submit,button[data-bs-target="#collapseFour').click(function () {
-        $('#progress').val(80);
+      btn_submit.click(function () {
+        progress.val(progress_status[3]);
         var totalIndikator = localStorage.getItem('totalIndikator_kecerdasan');
         var dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan');
         var dataTestKecerdasanTemp = (dataTestKecerdasan != null) ? JSON.parse(dataTestKecerdasan) : [];
@@ -838,30 +886,28 @@
           toastr.error('Tes Bakat Belum Selesai');
           
           // balik ke collapseThree
-          $('#collapseThree').collapse('show');
+          collapseThree.collapse('show');
           
           // hilanhkan done pada collapseFour
-          $('button[data-bs-target="#collapseFour"]').removeClass('done');
+          collapseFour.removeClass('done');
           
           // progress bar
-          $('#progress').val(67);
+          progress.val(progress_status[2]);
         }
 
-        $('#collapseThree').collapse('hide');
-        $('#collapseFour').collapse('show');
+        collapseThree.collapse('hide');
+        collapseFour.collapse('show');
 
         // beri class "done" pada button yang mempunyai data-bs-target = collapseThree
-        $('button[data-bs-target="#collapseThree"]').addClass('done');
-        $('button[data-bs-target="#collapseFour"]').addClass('done');
+        btnCollapseThree.addClass('done');
+        btnCollapseFour.addClass('done');
 
         localStorage.setItem('step', 4);
 
       });
-      
-      
 
-      $('button[data-bs-target="#collapseFive"],#btn-submit-bakat').click(function () {
-        $('#progress').val(100);
+      btn_submit_bakat.click(function () {
+        progress.val(progress_status[4]);
         var totalIndikator_bakat = localStorage.getItem('totalIndikator_bakat') ?? 0;
         var dataTestbakat = localStorage.getItem('dataTestbakat') ?? null;
         var dataTestbakatTemp = (dataTestbakat != null) ? JSON.parse(dataTestbakat) : [];
@@ -874,14 +920,16 @@
           toastr.error('Tes Kecerdasan Belum Selesai');
           
           // balik ke collapseThree
-          $('#collapseThree').collapse('show');
+          collapseThree.collapse('show');
 
           // hilanhkan done pada collapseFour
-          $('button[data-bs-target="#collapseFour"],button[data-bs-target="#collapseFive"]').removeClass('done');
+          // $('button[data-bs-target="#collapseFour"],button[data-bs-target="#collapseFive"]').removeClass('done');
+          btnCollapseFour.removeClass('done');
+          btnCollapseSix.removeClass('done');
           
 
           // progress bar
-          $('#progress').val(67);
+          progress.val(progress_status[2]);
           return false;
         }
 
@@ -889,58 +937,37 @@
           toastr.error('Tes Bakat Belum Selesai');
           
           // balik ke collapseThree
-          $('#collapseFive').collapse('hide');
-          $('#collapseFour').collapse('show');
+          collapseFour.collapse('show');
+          collapseSix.collapse('hide');
 
           // hilanhkan done pada collapseFour
-          $('button[data-bs-target="#collapseFive"]').removeClass('done');
+          btnCollapseSix.removeClass('done');
 
           // progress bar
-          $('#progress').val(80);
+          progress.val(progress_status[2]);
           return false;
         }
 
-        $('#collapseFour').collapse('hide');
-        $('#collapseFive').collapse('show');
+        collapseFour.collapse('hide');
+        collapseSix.collapse('show');
 
         // beri class "done" pada button yang mempunyai data-bs-target = collapseThree
-        $('button[data-bs-target="#collapseFour"]').addClass('done');
-        $('button[data-bs-target="#collapseFive"]').addClass('done');
+        btnCollapseFour.addClass('done');
+        btnCollapseSix.addClass('done');
 
-        localStorage.setItem('step', 5);
+        localStorage.setItem('step', 6);
       });
 
   });
 
-  function getLastCodeTestByUserId(user_id) {
-  var result = '';
-
-    $.ajax({
-      url: "{{ url('api/report/getLastCodeTestbyUserId') }}/" + user_id,
-      type: "GET",
-      async: false,
-      success: function(response) {
-        let message = response.message;
-        let data = response.data;
-        let success = response.success;
-
-        if (success == true) {
-          result = data;
-        } else {
-          console.log(message);
-        }
-      },
-      error: function(xhr, status, error) {
-        console.error(xhr.responseJSON.message);
-      }
-    });
-
-    return result;
-  }
+  
 
 
   function next1() {
-         updateDataConsultation();
+    // tombol save and next step 1 di klik
+         
+    
+          updateDataConsultation();
 
           if(!validation1()){
             return false;
@@ -949,15 +976,18 @@
           // toastr.success('Data Berhasil Disimpan');
 
           // beri class "done" pada button yang mempunyai data-bs-target = collapseOne 
-          $('button[data-bs-target="#collapseOne"]').addClass('done');
+          btnCollapseOne.addClass('done');
 
-          // collapseTwo show
-          $('#collapseTwo').collapse('show');
+          // collapseThree show
+          collapseThree.collapse('show');
 
           // progress bar
-          $('#progress').val(34);
-          localStorage.setItem('errNumber', 0);
-          localStorage.setItem('step', 2);
+          progress.val(34);
+
+          // beri class "done" pada button yang mempunyai data-bs-target = collapseThree
+          btnCollapseOne.addClass('done');
+
+          localStorage.setItem('step', 3);
   }
 
   function validation1(){
@@ -1012,7 +1042,7 @@
                   $('#progress').val(0);
 
                   // hilangkan class "done" pada button yang mempunyai data-bs-target = collapseTwo Three Four
-                  $('button[data-bs-target="#collapseTwo"],button[data-bs-target="#collapseThree"],button[data-bs-target="#collapseFour"]').removeClass('done');
+                  $('button[data-bs-target="#collapseThree"],button[data-bs-target="#collapseFour"]').removeClass('done');
     
                   // buka collapseTwo
                   $('#collapseOne').collapse('show');
@@ -1046,9 +1076,6 @@
 
 {{-- tes kecedasan --}}
 <script>
-  var dataOption = [];
-  var dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan') ?? null;
-
   $(document).ready(function () {
     toggleButtonSubmit_kecerdasan();
     // isi data option
@@ -1068,25 +1095,28 @@
       }
     });
 
-    $('#tes-kecerdasan').hide();
-    $('#container-pagination-tes-kecerdasan').hide();
+    tes_kecerdasan.hide();
+    container_pagination_tes_kecerdasan.hide();
 
 
     if(dataTestKecerdasan != null){
-      $('#tes-kecerdasan').show();
-      $('#container-pagination-tes-kecerdasan').show();
+      tes_kecerdasan.show();
+      container_pagination_tes_kecerdasan.show();
 
-      $('#start-3').hide();
+      start_3.hide();
+      guide_tes_kecerdasan.hide();
+
 
       fillTestKecerdasan(1)
     }
 
 
-    $('#start-3').click(function () {
-      $('#tes-kecerdasan').show();
-      $('#container-pagination-tes-kecerdasan').show();
+    start_3.click(function () {
+      tes_kecerdasan.show();
+      container_pagination_tes_kecerdasan.show();
 
-      $('#start-3').hide();
+      start_3.hide();
+      guide_tes_kecerdasan.hide();
 
       fillTestKecerdasan(1)
 
@@ -1179,7 +1209,7 @@
 
           fillPaginationTestKecerdasan(linksPagination);
 
-          $('#tes-kecerdasan').html(html);
+          tes_kecerdasan.html(html);
           
         }else{
           console.log(message)
@@ -1262,25 +1292,27 @@
       }
     });
 
-    $('#tes-bakat').hide();
-    $('#container-pagination-tes-bakat').hide();
+    tes_bakat.hide();
+    container_pagination_tes_bakat.hide();
 
 
     if(dataTestbakat != null){
-      $('#tes-bakat').show();
-      $('#container-pagination-tes-bakat').show();
+      tes_bakat.show();
+      container_pagination_tes_bakat.show();
 
-      $('#start-4').hide();
+      start_4.hide();
+      guide_tes_minat.hide();
 
       fillTestbakat(1)
     }
 
 
-    $('#start-4').click(function () {
-      $('#tes-bakat').show();
-      $('#container-pagination-tes-bakat').show();
+    start_4.click(function () {
+      tes_bakat.show();
+      container_pagination_tes_bakat.show();
 
-      $('#start-4').hide();
+      start_4.hide();
+      guide_tes_minat.hide();
 
       fillTestbakat(1)
 
@@ -1317,9 +1349,9 @@
     var dataTestbakatTemp = (dataTestbakat != null) ? JSON.parse(dataTestbakat) : [];
 
     if(dataTestbakatTemp.length == totalIndikator){
-      $('#btn-submit-bakat').prop('disabled', false);
+      btn_submit_bakat.prop('disabled', false);
     }else{
-      $('#btn-submit-bakat').prop('disabled', true);
+      btn_submit_bakat.prop('disabled', true);
     }
   }
 
@@ -1432,9 +1464,112 @@
   }
 </script>
 
+{{-- feedback LKPD --}}
 <script>
-  $('#get_result').on('click',function(){
-    var get_result_icon = $('#get_result_icon');
+  $(document).ready(function () {
+    getQuestionLKPD()
+
+   
+  });
+
+  btn_save_lkpd.click(function(){
+      var data = [];
+      var dataLKPD = $('.LKPD_ANSWERS');
+
+      // validasi jangan ada yang kosong
+      var is_empty = false;
+
+      dataLKPD.each(function(index,item){
+        var id = $(this).attr('id');
+        id = id.split('_')[1];
+        var value = $(this).val();
+
+        if(value == ''){
+          is_empty = true;
+        }
+
+        var temp = {
+          'QUESTION_ID' : id,
+          'ANSWER' : value
+        }
+
+        data.push(temp);
+      });
+
+      if(is_empty){
+        toastr.error('Data LKPD Tidak Boleh Kosong');
+        return false;
+      }
+
+      var dataLKPD = JSON.stringify(data);
+
+      var data = {
+        'codeTest' : codeTest,
+        'dataLKPD' : dataLKPD
+      }
+
+      $.ajax({
+        url: "{{ url('api/lkpd/saveAnswer') }}",
+        type: "POST",
+        data : data,
+        success: function(result){
+          if(result.success == true){
+            toastr.success(result.message);
+            localStorage.setItem('step', 5);
+            window.location.reload();
+          }else{
+            toastr.error(result.message);
+          }
+        }
+      });
+  });
+
+  function getQuestionLKPD(){
+    var url = "{{ url('api/lkpd/') }}";
+    
+    $.ajax({
+      url: url,
+      type: "GET",
+      success: function(result){
+        let message = result.message;
+        let data = result.data;
+        let success = result.success;
+        
+        if(success == true){
+          let html = '';
+          
+          data.forEach(function(item,index){
+            html += LKPDStringTemplate(item);
+          });
+
+          LKPD_QUESTION_MASTER.html(html);
+          
+        }else{
+          console.log(message)
+        }
+      }
+    });
+  }
+
+  function LKPDStringTemplate(data){
+    var html = `<div class="row mb-3">
+              <div class="col">
+                <div class="form-group">
+                  <label for="">
+                    <p>${data.NO}. ${data.QUESTION}<sup><small>*</small></sup></p>
+                  </label>
+                  <textarea class="form-control LKPD_ANSWERS" id="LKPD_${data.ID}" rows="3"></textarea>
+                </div>
+              </div>
+            </div>`;
+
+    return html;
+  }
+</script>
+
+<script>
+  get_result.on('click',function(){
+    
 
     get_result_icon.removeClass('fa-circle');
     get_result_icon.addClass('fa-spinner fa-spin');
@@ -1467,7 +1602,9 @@
 
     let data = {
       'dataTestKecerdasan' : dataTestKecerdasan,
-      'dataTestBakat' : dataTestbakat
+      'dataTestBakat' : dataTestbakat,
+      'dataForm' : localStorage.getItem('data'),
+      'codeTest' : codeTest
     }
 
     $.ajax({
@@ -1479,7 +1616,7 @@
         get_result_icon.addClass('fa-circle');
        if(result.success == true){
           // hide #get_result
-          $('#get_result').prop('disabled', true);
+          get_result.prop('disabled', true);
 
           localStorage.removeItem('dataTestKecerdasan');
           localStorage.removeItem('dataTestbakat');
@@ -1489,11 +1626,11 @@
           localStorage.removeItem('data');
 
           localStorage.setItem('step', 10);
-          localStorage.setItem('codeTest', result.data.codeTest);
+          // localStorage.setItem('codeTest', result.data.codeTest);
 
           window.location.reload();
         }else{
-          $('#get_result').prop('disabled', false);
+          get_result.prop('disabled', false);
           toastr.error(result.message);
         }
           
@@ -1506,11 +1643,11 @@
 
   function loadResult(){
 
-    var codeTest = getLastCodeTestByUserId({{ Auth::user()->id }});
+    // var codeTest = getLastCodeTestByUserId({{ Auth::user()->id }});
 
-    if(codeTest != '')
+    if(codeTest != '' || codeTest != null)
     {
-      localStorage.setItem('codeTest', codeTest);
+      // localStorage.setItem('codeTest', codeTest);
       var data = {
         'codeTest' : codeTest
       }
@@ -1536,60 +1673,80 @@
 
   function switchBtn($status = false){
     if($status == true){
-      $('#btn_print').prop('disabled', false);
-      $('#btn_ulang').prop('disabled', false);
+      btn_print.prop('disabled', false);
+      btn_print_lkpd.prop('disabled', false);
+      btn_ulang.prop('disabled', false);
     }else{
-      $('#btn_print').prop('disabled', true);
-      $('#btn_ulang').prop('disabled', true);
+      btn_print.prop('disabled', true);
+      btn_print_lkpd.prop('disabled', true);
+      btn_ulang.prop('disabled', true);
     }
   }
 
-  $('#btn_print').on('click',function(){
-    var html = localStorage.getItem('resultHTML');
-    
-    // post to /api/report/downloadReportWithDomPDFByHTML
+  btn_print.on('click',function(){
     $.ajax({
       url: "{{ url('api/report/downloadReportWithDomPDFByHTML') }}",
       type: "POST",
       data : {
-        'html' : html
+        'codeTest' : codeTest
       },
       success: function(result){
         if(result.success == true){
           toastr.success(result.message);
-          window.open(result.data.url, '_blank');
+        }else{
+          toastr.error(result.message);
+        }
+      }
+    });
+  })
+
+  btn_print_lkpd.on('click',function(){
+    $.ajax({
+      url: "{{ url('api/report/downloadResultLkdp') }}",
+      type: "POST",
+      data : {
+        'codeTest' : codeTest
+      },
+      success: function(result){
+        if(result.success == true){
+          toastr.success(result.message);
+        }else{
+          toastr.error(result.message);
+        }
+      }
+    });
+  })
+
+  btn_ulang.on('click',function(){
+
+    // get to /api/report/generateCodeTest
+    $.ajax({
+      url: "{{ url('api/report/generateCodeTest') }}",
+      type: "GET",
+      success: function(result){
+        if(result.success == true){
+          localStorage.removeItem('dataTestKecerdasan');
+          localStorage.removeItem('dataTestbakat');
+          localStorage.removeItem('totalIndikator_bakat');
+          localStorage.removeItem('totalIndikator_kecerdasan');
+          localStorage.removeItem('errNumber');
+          localStorage.removeItem('data');
+
+          localStorage.setItem('step', 1);
+          localStorage.setItem('resultHTML', '');
+
+          switchBtn(false);
+
+          // hide button get result
+          get_result.prop('disabled', false);
+
+          window.location.href = "{{ url('consultation') }}/"+result.data.codeTest;
         }else{
           toastr.error(result.message);
         }
       }
     });
 
-
-    
-    
-
-
-  })
-
-  $('#btn_ulang').on('click',function(){
-    localStorage.removeItem('dataTestKecerdasan');
-    localStorage.removeItem('dataTestbakat');
-    localStorage.removeItem('totalIndikator_bakat');
-    localStorage.removeItem('totalIndikator_kecerdasan');
-    localStorage.removeItem('errNumber');
-    localStorage.removeItem('data');
-
-    localStorage.setItem('step', 1);
-    localStorage.setItem('codeTest', '');
-    localStorage.setItem('resultHTML', '');
-
-    switchBtn(false);
-
-    // hide button get result
-    $('#get_result').prop('disabled', false);
-
-    // load result
-    window.location.reload();
   })
 
   function resultInterface(data){
@@ -1597,7 +1754,8 @@
     var data_tes_kecerdasan = data.tes_kecerdasan;
     var data_tes_bakat = data.tes_bakat;
     // pisahkan data dengan koma
-    var prodi_kecerdasan = loopProdi(data.tes_kecerdasan.info.PROGRAM_STUDY.split(','));
+    var prodi_kecerdasan_1 = loopProdi(data.tes_kecerdasan[0].info.PROGRAM_STUDY.split(','));
+    var prodi_kecerdasan_2 = loopProdi(data.tes_kecerdasan[1].info.PROGRAM_STUDY.split(','));
     var prodi_bakat_1 = loopProdi(data.tes_bakat[0].info.PROGRAM_STUDY.split(','));
     var prodi_bakat_2 = loopProdi(data.tes_bakat[1].info.PROGRAM_STUDY.split(','));
     var prodi_bakat_3 = loopProdi(data.tes_bakat[2].info.PROGRAM_STUDY.split(','));
@@ -1611,14 +1769,38 @@
                     class="col-12 d-flex flex-column align-items-center text-white justify-content-center estetik-background-right"
                     style="height: 250px; border-radius: 15px; padding: 20px;">
                     <small>Hasil Tes Kecerdasan :</small>
-                    <h3 class="mb-2 mt-1"><b>${data_tes_kecerdasan.aspek_name}</b> <i class="bi bi-patch-check-fill text-warning"></i></h3>
+                    <h3 class="mb-2 mt-1"><b>${data_tes_kecerdasan[0].aspek_name}</b> <i class="bi bi-patch-check-fill text-warning"></i></h3>
                     <small class="text-center mt-2 col-9">
-                      ${data_tes_kecerdasan.info.DESKRIPSI_BIDANG_MINAT}
+                      ${data_tes_kecerdasan[0].info.DESKRIPSI_BIDANG_MINAT}
                     </small>
                     <hr>
                     <small>
                       Program Studi :
-                      ${prodi_kecerdasan}
+                      ${prodi_kecerdasan_1}
+                    </small>
+                  </div>
+                </div>
+                <div class="row mt-1">
+                  <div
+                    class="col-12 d-flex flex-column align-items-center text-white justify-content-center estetik-background-left"
+                    style="height: 50px; border-radius: 15px; padding: 20px;">
+                  </div>
+                </div>
+                {{-- END RESULT TES KECERDASAN --}}`;
+   html += `{{-- RESULT TES KECERDASAN --}}
+                <div class="row mt-3">
+                  <div
+                    class="col-12 d-flex flex-column align-items-center text-white justify-content-center estetik-background-right"
+                    style="height: 250px; border-radius: 15px; padding: 20px;">
+                    <small>Hasil Tes Kecerdasan :</small>
+                    <h3 class="mb-2 mt-1"><b>${data_tes_kecerdasan[1].aspek_name}</b> <i class="bi bi-patch-check-fill text-warning"></i></h3>
+                    <small class="text-center mt-2 col-9">
+                      ${data_tes_kecerdasan[1].info.DESKRIPSI_BIDANG_MINAT}
+                    </small>
+                    <hr>
+                    <small>
+                      Program Studi :
+                      ${prodi_kecerdasan_2}
                     </small>
                   </div>
                 </div>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\LogoutController;
+use App\Http\Controllers\ConsultationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +38,7 @@ Route::get('/test-info', function () {
 });
 
 // login terlebih dahulu
-Route::get('/consultation', function () {
-    return view('v_consultation');
-})->middleware('auth:sanctum');
+Route::get('/consultation/{codeTest?}' , [ConsultationController::class, 'index'])->name('consultation');
 
 // program study by id
 Route::get('/program-study/{id}', function () {

@@ -66,6 +66,7 @@
 
   function stringCard(data){
     var string = '';
+    var path = "{{ asset('/img/jurusan/') }}";
     
     data.forEach(element => {
       var url = "{{ url('/program-study') }}" + '/' + element.ID;
@@ -73,6 +74,7 @@
       string += `
       <div class="col-md-4 mb-3">
         <div class="card">
+          <img src="${path+'/'+element.GAMBAR}" alt="${element.NAMA_JURUSAN}" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">${element.NAMA_JURUSAN}</h5>
             <p class="card-text"><small>${element.DESKRIPSI}..</small></p>

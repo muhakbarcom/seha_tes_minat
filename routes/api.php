@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\SkorController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\InfoController;
 use App\Http\Controllers\Api\ProdiController;
+use App\Http\Controllers\Api\LKPDController;
 
 
 /*
@@ -49,12 +50,14 @@ Route::post('/report/getResult', [ReportController::class, 'getResult']);
 Route::post('/report/getResultByCodeTest', [ReportController::class, 'getResultByCodeTest']);
 Route::get('/report/getLastCodeTestbyUserId/{user_id}', [ReportController::class, 'getLastCodeTestbyUserId']);
 Route::post('/report/downloadReportWithDomPDFByHTML', [ReportController::class, 'downloadReportWithDomPDFByHTML']);
+Route::post('/report/downloadResultLkdp', [ReportController::class, 'downloadResultLkdp']);
+Route::get('/report/generateCodeTest', [ReportController::class, 'generateCodeTest']);
 
 Route::get('/prodi', [ProdiController::class, 'index']);
 Route::get('/prodi/{id}', [ProdiController::class, 'getById']);
 
-
-
+Route::get('/lkpd', [LKPDController::class, 'getAll']);
+Route::post('/lkpd/saveAnswer', [LKPDController::class, 'saveAnswer']);
 
 Route::get('/info/{type}', [InfoController::class, 'getByType']);
 Route::get('/info', [InfoController::class, 'getAll']);

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Test;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Response;
+use App\Models\LKPD_answer;
 
 class ReportController extends Controller
 {
@@ -51,13 +53,15 @@ class ReportController extends Controller
     }
 
 
-    public function getResult(Request $req)
+    public function getResult(Request $req) // generate result
     {
         try {
 
             $validator = Validator::make($req->all(), [
                 'dataTestKecerdasan' => 'required|string',
                 'dataTestBakat' => 'required|string',
+                'dataForm' => 'required|string',
+                'codeTest' => 'required|string',
             ]);
 
             if ($validator->fails()) {
@@ -68,10 +72,18 @@ class ReportController extends Controller
 
             $dataTestKecerdasan = $req->dataTestKecerdasan;
             $dataTestBakat = $req->dataTestBakat;
+            $dataForm = $req->dataForm;
+            $codeTest = $req->codeTest;
 
             // ubah string object json ke array
             $dataTestKecerdasan = json_decode($dataTestKecerdasan, true);
             $dataTestBakat = json_decode($dataTestBakat, true);
+            $dataForm = json_decode($dataForm, true);
+
+            $FULL_NAME = $dataForm['name'];
+            $BIRTHDAY = $dataForm['date'];
+            $SCHOOL = $dataForm['education'];
+            $EMAIL = $dataForm['email'];
 
             // set point data test kecerdasan
             $dataTestBakat_point = $this->getBulkPointByCode($dataTestBakat);
@@ -87,18 +99,28 @@ class ReportController extends Controller
 
             // ambil aspek_id dari $group_dataTestKecerdasan berdasarkan presentase tertinggi
             $max_presentase_dataTestKecerdasan = $this->sortByBiggest($group_dataTestKecerdasan);
-            $max_presentase_dataTestKecerdasan = $max_presentase_dataTestKecerdasan[0]['aspek_id'];
-
-            // ambil 3 aspek_id dari $group_dataTestBakat berdasarkan presentase tertinggi
+            // $max_presentase_dataTestKecerdasan = $max_presentase_dataTestKecerdasan[0]['aspek_id'];
+            $max_presentase_dataTestKecerdasan = array_slice($max_presentase_dataTestKecerdasan, 0, 2);
+            
             $max_presentase_dataTestBakat = $this->sortByBiggest($group_dataTestBakat);
             $max_presentase_dataTestBakat = array_slice($max_presentase_dataTestBakat, 0, 3);
 
-            $result_tes_kecerdasan = [
-                'aspek_id' => $max_presentase_dataTestKecerdasan,
-                'info' => $this->getDataInfoByAspekId($max_presentase_dataTestKecerdasan),
-                'presentase' => $group_dataTestKecerdasan[$max_presentase_dataTestKecerdasan]['presentase'],
-                'aspek_name' => $this->getDataAspekByID($max_presentase_dataTestKecerdasan)->NAME
-            ];
+            $result_tes_kecerdasan = [];
+            foreach ($max_presentase_dataTestKecerdasan as $data) {
+                $result_tes_kecerdasan[] = [
+                    'aspek_id' => $data['aspek_id'],
+                    'info' => $this->getDataInfoByAspekId($data['aspek_id']),
+                    'presentase' => $data['presentase'],
+                    'aspek_name' => $this->getDataAspekByID($data['aspek_id'])->NAME
+                ];
+            }
+
+            // $result_tes_kecerdasan = [
+            //     'aspek_id' => $max_presentase_dataTestKecerdasan,
+            //     'info' => $this->getDataInfoByAspekId($max_presentase_dataTestKecerdasan),
+            //     'presentase' => $group_dataTestKecerdasan[$max_presentase_dataTestKecerdasan]['presentase'],
+            //     'aspek_name' => $this->getDataAspekByID($max_presentase_dataTestKecerdasan)->NAME
+            // ];
 
             $result_tes_bakat = [];
             foreach ($max_presentase_dataTestBakat as $data) {
@@ -111,28 +133,37 @@ class ReportController extends Controller
             }
             
             $prepareDataToSave = [
-                'code_test' => uniqid(),
-                'kc_aspek_id' => $result_tes_kecerdasan['aspek_id'],
-                'kc_presentase' => $result_tes_kecerdasan['presentase'],
+                'kc_aspek_id' => $result_tes_kecerdasan[0]['aspek_id'],
+                'kc_presentase' => $result_tes_kecerdasan[0]['presentase'],
+                'kc_2_aspek_id' => $result_tes_kecerdasan[1]['aspek_id'],
+                'kc_2_presentase' => $result_tes_kecerdasan[1]['presentase'],
                 'bk_1_aspek_id' => $result_tes_bakat[0]['aspek_id'],
                 'bk_1_presentase' => $result_tes_bakat[0]['presentase'],
                 'bk_2_aspek_id' => $result_tes_bakat[1]['aspek_id'],
                 'bk_2_presentase' => $result_tes_bakat[1]['presentase'],
                 'bk_3_aspek_id' => $result_tes_bakat[2]['aspek_id'],
                 'bk_3_presentase' => $result_tes_bakat[2]['presentase'],
+                'FULL_NAME' => $FULL_NAME ?? '',
+                'BIRTHDAY' => $BIRTHDAY ?? '',
+                'SCHOOL' => $SCHOOL ?? '',
+                'EMAIL' => $EMAIL ?? '',
             ];
 
-            $save = $this->saveToTest($prepareDataToSave);
+            $save = $this->saveToTest($prepareDataToSave,$codeTest);
 
             if (!$save['success']) {
                 throw new \Exception($save['message']);
             }
 
-            $result_final = [
-                'tes_kecerdasan' => $result_tes_kecerdasan,
-                'tes_bakat' => $result_tes_bakat,
-                'CodeTest' => $save['data']['CODE_TEST'] ?? ''
-            ];
+            Request()->request->add(['codeTest' => $codeTest]);
+            
+            $result_final = $this->getResultByCodeTest( Request());
+            $result_final = json_decode($result_final->getContent(), true);
+            if (!$result_final['success']) {
+                throw new \Exception($result_final['message']);
+            }
+            
+            $result_final = $result_final['data'];
 
             $this->response['success'] = true;
             $this->response['message'] = 'Success';
@@ -167,11 +198,19 @@ class ReportController extends Controller
                 ->where('CODE_TEST', $code_test)
                 ->first();
 
-            $result_tes_kecerdasan = [
+            $result_tes_kecerdasan = [];
+            $result_tes_kecerdasan[] = [
                 'aspek_id' => $data->KC_ASPEK_ID,
                 'info' => $this->getDataInfoByAspekId($data->KC_ASPEK_ID),
                 'presentase' => $data->KC_PRESENTASE,
                 'aspek_name' => $this->getDataAspekByID($data->KC_ASPEK_ID)->NAME
+            ];
+
+            $result_tes_kecerdasan[] = [
+                'aspek_id' => $data->KC_2_ASPEK_ID,
+                'info' => $this->getDataInfoByAspekId($data->KC_2_ASPEK_ID) ?? null,
+                'presentase' => $data->KC_2_PRESENTASE,
+                'aspek_name' => $this->getDataAspekByID($data->KC_2_ASPEK_ID)->NAME ?? null
             ];
 
             $result_tes_bakat = [];
@@ -196,9 +235,17 @@ class ReportController extends Controller
                 'aspek_name' => $this->getDataAspekByID($data->BK_3_ASPEK_ID)->NAME
             ];
 
+            $result_data_form = [
+                'FULL_NAME' => $data->FULL_NAME,
+                'BIRTHDAY' => $data->BIRTHDAY,
+                'SCHOOL' => $data->SCHOOL,
+                'EMAIL' => $data->EMAIL,
+            ];
+
             $result_final = [
                 'tes_kecerdasan' => $result_tes_kecerdasan,
                 'tes_bakat' => $result_tes_bakat,
+                'data_form' => $result_data_form,
                 'CodeTest' => $code_test
             ];
 
@@ -216,14 +263,15 @@ class ReportController extends Controller
         }
     }
 
-    private function saveToTest($data)
+    private function saveToTest($data,$codeTest)
     {
         try {
             $prepare_data = [
                 'USER_ID' => auth()->user()->id ?? '',
-                'CODE_TEST' => $data['code_test'],
                 'KC_ASPEK_ID' => $data['kc_aspek_id'],
                 'KC_PRESENTASE' => $data['kc_presentase'],
+                'KC_2_ASPEK_ID' => $data['kc_2_aspek_id'],
+                'KC_2_PRESENTASE' => $data['kc_2_presentase'],
                 'BK_1_ASPEK_ID' => $data['bk_1_aspek_id'],
                 'BK_1_PRESENTASE' => $data['bk_1_presentase'],
                 'BK_2_ASPEK_ID' => $data['bk_2_aspek_id'],
@@ -232,7 +280,9 @@ class ReportController extends Controller
                 'BK_3_PRESENTASE' => $data['bk_3_presentase'],
             ];
             
-            $res = Test::create($prepare_data);
+            // update
+            $res = Test::where('CODE_TEST', $codeTest)
+                ->update($prepare_data);
             
             $this->response['success'] = true;
             $this->response['message'] = 'Success';
@@ -357,11 +407,101 @@ class ReportController extends Controller
 
     public function downloadReportWithDomPDFByHTML(Request $req)
     {
-        $html = $req->html;
+        $codeTest = $req->codeTest;
+        
+        $pdf = PDF::loadHTML($html);
+        $datetime = date('YmdHis');
+
+        $filename = 'result_lkdp_feedback_'.$codeTest.'_'.$datetime.'.pdf';
+
+        return $pdf->download($filename, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="'.$filename.'"'
+        ]);
+    }
+
+    public function downloadResultLkdp(Request $req)
+    {
+        $codeTest = $req->codeTest;
+
+        // ambil data LKPD Answer by code test. Relasikan dengan tb_m_lkpd.ID = tb_r_lkpd.QUESTION_ID
+        $lkpd_answer = LKPD_answer::selectRaw('tb_m_lkpd.ID, tb_m_lkpd.QUESTION, tb_r_lkpd.ANSWER')
+            ->join('tb_m_lkpd', 'tb_m_lkpd.ID', '=', 'tb_r_lkpd.QUESTION_ID')
+            ->where('tb_r_lkpd.CODE_TEST', $codeTest)
+            ->get();
+
+        $html = $this->generateHtmlLKPD($lkpd_answer,$codeTest);
+
 
         $pdf = PDF::loadHTML($html);
+        $datetime = date('YmdHis');
 
-        return $pdf->download('result.pdf');
+        $filename = 'result_lkdp_feedback_'.$codeTest.'_'.$datetime.'.pdf';
+
+        return $pdf->download($filename, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="'.$filename.'"'
+        ]);
+    }
+
+    private function generateHtmlLKPD($data,$codeTest){
+        $que = '';
+        foreach ($data as $key => $value) {
+            $que .= '<li>';
+            $que .= '<b>'.$value['QUESTION'].'</b>';
+            $que .= '<p>Jawab : '.$value['ANSWER'].'</p>';
+            $que .= '</li>';
+        }
+
+        $html = '<!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                    <title>Lembar Kerja Peserta Didik (LPDK)</title>
+                    </head>
+                    <body>
+
+                    <div style="margin: 0 auto; width: 500px;">
+                        <div style="padding: 10px; background-color: #FC6736;">
+                        <h1>Lembar Kerja Peserta Didik (LPDK)</h1>
+                        </div>
+                        <hr>
+                        <small>Code Test: '.$codeTest.'</small>
+                        <ol>
+                        '.$que.'
+                        </ol>
+
+                    </div>
+
+                    </body>
+                    </html>
+                    ';
+
+        
+
+        return $html;
+    }
+
+    public function generateCodeTest()
+    {
+        try {
+            $code_test = Test::generateCodeTest();
+
+            $data = [
+                'codeTest' => $code_test
+            ];
+
+            Response::$response['success'] = true;
+            Response::$response['message'] = 'Success';
+            Response::$response['data'] = $data;
+
+            return response()->json(Response::$response, 200);
+        } catch (\Exception $e) {
+            Response::$response['success'] = false;
+            Response::$response['message'] = $e->getMessage();
+            Response::$response['data'] = [];
+
+            return response()->json(Response::$response, 500);
+        }
     }
 
 
