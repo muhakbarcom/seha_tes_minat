@@ -3,7 +3,12 @@
 @section('title', 'Test Information')
 
 @section('style')
-
+<style>
+  .text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+</style>
 @endsection
 
 
@@ -28,32 +33,32 @@
             </div>
 
             <div class="row mt-3">
-              <div class="col" id="DESKRIPSI">
+              <div class="col text-justify" id="DESKRIPSI">
 
               </div>
             </div>
 
             <div class="row mt-3">
               <h5>Kenapa Harus Jurusan Ini?</h5>
-              <div class="col" id="KENAPA_HARUS_JURUSAN_INI">
+              <div class="col text-justify" id="KENAPA_HARUS_JURUSAN_INI">
 
               </div>
             </div>
             <div class="row mt-3">
               <h5>Pengetahuan dan Keahlian</h5>
-              <div class="col" id="PENGETAHUAN_DAN_KEAHLIAN">
+              <div class="col text-justify" id="PENGETAHUAN_DAN_KEAHLIAN">
 
               </div>
             </div>
             <div class="row mt-3">
               <h5>Prospek Kerja</h5>
-              <div class="col" id="PROSPEK_KERJA">
+              <div class="col text-justify" id="PROSPEK_KERJA">
 
               </div>
             </div>
             <div class="row mt-3">
               <h5>Dunia Perkuliahan</h5>
-              <div class="col" id="DUNIA_PERKULIAHAN">
+              <div class="col text-justify" id="DUNIA_PERKULIAHAN">
 
               </div>
             </div>
@@ -62,7 +67,7 @@
             <div class="row mt-3">
               <div class="col">
 
-                <a href="{{ url('/program_study') }}" class="btn btn-primary"> <i class="bi bi-arrow-left"></i>
+                <a href="{{ url('/program-study') }}" class="btn btn-primary"> <i class="bi bi-arrow-left"></i>
                   Back</a>
               </div>
             </div>
@@ -96,6 +101,7 @@
       type: "GET",
       dataType: "JSON",
       success: function (result) {
+
         NAMA_JURUSAN.html(result.data.NAMA_JURUSAN);
         DESKRIPSI.html(result.data.DESKRIPSI);
         KENAPA_HARUS_JURUSAN_INI.html(result.data.KENAPA_HARUS_JURUSAN_INI);
