@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 27, 2024 at 05:00 PM
+-- Generation Time: Jan 28, 2024 at 08:55 AM
 -- Server version: 10.4.30-MariaDB-log
 -- PHP Version: 7.4.33
 
@@ -118,7 +118,17 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (21, 'App\\Models\\User', 2, 'auth_token', 'c4debdbfb5d618faadb799a159effde498fc8ed9db91d7a0996e8d64f4799ad3', '[\"*\"]', NULL, '2024-01-27 05:27:04', '2024-01-27 05:27:04'),
 (22, 'App\\Models\\User', 2, 'auth_token', 'ae30648b94d6978d000444e15a479ff80de43a7acb90ffeb0add92a352a96501', '[\"*\"]', NULL, '2024-01-27 05:30:36', '2024-01-27 05:30:36'),
 (23, 'App\\Models\\User', 2, 'auth_token', 'f5ebad0792deb64b0bd74f6f736887f1479dcf89ebe2d79b53c186a8317376d6', '[\"*\"]', NULL, '2024-01-27 06:19:37', '2024-01-27 06:19:37'),
-(24, 'App\\Models\\User', 2, 'auth_token', 'f93629521f2d85689505e5d087b17310bc01dfe220a7297e3ce4410076290c9e', '[\"*\"]', NULL, '2024-01-27 08:17:49', '2024-01-27 08:17:49');
+(24, 'App\\Models\\User', 2, 'auth_token', 'f93629521f2d85689505e5d087b17310bc01dfe220a7297e3ce4410076290c9e', '[\"*\"]', NULL, '2024-01-27 08:17:49', '2024-01-27 08:17:49'),
+(25, 'App\\Models\\User', 2, 'auth_token', '1ff3a54ecf4f333ae23712001ecd5e5742584aa289a6f1ada236e0dba7a134d9', '[\"*\"]', NULL, '2024-01-27 21:15:17', '2024-01-27 21:15:17'),
+(26, 'App\\Models\\User', 2, 'auth_token', 'f19c856e326b994978da2aab0b7e01df3eba59e6f667bf6e054160895e914f4b', '[\"*\"]', NULL, '2024-01-27 23:01:00', '2024-01-27 23:01:00'),
+(27, 'App\\Models\\User', 2, 'auth_token', '6a86cfc7fc809782a441596916979172a964b439e4bb369f5e1a13dd48a7d40b', '[\"*\"]', NULL, '2024-01-27 23:03:09', '2024-01-27 23:03:09'),
+(28, 'App\\Models\\User', 2, 'auth_token', '49bcaf6e12e136d7811f6a94004b117a3a5cc61a414522edfc2a139b91b4d69c', '[\"*\"]', NULL, '2024-01-27 23:07:18', '2024-01-27 23:07:18'),
+(29, 'App\\Models\\User', 2, 'auth_token', 'c89e37070cb347120d2c678f0c7432c14cbb8fab60614da2b05b73b962f7700d', '[\"*\"]', NULL, '2024-01-27 23:07:30', '2024-01-27 23:07:30'),
+(30, 'App\\Models\\User', 2, 'auth_token', '6d179920028fb028bb3d3ae9164dafd639b66325a5611e678db530988c1c8a99', '[\"*\"]', NULL, '2024-01-27 23:37:51', '2024-01-27 23:37:51'),
+(31, 'App\\Models\\User', 2, 'auth_token', '2734dc3e010b031c758ffc87b7f0fb5b3f3926ca920effb12fdc72eb45232f38', '[\"*\"]', NULL, '2024-01-27 23:38:00', '2024-01-27 23:38:00'),
+(32, 'App\\Models\\User', 2, 'auth_token', '044f014f871768e4c4ddf923289e316460de32c419774caa7c3868f7ba38df1d', '[\"*\"]', NULL, '2024-01-27 23:38:22', '2024-01-27 23:38:22'),
+(33, 'App\\Models\\User', 2, 'auth_token', '2cb3897826a35a3797ae4ee20132da09936e07ab89214e0d1ab958e446ca04ef', '[\"*\"]', NULL, '2024-01-27 23:38:43', '2024-01-27 23:38:43'),
+(34, 'App\\Models\\User', 2, 'auth_token', '5ed0cd7448045941d1a8f6778b4a5a5cc8de4b350bb31488dba980a499d68393', '[\"*\"]', NULL, '2024-01-28 00:34:53', '2024-01-28 00:34:53');
 
 -- --------------------------------------------------------
 
@@ -130,14 +140,14 @@ CREATE TABLE `tb_m_aspek` (
   `ID` int(11) NOT NULL,
   `NAME` varchar(50) NOT NULL,
   `TYPE` int(11) NOT NULL COMMENT '1 : Multiple inteligen, 2: RIASEC',
-  `DESKRPSI_HASIL_TES` text NOT NULL
+  `DESKRIPSI_HASIL_TES` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tb_m_aspek`
 --
 
-INSERT INTO `tb_m_aspek` (`ID`, `NAME`, `TYPE`, `DESKRPSI_HASIL_TES`) VALUES
+INSERT INTO `tb_m_aspek` (`ID`, `NAME`, `TYPE`, `DESKRIPSI_HASIL_TES`) VALUES
 (2, 'Linguistic-Bahasa', 1, 'Kamu memiliki ketertarikan yang ditunjang dengan penguasaan penggunaan Bahasa yang baik dan efektif.  Kamu mampu menganalisis informasi dengan baik, menggunakan beragam jenis kata dan menyusunnya menjadi kalimat yang mudah dimengerti. Kamu menyukai beragam aktivitas yang bersinggungan dengan Bahasa seperti membaca, menulis, mendengarkan dan berbicara. Kamu bisa mencoba untuk belajar Bahasa asing agar kemampuan linguistikmu semakin keren! Kamu bisa berkarier di beberapa bidang seperti dramawan, editor, pengarang, jurnalis, pengacara, sastrawan, novelis dan sebagainya.'),
 (3, 'Logical-matematik', 1, 'Kamu memiliki kemampuan dalam berpikir secara induktif dan deduktif, kamu memiliki penalaran logika, analisis pola angka dan pemecahan masalah yang cukup baik. Kamu mampu menghitung dan bermain angka dan melakukan pemecahan masalah yang terjadi dengan baik, kemampuan berpikir ilmiah yang kamu miliki membuat kamu menjadi sosok yang yang sangat logis dan mudah diterima orang lain. Kamu sangat cocok bekerja pada beberapa bidang seperti logikus, matematikus, saintis, programmer dan negosiator. '),
 (4, 'Visual-Spatial', 1, 'Kamu memiliki ketertarikan dan kemampuan yang baik untuk memahami secara lebih dalam hubungan antara objek dan ruang. Kemampuan imajinasi yang aktif dan bekerja sangat baik membuat kamu memiliki beberapa kemampuan yang menarik seperti persepsi yang tepat dari berbagai sudut, reprentasi grafik, mudah menemukan jalan dalam ruang juga peka terhadap warna, garis dan bentuk. Kamu cocok bekerja di beberapa bidang seperti pemburu, arsitek, decorator, navigator, ahli peta, pelukis, pemahat dan sebagainya. '),
@@ -172,7 +182,79 @@ CREATE TABLE `tb_m_aspek_jurusan` (
 
 INSERT INTO `tb_m_aspek_jurusan` (`ID`, `ASPEK_ID`, `JURUSAN_ID`) VALUES
 (1, 10, 1),
-(2, 10, 2);
+(2, 10, 2),
+(3, 10, 3),
+(6, 10, 4),
+(7, 10, 4),
+(8, 10, 28),
+(9, 10, 5),
+(10, 10, 14),
+(11, 10, 15),
+(12, 10, 12),
+(13, 11, 1),
+(14, 11, 2),
+(15, 11, 3),
+(16, 11, 28),
+(17, 11, 4),
+(18, 12, 1),
+(19, 12, 16),
+(20, 12, 17),
+(21, 12, 18),
+(22, 12, 33),
+(23, 12, 34),
+(24, 12, 19),
+(25, 12, 28),
+(26, 12, 5),
+(27, 13, 1),
+(28, 13, 16),
+(29, 13, 3),
+(30, 13, 10),
+(31, 13, 28),
+(32, 13, 20),
+(33, 14, 1),
+(34, 14, 2),
+(35, 14, 5),
+(36, 14, 7),
+(37, 14, 6),
+(38, 14, 28),
+(39, 14, 24),
+(40, 15, 1),
+(41, 15, 2),
+(42, 15, 5),
+(43, 15, 7),
+(44, 15, 6),
+(45, 15, 28),
+(46, 15, 24),
+(47, 15, 9),
+(48, 2, 26),
+(49, 2, 29),
+(50, 2, 23),
+(51, 2, 27),
+(52, 2, 22),
+(53, 3, 7),
+(54, 3, 2),
+(55, 3, 3),
+(56, 3, 8),
+(57, 3, 28),
+(58, 4, 30),
+(59, 4, 31),
+(60, 4, 32),
+(61, 5, 12),
+(62, 5, 33),
+(63, 5, 34),
+(64, 5, 35),
+(65, 6, 17),
+(66, 7, 36),
+(67, 7, 37),
+(68, 7, 11),
+(69, 7, 22),
+(70, 7, 24),
+(71, 8, 11),
+(72, 8, 38),
+(73, 9, 13),
+(74, 9, 39),
+(75, 9, 40),
+(76, 9, 41);
 
 -- --------------------------------------------------------
 
@@ -500,7 +582,9 @@ INSERT INTO `tb_r_lkpd` (`ID`, `CODE_TEST`, `ANSWER`, `QUESTION_ID`) VALUES
 (7, '65afe1b19af71', 'iya', 1),
 (8, '65afe1b19af71', 'iya', 2),
 (9, '65b51efa97242', 'engga', 1),
-(10, '65b51efa97242', 'iya', 2);
+(10, '65b51efa97242', 'iya', 2),
+(11, '65b60e052b194', 'iya', 1),
+(12, '65b60e052b194', 'ya', 2);
 
 -- --------------------------------------------------------
 
@@ -549,7 +633,8 @@ INSERT INTO `tb_r_test` (`ID`, `USER_ID`, `CODE_TEST`, `KC_ASPEK_ID`, `KC_PRESEN
 (22, 2, '65b51ec5c2491', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:18:29', '2024-01-27 15:18:29'),
 (23, 2, '65b51ed47f1a4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:18:44', '2024-01-27 15:18:44'),
 (24, 2, '65b51ed7433c9', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:18:47', '2024-01-27 15:18:47'),
-(25, 2, '65b51efa97242', 8, '80.0', 7, '70.0', 12, '77.5', 10, '62.5', 11, '62.5', NULL, NULL, NULL, NULL, '2024-01-27 15:19:22', '2024-01-27 15:50:29');
+(25, 2, '65b51efa97242', 8, '80.0', 7, '70.0', 12, '77.5', 10, '62.5', 11, '62.5', 'asdasd', '2014-04-02', 'asdasd', 'asdasd@asdas.comn', '2024-01-27 15:19:22', '2024-01-27 15:50:29'),
+(26, 2, '65b60e052b194', 2, '70.0', 9, '67.5', 12, '77.5', 15, '75.0', 14, '70.0', 'Akbar Muhammad', '1999-12-05', 'Poltekpos', 'akbar@gmail.com', '2024-01-28 08:19:17', '2024-01-28 08:24:13');
 
 -- --------------------------------------------------------
 
@@ -692,7 +777,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tb_m_aspek`
@@ -704,7 +789,7 @@ ALTER TABLE `tb_m_aspek`
 -- AUTO_INCREMENT for table `tb_m_aspek_jurusan`
 --
 ALTER TABLE `tb_m_aspek_jurusan`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `tb_m_indikator`
@@ -740,13 +825,13 @@ ALTER TABLE `tb_m_skor`
 -- AUTO_INCREMENT for table `tb_r_lkpd`
 --
 ALTER TABLE `tb_r_lkpd`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tb_r_test`
 --
 ALTER TABLE `tb_r_test`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `users`

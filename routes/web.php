@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\LogoutController;
+use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\ConsultationController;
 
 /*
@@ -33,12 +34,15 @@ Route::get('/', function () {
     return view('v_home');
 });
 
+Route::get('/report', [ReportController::class, 'downloadReportWithDomPDFByHTML'])->name('report');
+
 Route::get('/test-info', function () {
     return view('v_info');
 });
 
 // login terlebih dahulu
-Route::get('/consultation/{codeTest?}' , [ConsultationController::class, 'index'])->name('consultation');
+Route::get('/consultation/{codeTest?}' , [ConsultationController::class, 'index'])->name('consultation')->middleware('auth:sanctum');
+
 
 // program study by id
 Route::get('/program-study/{id}', function () {

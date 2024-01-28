@@ -10,6 +10,8 @@ use App\Models\Test;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Response;
 use App\Models\LKPD_answer;
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\View;
 
 class ReportController extends Controller
 {
@@ -84,6 +86,8 @@ class ReportController extends Controller
             $BIRTHDAY = $dataForm['date'];
             $SCHOOL = $dataForm['education'];
             $EMAIL = $dataForm['email'];
+
+            
 
             // set point data test kecerdasan
             $dataTestBakat_point = $this->getBulkPointByCode($dataTestBakat);
@@ -278,6 +282,10 @@ class ReportController extends Controller
                 'BK_2_PRESENTASE' => $data['bk_2_presentase'],
                 'BK_3_ASPEK_ID' => $data['bk_3_aspek_id'],
                 'BK_3_PRESENTASE' => $data['bk_3_presentase'],
+                'FULL_NAME' => $data['FULL_NAME'],
+                'BIRTHDAY' => $data['BIRTHDAY'],
+                'SCHOOL' => $data['SCHOOL'],
+                'EMAIL' => $data['EMAIL'],
             ];
             
             // update
@@ -305,11 +313,30 @@ class ReportController extends Controller
         return $res;
     }
 
+    // private function getDataInfoByAspekId($aspek_id)
+    // {
+    //     $res = DB::table('tb_m_info')
+    //         ->where('CODE', $aspek_id)
+    //         ->first();
+
+    //     return $res;
+    // }
+
     private function getDataInfoByAspekId($aspek_id)
     {
-        $res = DB::table('tb_m_info')
-            ->where('CODE', $aspek_id)
+        // ambil data dari tb_m_aspek berdasarkan tb_m_aspek.ID untuk mengambil tb_m_aspek.DESKRIPSI_HASIL_TES.
+        $res = DB::table('tb_m_aspek')
+            ->where('ID', $aspek_id)
             ->first();
+
+        // Ambil jurusan dari tb_m_aspek_jurusan berdasarkan tb_m_aspek_jurusan.ASPEK_ID dan relasikan ke tb_m_jurusan.ID untuk mengambil tb_m_jurusan.NAMA_JURUSAN
+        $jurusan = DB::table('tb_m_aspek_jurusan')
+                ->join('tb_m_jurusan', 'tb_m_jurusan.ID', '=', 'tb_m_aspek_jurusan.JURUSAN_ID')
+                ->where('tb_m_aspek_jurusan.ASPEK_ID', $aspek_id)
+                ->get();
+                
+        // masukan jurusan ke aspek
+        $res->JURUSAN = $jurusan;
 
         return $res;
     }
@@ -407,18 +434,41 @@ class ReportController extends Controller
 
     public function downloadReportWithDomPDFByHTML(Request $req)
     {
-        $codeTest = $req->codeTest;
-        
-        $pdf = PDF::loadHTML($html);
+        $data = $this->getResultByCodeTest($req);
+        $data = json_decode($data->getContent(), true);
+
+        if(!$data['success']){
+            return response()->json($data, 500);
+        }
+
+        $data = $data['data'];
+
+        // return view('v_report', ['data' => $data]);
+
+        $dompdf = new Dompdf();
+        $options = $dompdf->getOptions();
+        $options->setDefaultFont('Courier');
+        $dompdf->setOptions($options);
+        $dompdf->setPaper('A4', 'potrait');
+
         $datetime = date('YmdHis');
 
-        $filename = 'result_lkdp_feedback_'.$codeTest.'_'.$datetime.'.pdf';
+        $filename = 'report_'.$data['CodeTest'].'_'.$datetime;
+        // load view
+        $html = View::make('v_report', ['data' => $data, 'filename' => $filename]);
+        $html = $html->render();
 
-        return $pdf->download($filename, 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="'.$filename.'"'
-        ]);
+        // load html
+        $dompdf->loadHtml($html);
+
+        // file name
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        $dompdf->stream($filename);
     }
+
 
     public function downloadResultLkdp(Request $req)
     {

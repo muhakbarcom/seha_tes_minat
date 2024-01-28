@@ -370,12 +370,54 @@
       background-position: 0% 50%;
     }
   }
+
+  .continue-btn {
+    cursor: pointer;
+
+  }
+
+  /* .small-text-scroll::-webkit-scrollbar {
+    animation: scroll-animation 0.5s ease-in-out;
+  } */
+
+  .small-text-scroll {
+    overflow-y: scroll;
+    scrollbar-color: #fff #000;
+    scrollbar-width: 10px;
+  }
+
+  .custom-scrollbar {
+    overflow-y: scroll;
+    scrollbar-color: #fff #000;
+    scrollbar-width: 5px;
+
+    scrollbar-track {
+      background-color: #fff;
+    }
+
+    scrollbar-thumb {
+      background-color: #000;
+    }
+  }
+
+  @keyframes scroll-animation {
+    0% {
+      width: 0px;
+    }
+
+    100% {
+      width: 10px;
+    }
+  }
 </style>
+
+
 
 @endsection
 
 @section('content')
 <section>
+
   <!-- Start Stepper HTML -->
   <div class="container">
     <div class="accordion" id="accordionExample">
@@ -635,11 +677,26 @@
         </div>
       </div>
       <div class="card">
-        <div id="headingFive">
-
-        </div>
+        <div id="headingFive"></div>
         <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
           <div class="card-body">
+            {{-- <div class="featured-body">
+              <p>Before the floodplain restoration at Landis Homes was underway, residents were concerned about the view
+                and asked for a planted screen to hide the wetland that was under construction. Now, they wouldn’t dream
+                of hiding the wetland, now flourishing with new flora and fauna. Home to more than 700 residents, the
+                Landis Homes retirement community in Lititz, Pennsylvania, needed additional living space to meet demand
+                for an increasing number of retirees. Landis Homes and their land development consultant RGS Associates
+                contacted LandStudies, Inc., a local landscape architect firm specializing in floodplain restoration and
+                regional stormwater solutions, for help. The team felt that restoring the floodplain would not only
+                provide an amenity for the community, but also improve water quality and provide a unique stormwater
+                management solution for the development. Over the course of three months, the team designed a stream and
+                floodplain restoration project that improved stream function, increased floodwater storage potential,
+                and actively engaged residents to improve social interactions and overall community health. By utilizing
+                the floodplain for stormwater management, land that would be typically set aside for conventional
+                stormwater management basins was used to construct additional housing units, increasing the efficiency
+                of the overall development.
+              </p>
+            </div> --}}
             <div class="row">
               <div class="d-flex col justify-content-end">
                 <button class="btn btn-sm btn-warning" id="btn_print_lkpd">
@@ -698,7 +755,39 @@
 
 
 @section('script')
+<script>
+  var showChar = 1200;   // Set a char limit
+	var ellipses = "<span id='ellip'>...</span>";
+	var button = "<span class='continue-btn text-primary' id='act'>Show more</span>";
+	var pcount = $('.featured-body p:first').text().length;  // get paragraph char count
 
+	if(pcount > showChar){
+	   // split the paragraph in two
+	   var first_half  = $('.featured-body p').text().slice(0,200);
+	   var second_half = $('.featured-body p').text().slice(200,pcount);
+	  // erase the current paragraph text
+	  $('.featured-body p:first').text("");
+	 // Append the first and second halves, with new <div> classes, using :first because the button tag is wrapped in p, as it should be with HTML5
+	  $('.featured-body p:first').append("<span class='first'>"+first_half+ellipses+"</span>");
+	  $('.featured-body p:first').append("<span class='second'>"+second_half+"</span>");
+	  $('.featured-body p:first').append(button);
+	 // Hide second half
+	 $('.second').hide();
+
+	}
+
+	$('#act').on('click',function(){ 
+	   // Toggle the second half on or off
+	   $('.second').toggle();
+	   $('#ellip').toggle();
+	  // Change the button text
+	  if($(this).text() == "Show more"){
+	     $(this).text("Show Less")
+	  }else{
+	    $(this).text("Show more");
+	  }
+	}); 
+</script>
 {{-- variable --}}
 <script>
   // var codeTest from $codeTest
@@ -1754,11 +1843,11 @@
     var data_tes_kecerdasan = data.tes_kecerdasan;
     var data_tes_bakat = data.tes_bakat;
     // pisahkan data dengan koma
-    var prodi_kecerdasan_1 = loopProdi(data.tes_kecerdasan[0].info.PROGRAM_STUDY.split(','));
-    var prodi_kecerdasan_2 = loopProdi(data.tes_kecerdasan[1].info.PROGRAM_STUDY.split(','));
-    var prodi_bakat_1 = loopProdi(data.tes_bakat[0].info.PROGRAM_STUDY.split(','));
-    var prodi_bakat_2 = loopProdi(data.tes_bakat[1].info.PROGRAM_STUDY.split(','));
-    var prodi_bakat_3 = loopProdi(data.tes_bakat[2].info.PROGRAM_STUDY.split(','));
+    var prodi_kecerdasan_1 = loopProdi(data.tes_kecerdasan[0].info.JURUSAN);
+    var prodi_kecerdasan_2 = loopProdi(data.tes_kecerdasan[1].info.JURUSAN);
+    var prodi_bakat_1 = loopProdi(data.tes_bakat[0].info.JURUSAN);
+    var prodi_bakat_2 = loopProdi(data.tes_bakat[1].info.JURUSAN);
+    var prodi_bakat_3 = loopProdi(data.tes_bakat[2].info.JURUSAN);
 
     var html = '';
 
@@ -1770,12 +1859,13 @@
                     style="height: 250px; border-radius: 15px; padding: 20px;">
                     <small>Hasil Tes Kecerdasan :</small>
                     <h3 class="mb-2 mt-1"><b>${data_tes_kecerdasan[0].aspek_name}</b> <i class="bi bi-patch-check-fill text-warning"></i></h3>
-                    <small class="text-center mt-2 col-9">
-                      ${data_tes_kecerdasan[0].info.DESKRIPSI_BIDANG_MINAT}
-                    </small>
+                    <div class="custom-scrollbar" style="max-width:350px;max-height:100px">
+                      <small class=" text-center mt-2 col-9">${data_tes_kecerdasan[0].info.DESKRIPSI_HASIL_TES}</small>
+                    </div>
+
                     <hr>
                     <small>
-                      Program Studi :
+                      Rekomendasi Program Studi :
                       ${prodi_kecerdasan_1}
                     </small>
                   </div>
@@ -1794,12 +1884,12 @@
                     style="height: 250px; border-radius: 15px; padding: 20px;">
                     <small>Hasil Tes Kecerdasan :</small>
                     <h3 class="mb-2 mt-1"><b>${data_tes_kecerdasan[1].aspek_name}</b> <i class="bi bi-patch-check-fill text-warning"></i></h3>
-                    <small class="text-center mt-2 col-9">
-                      ${data_tes_kecerdasan[1].info.DESKRIPSI_BIDANG_MINAT}
-                    </small>
+                    <div class="custom-scrollbar" style="max-width:350px;max-height:100px">
+                      <small class=" text-center mt-2 col-9">${data_tes_kecerdasan[1].info.DESKRIPSI_HASIL_TES}</small>
+                    </div>
                     <hr>
                     <small>
-                      Program Studi :
+                      Rekomendasi Program Studi :
                       ${prodi_kecerdasan_2}
                     </small>
                   </div>
@@ -1831,9 +1921,12 @@
 
                       </div>
                       <div class="col-6 bg-secondary p-3 text-light">
-                        <p>${data_tes_bakat[0].info.DESKRIPSI_BIDANG_MINAT}</p>
+                        
+                        <div class="custom-scrollbar" style="max-width:550px;max-height:100px">
+                          <p>${data_tes_bakat[0].info.DESKRIPSI_HASIL_TES}</p>
+                        </div>
                         <small class="mt-3">
-                          Program Studi :
+                          Rekomendasi Program Studi :
                           ${prodi_bakat_1}
                         </small>
                       </div>
@@ -1852,9 +1945,12 @@
 
                       </div>
                       <div class="col-6 bg-secondary p-3 text-light">
-                        <p>${data_tes_bakat[1].info.DESKRIPSI_BIDANG_MINAT}</p>
+                        
+                        <div class="custom-scrollbar" style="max-width:550px;max-height:100px">
+                          <p>${data_tes_bakat[1].info.DESKRIPSI_HASIL_TES}</p>
+                        </div>
                         <small class="mt-3">
-                          Program Studi :
+                          Rekomendasi Program Studi :
                           ${prodi_bakat_2}
                         </small>
                       </div>
@@ -1872,9 +1968,12 @@
 
                       </div>
                       <div class="col-6 bg-secondary p-3 text-light">
-                        <p>${data_tes_bakat[2].info.DESKRIPSI_BIDANG_MINAT}</p>
+                        
+                        <div class="custom-scrollbar" style="max-width:550px;max-height:100px">
+                          <p>${data_tes_bakat[2].info.DESKRIPSI_HASIL_TES}</p>
+                        </div>
                         <small class="mt-3">
-                          Program Studi :
+                          Rekomendasi Program Studi :
                           ${prodi_bakat_3}
                         </small>
                       </div>
@@ -1892,10 +1991,11 @@
   function loopProdi(prodi){
     var html = '';
     prodi.forEach(function(item,index){
-      html += `<a href=""><span class="badge bg-primary">${item}</span></a>`;
+      html += `<a href="{{ url('program-study/') }}/${item.JURUSAN_ID}" target="_BLANK"><span class="badge bg-primary">${item.NAMA_JURUSAN}</span></a> &nbsp;`;
     })
 
     return html;
   }
+
 </script>
 @endsection
