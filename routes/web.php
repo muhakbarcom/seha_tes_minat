@@ -35,6 +35,7 @@ Route::get('/', function () {
 });
 
 Route::get('/report', [ReportController::class, 'downloadReportWithDomPDFByHTML'])->name('report');
+Route::get('/report/lkpd', [ReportController::class, 'downloadResultLkdp'])->name('downloadResultLkdp');
 
 Route::get('/test-info', function () {
     return view('v_info');

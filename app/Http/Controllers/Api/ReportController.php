@@ -473,63 +473,44 @@ class ReportController extends Controller
     public function downloadResultLkdp(Request $req)
     {
         $codeTest = $req->codeTest;
-
+        $data = $this->getResultByCodeTest($req);
+        $data = json_decode($data->getContent(), true);
+        
+        if(!$data['success']){
+            return response()->json($data, 500);
+        }
+        
         // ambil data LKPD Answer by code test. Relasikan dengan tb_m_lkpd.ID = tb_r_lkpd.QUESTION_ID
         $lkpd_answer = LKPD_answer::selectRaw('tb_m_lkpd.ID, tb_m_lkpd.QUESTION, tb_r_lkpd.ANSWER')
             ->join('tb_m_lkpd', 'tb_m_lkpd.ID', '=', 'tb_r_lkpd.QUESTION_ID')
             ->where('tb_r_lkpd.CODE_TEST', $codeTest)
             ->get();
+            $datetime = date('YmdHis');
+            $filename = 'result_lkdp_feedback_'.$codeTest.'_'.$datetime.'.pdf';
+            
+            $data = $data['data'];
+            $data['lkpd_answer'] = json_decode($lkpd_answer, true);
 
-        $html = $this->generateHtmlLKPD($lkpd_answer,$codeTest);
+            $dompdf = new Dompdf();
+            $options = $dompdf->getOptions();
+            $options->setDefaultFont('Courier');
+            $dompdf->setOptions($options);
+            $dompdf->setPaper('A4', 'potrait');
 
-
-        $pdf = PDF::loadHTML($html);
-        $datetime = date('YmdHis');
-
-        $filename = 'result_lkdp_feedback_'.$codeTest.'_'.$datetime.'.pdf';
-
-        return $pdf->download($filename, 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="'.$filename.'"'
-        ]);
+            // load view
+            $html = View::make('v_report_lkpd', ['data' => $data, 'codeTest' => $codeTest, 'filename' => $filename]);
+            $html = $html->render();
+    
+            // load html
+            $dompdf->loadHtml($html);
+    
+            // Render the HTML as PDF
+            $dompdf->render();
+    
+            $dompdf->stream($filename);
     }
 
-    private function generateHtmlLKPD($data,$codeTest){
-        $que = '';
-        foreach ($data as $key => $value) {
-            $que .= '<li>';
-            $que .= '<b>'.$value['QUESTION'].'</b>';
-            $que .= '<p>Jawab : '.$value['ANSWER'].'</p>';
-            $que .= '</li>';
-        }
-
-        $html = '<!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                    <title>Lembar Kerja Peserta Didik (LPDK)</title>
-                    </head>
-                    <body>
-
-                    <div style="margin: 0 auto; width: 500px;">
-                        <div style="padding: 10px; background-color: #FC6736;">
-                        <h1>Lembar Kerja Peserta Didik (LPDK)</h1>
-                        </div>
-                        <hr>
-                        <small>Code Test: '.$codeTest.'</small>
-                        <ol>
-                        '.$que.'
-                        </ol>
-
-                    </div>
-
-                    </body>
-                    </html>
-                    ';
-
-        
-
-        return $html;
-    }
+    
 
     public function generateCodeTest()
     {
