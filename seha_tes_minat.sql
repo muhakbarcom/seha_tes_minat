@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 01, 2024 at 08:39 AM
+-- Generation Time: Feb 05, 2024 at 07:47 AM
 -- Server version: 10.4.30-MariaDB-log
--- PHP Version: 7.4.33
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -131,7 +131,12 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (34, 'App\\Models\\User', 2, 'auth_token', '5ed0cd7448045941d1a8f6778b4a5a5cc8de4b350bb31488dba980a499d68393', '[\"*\"]', NULL, '2024-01-28 00:34:53', '2024-01-28 00:34:53'),
 (35, 'App\\Models\\User', 2, 'auth_token', 'b45b749da4cdf8569277cf23d9d7140fc0687622004c80f1e369dbfd5689108a', '[\"*\"]', NULL, '2024-01-31 19:48:29', '2024-01-31 19:48:29'),
 (36, 'App\\Models\\User', 2, 'auth_token', '5a3561a1babab9c45950d0fae13ad4f399796827c4c50f7924c674dd15695d66', '[\"*\"]', NULL, '2024-02-01 01:02:03', '2024-02-01 01:02:03'),
-(37, 'App\\Models\\User', 2, 'auth_token', '4ddd3b8f6a8ab520ee18e20775721dab18c11b10039116f4cef4c4720f6bbac4', '[\"*\"]', NULL, '2024-02-01 01:06:21', '2024-02-01 01:06:21');
+(37, 'App\\Models\\User', 2, 'auth_token', '4ddd3b8f6a8ab520ee18e20775721dab18c11b10039116f4cef4c4720f6bbac4', '[\"*\"]', NULL, '2024-02-01 01:06:21', '2024-02-01 01:06:21'),
+(38, 'App\\Models\\User', 3, 'auth_token', '228c0241b346518cc3c13c30835664f9c23a41c89cb7b01ee218d97b67bb0620', '[\"*\"]', NULL, '2024-02-04 19:50:02', '2024-02-04 19:50:02'),
+(39, 'App\\Models\\User', 3, 'auth_token', 'f1e55c2841a5a062affdf71056fc7c3d90bc17ee243d9d88505de690d500b9ea', '[\"*\"]', NULL, '2024-02-04 19:51:05', '2024-02-04 19:51:05'),
+(42, 'App\\Models\\User', 4, 'auth_token', 'ce9abc2487e3b11d6d2ac70f0a68a6158ccfdf226f595098a22c084b360c2321', '[\"*\"]', NULL, '2024-02-04 20:44:43', '2024-02-04 20:44:43'),
+(43, 'App\\Models\\User', 4, 'auth_token', 'ddfba9fe9e77955ac5c7dcf5a84cbf5176069d583ced2c4dd4ab3cb20c98c254', '[\"*\"]', NULL, '2024-02-04 20:44:54', '2024-02-04 20:44:54'),
+(44, 'App\\Models\\User', 2, 'auth_token', 'c87b19273a26116baae7087ee573c9d2cb2fad5e14fd61e5bd3ef99fdc362ddc', '[\"*\"]', NULL, '2024-02-04 23:32:16', '2024-02-04 23:32:16');
 
 -- --------------------------------------------------------
 
@@ -608,8 +613,21 @@ INSERT INTO `tb_r_lkpd` (`ID`, `CODE_TEST`, `ANSWER`, `QUESTION_ID`) VALUES
 (8, '65afe1b19af71', 'iya', 2),
 (9, '65b51efa97242', 'engga', 1),
 (10, '65b51efa97242', 'iya', 2),
-(11, '65b60e052b194', 'iya', 1),
-(12, '65b60e052b194', 'ya', 2);
+(13, '65c051d347b68', 'asdsa', 1),
+(14, '65c051d347b68', 'asdasd', 2),
+(15, '65c051d347b68', 'asdsad', 3),
+(16, '65c051d347b68', 'asdsad', 4),
+(17, '65c051d347b68', 'asdsad', 5),
+(18, '65c059baab712', 'sad', 1),
+(19, '65c059baab712', 'asd', 2),
+(20, '65c059baab712', 'asd', 3),
+(21, '65c059baab712', 'asd', 4),
+(22, '65c059baab712', 'asdsad', 5),
+(23, '65b60e052b194', 'asdsa', 1),
+(24, '65b60e052b194', 'asdas', 2),
+(25, '65b60e052b194', 'sadasd', 3),
+(26, '65b60e052b194', 'asdas', 4),
+(27, '65b60e052b194', 'asdasd', 5);
 
 -- --------------------------------------------------------
 
@@ -635,6 +653,7 @@ CREATE TABLE `tb_r_test` (
   `BIRTHDAY` date DEFAULT NULL,
   `SCHOOL` text DEFAULT NULL,
   `EMAIL` text DEFAULT NULL,
+  `STEP` int(11) DEFAULT 1,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -643,23 +662,26 @@ CREATE TABLE `tb_r_test` (
 -- Dumping data for table `tb_r_test`
 --
 
-INSERT INTO `tb_r_test` (`ID`, `USER_ID`, `CODE_TEST`, `KC_ASPEK_ID`, `KC_PRESENTASE`, `KC_2_ASPEK_ID`, `KC_2_PRESENTASE`, `BK_1_ASPEK_ID`, `BK_1_PRESENTASE`, `BK_2_ASPEK_ID`, `BK_2_PRESENTASE`, `BK_3_ASPEK_ID`, `BK_3_PRESENTASE`, `FULL_NAME`, `BIRTHDAY`, `SCHOOL`, `EMAIL`, `created_at`, `updated_at`) VALUES
-(11, 2, '65aa99de65fda', 9, '82.5', NULL, NULL, 12, '80.0', 10, '77.5', 13, '72.5', '', '0000-00-00', '', '', '2024-01-19 15:48:46', '2024-01-19 15:48:46'),
-(12, 2, '65afdf5c86b1a', 6, '72.5', NULL, NULL, 15, '72.5', 13, '70.0', 14, '67.5', '', '0000-00-00', '', '', '2024-01-23 15:46:36', '2024-01-23 15:46:36'),
-(13, 2, '65afe1b19af71', 9, '75.0', 3, '72.5', 12, '70.0', 13, '67.5', 10, '62.5', '', '0000-00-00', '', '', '2024-01-23 15:56:33', '2024-01-27 14:49:05'),
-(14, 2, '65b51dc3b8775', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:14:11', '2024-01-27 15:14:11'),
-(15, 2, '65b51e055985c', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:15:17', '2024-01-27 15:15:17'),
-(16, 2, '65b51e3c986c2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:16:12', '2024-01-27 15:16:12'),
-(17, 2, '65b51e40952a4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:16:16', '2024-01-27 15:16:16'),
-(18, 2, '65b51e442190e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:16:20', '2024-01-27 15:16:20'),
-(19, 2, '65b51e750a18c', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:17:09', '2024-01-27 15:17:09'),
-(20, 2, '65b51e880cc75', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:17:28', '2024-01-27 15:17:28'),
-(21, 2, '65b51ea6d0849', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:17:58', '2024-01-27 15:17:58'),
-(22, 2, '65b51ec5c2491', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:18:29', '2024-01-27 15:18:29'),
-(23, 2, '65b51ed47f1a4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:18:44', '2024-01-27 15:18:44'),
-(24, 2, '65b51ed7433c9', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:18:47', '2024-01-27 15:18:47'),
-(25, 2, '65b51efa97242', 8, '80.0', 7, '70.0', 12, '77.5', 10, '62.5', 11, '62.5', 'asdasd', '2014-04-02', 'asdasd', 'asdasd@asdas.comn', '2024-01-27 15:19:22', '2024-01-27 15:50:29'),
-(26, 2, '65b60e052b194', 2, '70.0', 9, '67.5', 12, '77.5', 15, '75.0', 14, '70.0', 'Akbar Muhammad', '1999-12-05', 'Poltekpos', 'akbar@gmail.com', '2024-01-28 08:19:17', '2024-01-28 08:24:13');
+INSERT INTO `tb_r_test` (`ID`, `USER_ID`, `CODE_TEST`, `KC_ASPEK_ID`, `KC_PRESENTASE`, `KC_2_ASPEK_ID`, `KC_2_PRESENTASE`, `BK_1_ASPEK_ID`, `BK_1_PRESENTASE`, `BK_2_ASPEK_ID`, `BK_2_PRESENTASE`, `BK_3_ASPEK_ID`, `BK_3_PRESENTASE`, `FULL_NAME`, `BIRTHDAY`, `SCHOOL`, `EMAIL`, `STEP`, `created_at`, `updated_at`) VALUES
+(11, 2, '65aa99de65fda', 9, '82.5', NULL, NULL, 12, '80.0', 10, '77.5', 13, '72.5', '', '0000-00-00', '', '', NULL, '2024-01-19 15:48:46', '2024-01-19 15:48:46'),
+(12, 2, '65afdf5c86b1a', 6, '72.5', NULL, NULL, 15, '72.5', 13, '70.0', 14, '67.5', '', '0000-00-00', '', '', NULL, '2024-01-23 15:46:36', '2024-01-23 15:46:36'),
+(13, 2, '65afe1b19af71', 9, '75.0', 3, '72.5', 12, '70.0', 13, '67.5', 10, '62.5', '', '0000-00-00', '', '', NULL, '2024-01-23 15:56:33', '2024-01-27 14:49:05'),
+(14, 2, '65b51dc3b8775', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:14:11', '2024-01-27 15:14:11'),
+(15, 2, '65b51e055985c', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:15:17', '2024-01-27 15:15:17'),
+(16, 2, '65b51e3c986c2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:16:12', '2024-01-27 15:16:12'),
+(17, 2, '65b51e40952a4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:16:16', '2024-01-27 15:16:16'),
+(18, 2, '65b51e442190e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:16:20', '2024-01-27 15:16:20'),
+(19, 2, '65b51e750a18c', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:17:09', '2024-01-27 15:17:09'),
+(20, 2, '65b51e880cc75', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:17:28', '2024-01-27 15:17:28'),
+(21, 2, '65b51ea6d0849', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:17:58', '2024-01-27 15:17:58'),
+(22, 2, '65b51ec5c2491', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:18:29', '2024-01-27 15:18:29'),
+(23, 2, '65b51ed47f1a4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:18:44', '2024-01-27 15:18:44'),
+(24, 2, '65b51ed7433c9', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:18:47', '2024-01-27 15:18:47'),
+(25, 2, '65b51efa97242', 8, '80.0', 7, '70.0', 12, '77.5', 10, '62.5', 11, '62.5', 'asdasd', '2014-04-02', 'asdasd', 'asdasd@asdas.comn', NULL, '2024-01-27 15:19:22', '2024-01-27 15:50:29'),
+(26, 2, '65b60e052b194', 7, '80.0', 4, '70.0', 11, '77.5', 14, '77.5', 10, '70.0', 'Akbar Muhammad', '2024-01-17', 'Poltekpos', 'akbar@gmail.com', 1, '2024-01-28 08:19:17', '2024-02-05 07:45:19'),
+(29, 3, '65c051d347b68', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, '2024-02-05 03:11:15', '2024-02-05 03:29:19'),
+(30, 4, '65c059baab712', 6, '80.0', 7, '77.5', 10, '75.0', 12, '72.5', 11, '70.0', 'akbar20', '1998-02-10', 'Poltekpos', 'akbar20@gmail.com', 5, '2024-02-05 03:44:58', '2024-02-05 03:47:42'),
+(31, 2, '65c0920f14423', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-02-05 07:45:19', '2024-02-05 07:45:19');
 
 -- --------------------------------------------------------
 
@@ -685,7 +707,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `tanggal_lahir`, `asal_sekolah`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'Akbar Muhammad', 'akbar@gmail.com', NULL, '2024-01-17', 'Poltekpos', '$2y$10$me3xQftFEvk8LxKLUvYYUuH70hWB7n3PLjR1uyjeSgdqlihNKp7OC', NULL, '2024-01-16 21:31:36', '2024-01-16 21:31:36');
+(2, 'Akbar Muhammad', 'akbar@gmail.com', NULL, '2024-01-17', 'Poltekpos', '$2y$10$me3xQftFEvk8LxKLUvYYUuH70hWB7n3PLjR1uyjeSgdqlihNKp7OC', NULL, '2024-01-16 21:31:36', '2024-01-16 21:31:36'),
+(3, 'coba2', 'coba2@gmail.com', NULL, '2024-02-06', 'Poltekpos', '$2y$10$itTgourO/8r46PzsJ0Ccc.OpvVp3S01qAgvQV0.fdlXNjh8ACVdNa', NULL, '2024-02-04 19:50:02', '2024-02-04 19:50:02'),
+(4, 'akbar20', 'akbar20@gmail.com', NULL, '1998-02-10', 'Poltekpos', '$2y$10$BjH2.3h.9r6NTm/EYZQv6eSs1ZvliJVUMiTWcDcNNfQ8iuBgjm4f6', NULL, '2024-02-04 20:44:43', '2024-02-04 20:44:43');
 
 --
 -- Indexes for dumped tables
@@ -802,7 +826,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `tb_m_aspek`
@@ -850,19 +874,19 @@ ALTER TABLE `tb_m_skor`
 -- AUTO_INCREMENT for table `tb_r_lkpd`
 --
 ALTER TABLE `tb_r_lkpd`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `tb_r_test`
 --
 ALTER TABLE `tb_r_test`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

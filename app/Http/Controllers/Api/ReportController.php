@@ -10,6 +10,7 @@ use App\Models\Test;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Response;
 use App\Models\LKPD_answer;
+use App\Models\LKPD as LKPDModel;
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\View;
 
@@ -432,83 +433,170 @@ class ReportController extends Controller
         return $max_point;
     }
 
+    // public function downloadReportWithDomPDFByHTML(Request $req)
+    // {
+    //     $data = $this->getResultByCodeTest($req);
+    //     $data = json_decode($data->getContent(), true);
+
+    //     if(!$data['success']){
+    //         return response()->json($data, 500);
+    //     }
+
+    //     $data = $data['data'];
+
+    //     // return view('v_report', ['data' => $data]);
+
+    //     $dompdf = new Dompdf();
+    //     $options = $dompdf->getOptions();
+    //     $options->setDefaultFont('Courier');
+    //     $dompdf->setOptions($options);
+    //     $dompdf->setPaper('A4', 'potrait');
+
+    //     $datetime = date('YmdHis');
+
+    //     $filename = 'report_'.$data['CodeTest'].'_'.$datetime;
+    //     // load view
+    //     $html = View::make('v_report', ['data' => $data, 'filename' => $filename]);
+    //     $html = $html->render();
+
+    //     // load html
+    //     $dompdf->loadHtml($html);
+
+    //     // file name
+
+    //     // Render the HTML as PDF
+    //     $dompdf->render();
+
+    //     $dompdf->stream($filename);
+    // }
+
     public function downloadReportWithDomPDFByHTML(Request $req)
-    {
-        $data = $this->getResultByCodeTest($req);
-        $data = json_decode($data->getContent(), true);
+{
+    $data = $this->getResultByCodeTest($req);
+    $data = json_decode($data->getContent(), true);
 
-        if(!$data['success']){
-            return response()->json($data, 500);
-        }
-
-        $data = $data['data'];
-
-        // return view('v_report', ['data' => $data]);
-
-        $dompdf = new Dompdf();
-        $options = $dompdf->getOptions();
-        $options->setDefaultFont('Courier');
-        $dompdf->setOptions($options);
-        $dompdf->setPaper('A4', 'potrait');
-
-        $datetime = date('YmdHis');
-
-        $filename = 'report_'.$data['CodeTest'].'_'.$datetime;
-        // load view
-        $html = View::make('v_report', ['data' => $data, 'filename' => $filename]);
-        $html = $html->render();
-
-        // load html
-        $dompdf->loadHtml($html);
-
-        // file name
-
-        // Render the HTML as PDF
-        $dompdf->render();
-
-        $dompdf->stream($filename);
+    if(!$data['success']){
+        return response()->json($data, 500);
     }
 
+    $data = $data['data'];
 
-    public function downloadResultLkdp(Request $req)
-    {
-        $codeTest = $req->codeTest;
-        $data = $this->getResultByCodeTest($req);
-        $data = json_decode($data->getContent(), true);
+    $dompdf = new Dompdf();
+    $options = $dompdf->getOptions();
+    $options->setDefaultFont('Courier');
+    $dompdf->setOptions($options);
+    $dompdf->setPaper('A4', 'portrait');
+
+    $datetime = date('YmdHis');
+
+    $filename = 'report_'.$data['CodeTest'].'_'.$datetime.'.pdf';
+
+    // Load view
+    $html = View::make('v_report', ['data' => $data, 'filename' => $filename]);
+    $html = $html->render();
+
+    // Load HTML
+    $dompdf->loadHtml($html);
+
+    // Render the HTML as PDF
+    $dompdf->render();
+
+    // Save PDF to server
+    $output = $dompdf->output();
+    file_put_contents(public_path('pdf/' . $filename), $output);
+
+    // Provide download link to the user
+    $download_link = url('pdf/' . $filename);
+    return response()->json(['download_link' => $download_link], 200);
+}
+
+public function downloadResultLkdp(Request $req)
+{
+    $codeTest = $req->codeTest;
+    $data = $this->getResultByCodeTest($req);
+    $data = json_decode($data->getContent(), true);
+    
+    if(!$data['success']){
+        return response()->json($data, 500);
+    }
+    
+    // ambil data LKPD Answer by code test. Relasikan dengan tb_m_lkpd.ID = tb_r_lkpd.QUESTION_ID
+    $lkpd_answer = LKPD_answer::selectRaw('tb_m_lkpd.ID, tb_m_lkpd.QUESTION, tb_r_lkpd.ANSWER')
+        ->join('tb_m_lkpd', 'tb_m_lkpd.ID', '=', 'tb_r_lkpd.QUESTION_ID')
+        ->where('tb_r_lkpd.CODE_TEST', $codeTest)
+        ->get();
         
-        if(!$data['success']){
-            return response()->json($data, 500);
-        }
+    $datetime = date('YmdHis');
+    $filename = 'result_lkdp_feedback_'.$codeTest.'_'.$datetime.'.pdf';
+    
+    $data = $data['data'];
+    $data['lkpd_answer'] = json_decode($lkpd_answer, true);
+
+    $dompdf = new Dompdf();
+    $options = $dompdf->getOptions();
+    $options->setDefaultFont('Courier');
+    $dompdf->setOptions($options);
+    $dompdf->setPaper('A4', 'potrait');
+
+    // load view
+    $html = View::make('v_report_lkpd', ['data' => $data, 'codeTest' => $codeTest, 'filename' => $filename]);
+    $html = $html->render();
+
+    // load html
+    $dompdf->loadHtml($html);
+
+    // Render the HTML as PDF
+    $dompdf->render();
+
+    // Save PDF to server
+    $output = $dompdf->output();
+    file_put_contents(public_path('pdf/' . $filename), $output);
+
+    // Provide download link to the user
+    $download_link = url('pdf/' . $filename);
+    return response()->json(['download_link' => $download_link], 200);
+}
+
+
+    // public function downloadResultLkdp(Request $req)
+    // {
+    //     $codeTest = $req->codeTest;
+    //     $data = $this->getResultByCodeTest($req);
+    //     $data = json_decode($data->getContent(), true);
         
-        // ambil data LKPD Answer by code test. Relasikan dengan tb_m_lkpd.ID = tb_r_lkpd.QUESTION_ID
-        $lkpd_answer = LKPD_answer::selectRaw('tb_m_lkpd.ID, tb_m_lkpd.QUESTION, tb_r_lkpd.ANSWER')
-            ->join('tb_m_lkpd', 'tb_m_lkpd.ID', '=', 'tb_r_lkpd.QUESTION_ID')
-            ->where('tb_r_lkpd.CODE_TEST', $codeTest)
-            ->get();
-            $datetime = date('YmdHis');
-            $filename = 'result_lkdp_feedback_'.$codeTest.'_'.$datetime.'.pdf';
+    //     if(!$data['success']){
+    //         return response()->json($data, 500);
+    //     }
+        
+    //     // ambil data LKPD Answer by code test. Relasikan dengan tb_m_lkpd.ID = tb_r_lkpd.QUESTION_ID
+    //     $lkpd_answer = LKPD_answer::selectRaw('tb_m_lkpd.ID, tb_m_lkpd.QUESTION, tb_r_lkpd.ANSWER')
+    //         ->join('tb_m_lkpd', 'tb_m_lkpd.ID', '=', 'tb_r_lkpd.QUESTION_ID')
+    //         ->where('tb_r_lkpd.CODE_TEST', $codeTest)
+    //         ->get();
+    //         $datetime = date('YmdHis');
+    //         $filename = 'result_lkdp_feedback_'.$codeTest.'_'.$datetime.'.pdf';
             
-            $data = $data['data'];
-            $data['lkpd_answer'] = json_decode($lkpd_answer, true);
+    //         $data = $data['data'];
+    //         $data['lkpd_answer'] = json_decode($lkpd_answer, true);
 
-            $dompdf = new Dompdf();
-            $options = $dompdf->getOptions();
-            $options->setDefaultFont('Courier');
-            $dompdf->setOptions($options);
-            $dompdf->setPaper('A4', 'potrait');
+    //         $dompdf = new Dompdf();
+    //         $options = $dompdf->getOptions();
+    //         $options->setDefaultFont('Courier');
+    //         $dompdf->setOptions($options);
+    //         $dompdf->setPaper('A4', 'potrait');
 
-            // load view
-            $html = View::make('v_report_lkpd', ['data' => $data, 'codeTest' => $codeTest, 'filename' => $filename]);
-            $html = $html->render();
+    //         // load view
+    //         $html = View::make('v_report_lkpd', ['data' => $data, 'codeTest' => $codeTest, 'filename' => $filename]);
+    //         $html = $html->render();
     
-            // load html
-            $dompdf->loadHtml($html);
+    //         // load html
+    //         $dompdf->loadHtml($html);
     
-            // Render the HTML as PDF
-            $dompdf->render();
+    //         // Render the HTML as PDF
+    //         $dompdf->render();
     
-            $dompdf->stream($filename);
-    }
+    //         $dompdf->stream($filename);
+    // }
 
     
 
@@ -532,6 +620,72 @@ class ReportController extends Controller
             Response::$response['data'] = [];
 
             return response()->json(Response::$response, 500);
+        }
+    }
+
+    // update step by codeTest
+    public function updateStep(Request $req)
+    {
+        try {
+            $validator = Validator::make($req->all(), [
+                'codeTest' => 'required|string',
+                'step' => 'required|integer',
+            ]);
+
+            if ($validator->fails()) {
+                $this->response['success'] = false;
+                $this->response['message'] = $validator->errors();
+                return response()->json($this->response, 200);
+            }
+
+            $codeTest = $req->codeTest;
+            $step = $req->step;
+
+            $res = Test::updateStep($codeTest, $step);
+
+            $this->response['success'] = true;
+            $this->response['message'] = 'Success';
+            $this->response['data'] = $res;
+
+            return response()->json($this->response, 200);
+        } catch (\Exception $e) {
+            $this->response['success'] = false;
+            $this->response['message'] = $e->getMessage();
+            $this->response['data'] = [];
+
+            return response()->json($this->response, 500);
+        }
+    }
+
+    // check if codeTest is exist
+    public function checkCodeTest(Request $req)
+    {
+        try {
+            $validator = Validator::make($req->all(), [
+                'codeTest' => 'required|string',
+            ]);
+
+            if ($validator->fails()) {
+                $this->response['success'] = false;
+                $this->response['message'] = $validator->errors();
+                return response()->json($this->response, 200);
+            }
+
+            $codeTest = $req->codeTest;
+
+            $res = LKPDModel::checkCodeTest($codeTest);
+
+            $this->response['success'] = true;
+            $this->response['message'] = 'Success';
+            $this->response['data'] = $res;
+
+            return response()->json($this->response, 200);
+        } catch (\Exception $e) {
+            $this->response['success'] = false;
+            $this->response['message'] = $e->getMessage();
+            $this->response['data'] = [];
+
+            return response()->json($this->response, 500);
         }
     }
 

@@ -10,10 +10,10 @@ class Test extends Model
     protected $primaryKey = 'ID'; // Ganti dengan nama primary key yang sesuai
 
     // Kolom-kolom yang bisa diisi
-    protected $fillable = ['ID', 'CODE_TEST', 'USER_ID', 'KC_ASPEK_ID', 'KC_PRESENTASE','KC_2_ASPEK_ID', 'KC_2_PRESENTASE', 'BK_1_ASPEK_ID', 'BK_1_PRESENTASE', 'BK_2_ASPEK_ID', 'BK_2_PRESENTASE', 'BK_3_ASPEK_ID', 'BK_3_PRESENTASE','FULL_NAME','BIRTHDAY','SCHOOL','EMAIL'];
+    protected $fillable = ['ID', 'CODE_TEST', 'USER_ID', 'KC_ASPEK_ID', 'KC_PRESENTASE','KC_2_ASPEK_ID', 'KC_2_PRESENTASE', 'BK_1_ASPEK_ID', 'BK_1_PRESENTASE', 'BK_2_ASPEK_ID', 'BK_2_PRESENTASE', 'BK_3_ASPEK_ID', 'BK_3_PRESENTASE','FULL_NAME','BIRTHDAY','SCHOOL','EMAIL','STEP'];
 
     // nullable
-    protected $nullable = ['KC_ASPEK_ID', 'KC_PRESENTASE','KC_2_ASPEK_ID', 'KC_2_PRESENTASE', 'BK_1_ASPEK_ID', 'BK_1_PRESENTASE', 'BK_2_ASPEK_ID', 'BK_2_PRESENTASE', 'BK_3_ASPEK_ID', 'BK_3_PRESENTASE','FULL_NAME','BIRTHDAY','SCHOOL','EMAIL'];
+    protected $nullable = ['KC_ASPEK_ID', 'KC_PRESENTASE','KC_2_ASPEK_ID', 'KC_2_PRESENTASE', 'BK_1_ASPEK_ID', 'BK_1_PRESENTASE', 'BK_2_ASPEK_ID', 'BK_2_PRESENTASE', 'BK_3_ASPEK_ID', 'BK_3_PRESENTASE','FULL_NAME','BIRTHDAY','SCHOOL','EMAIL','STEP'];
 
     // Tidak menggunakan timestamp (created_at, updated_at)
     public $timestamps = true;
@@ -22,7 +22,8 @@ class Test extends Model
     public static function getCodeTest($user_id)
     {
         $codeTest = Test::where('USER_ID', $user_id)->orderBy('ID', 'DESC')->first();
-        return $codeTest;
+        $result = $codeTest ? $codeTest : null;
+        return $result;
     }
 
     // generate codeTest by uniqid()
@@ -55,5 +56,22 @@ class Test extends Model
 
         return $test;
     }
+
+    // get step by codeTest
+    public static function getStep($codeTest)
+    {
+        $step = Test::where('CODE_TEST', $codeTest)->first();
+        $result = $step ? $step->STEP : null;
+        return $result;
+    }
+
+    // update step by codeTest
+    public static function updateStep($codeTest, $step)
+    {
+        $test = Test::where('CODE_TEST', $codeTest)->first();
+        $test->STEP = $step;
+        $test->save();
+    }
+
 
 }

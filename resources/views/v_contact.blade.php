@@ -44,21 +44,21 @@
             <div class="info-box">
               <i class="bx bx-map"></i>
               <h3>Our Address</h3>
-              <p>Jalan Karir No.123 Blok 09, RT 02/01, Kecamatan Sukamenah, Kota Bandung, Jawa barat 40156</p>
+              <p>Baros, Kab. Serang Prov. Banten 42173</p>
             </div>
           </div>
           <div class="col-md-6">
             <div class="info-box mt-4">
               <i class="bx bx-envelope"></i>
               <h3>Email Us</h3>
-              <p>tanya@contoh.com<br>cs@contoh.com</p>
+              <p>2285200015@untirta.ac.id</p>
             </div>
           </div>
           <div class="col-md-6">
             <div class="info-box mt-4">
               <i class="bx bx-phone-call"></i>
               <h3>Call Us</h3>
-              <p>+xxxxxxxxx<br>+xxxxxxxxx</p>
+              <p>083878278346</p>
             </div>
           </div>
         </div>

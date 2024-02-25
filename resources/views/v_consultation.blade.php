@@ -447,16 +447,7 @@
             <i class="fa fa-refresh"></i>
           </button>
           <div class="step-title">
-            Tes Bakat
-          </div>
-        </div>
-        <div class="step-item">
-          <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-            <i class="fa fa-book"></i>
-          </button>
-          <div class="step-title">
-            LKPD
+            Tes Minat
           </div>
         </div>
         <div class="step-item">
@@ -468,6 +459,16 @@
             Result
           </div>
         </div>
+        <div class="step-item">
+          <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+            <i class="fa fa-book"></i>
+          </button>
+          <div class="step-title">
+            LKPD
+          </div>
+        </div>
+
       </div>
 
       <div class="card">
@@ -582,6 +583,7 @@
             </div>
 
             {{-- tempat pertanyaan --}}
+
             <div id="tes-kecerdasan">
 
             </div>
@@ -595,6 +597,7 @@
                 <button type="button" class="btn btn-success" id="btn-submit"><i class="fa fa-arrow-right"></i>
                   Next Test</button>
               </div>
+              <a href="#" class="dummy-tes-kecerdasan">dummy</a>
             </div>
 
           </div>
@@ -657,6 +660,7 @@
               </div>
             </div>
 
+
             {{-- tempat pertanyaan --}}
             <div id="tes-bakat">
 
@@ -669,10 +673,44 @@
             <div class="row ">
               <div class="col d-flex justify-content-center">
                 <button type="button" class="btn btn-success" id="btn-submit-bakat"><i class="fa fa-arrow-right"></i>
-                  Next</button>
+                  Next</button> <br>
               </div>
+              <a href="#" class="dummy-tes-bakat">dummy</a>
             </div>
 
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div id="headingSix"></div>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+          <div class="card-body">
+            <div id="LKPD_QUESTION_MASTER"></div>
+            <div id="END_RESULT">
+              <div class="row">
+                <div class="d-flex col justify-content-center">
+                  <button class="btn btn-sm btn-warning" id="btn_download_lkpd">
+                    <i class="fa fa-download"></i> Download LKDP (PDF)
+                  </button>
+                  &nbsp;
+                  <button class="btn btn-sm btn-danger" id="btn_print">
+                    <i class="fa fa-download"></i> Download Hasil Tes (PDF)
+                  </button>
+                  &nbsp;
+                  <button class="btn btn-sm btn-secondary" id="btn_ulang">
+                    <i class="bi bi-arrow-counterclockwise"></i> Test Ulang
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="btn btn-primary btn-sm" id="btn_save_lkpd"> <i class="fa fa-save"></i>
+                    Submit</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -700,10 +738,10 @@
             <div class="row">
               <div class="d-flex col justify-content-end">
                 <button class="btn btn-sm btn-warning" id="btn_print_lkpd">
-                  <i class="fa fa-download"></i> LKDP
+                  <i class="fa fa-pencil"></i> LKDP
                 </button>
                 &nbsp;
-                <button class="btn btn-sm btn-danger" id="btn_print">
+                <button class="btn btn-sm btn-danger" id="btn_print" disabled>
                   <i class="fa fa-download"></i> PDF
                 </button>
                 &nbsp;
@@ -728,24 +766,7 @@
           </div>
         </div>
       </div>
-      <div class="card">
-        <div id="headingSix">
 
-        </div>
-        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-          <div class="card-body">
-            <div id="LKPD_QUESTION_MASTER"></div>
-            <div class="row">
-              <div class="col">
-                <div class="d-flex justify-content-end">
-                  <button type="button" class="btn btn-primary btn-sm" id="btn_save_lkpd"> <i class="fa fa-save"></i>
-                    Save & Next</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <!-- End Start Stepper HTML -->
@@ -755,6 +776,7 @@
 
 
 @section('script')
+
 <script>
   var showChar = 1200;   // Set a char limit
 	var ellipses = "<span id='ellip'>...</span>";
@@ -792,6 +814,12 @@
 <script>
   // var codeTest from $codeTest
   var codeTest = "{{ $codeTest }}";
+  var step = "{{ $step }}";
+
+
+  var dataDummyTesBakat = [{"indikator_id":"74","indikator_res":"SS","value":"4"},{"indikator_id":"75","indikator_res":"TS","value":"2"},{"indikator_id":"76","indikator_res":"S","value":"3"},{"indikator_id":"77","indikator_res":"TS","value":"2"},{"indikator_id":"78","indikator_res":"S","value":"3"},{"indikator_id":"79","indikator_res":"S","value":"3"},{"indikator_id":"80","indikator_res":"TS","value":"2"},{"indikator_id":"81","indikator_res":"S","value":"3"},{"indikator_id":"82","indikator_res":"TS","value":"2"},{"indikator_id":"83","indikator_res":"S","value":"3"},{"indikator_id":"84","indikator_res":"S","value":"3"},{"indikator_id":"85","indikator_res":"TS","value":"2"},{"indikator_id":"86","indikator_res":"S","value":"3"},{"indikator_id":"87","indikator_res":"S","value":"3"},{"indikator_id":"88","indikator_res":"TS","value":"2"},{"indikator_id":"89","indikator_res":"S","value":"3"},{"indikator_id":"90","indikator_res":"TS","value":"2"},{"indikator_id":"91","indikator_res":"S","value":"3"},{"indikator_id":"92","indikator_res":"TS","value":"2"},{"indikator_id":"93","indikator_res":"S","value":"3"},{"indikator_id":"94","indikator_res":"S","value":"3"},{"indikator_id":"95","indikator_res":"S","value":"3"},{"indikator_id":"96","indikator_res":"TS","value":"2"},{"indikator_id":"97","indikator_res":"S","value":"3"},{"indikator_id":"98","indikator_res":"TS","value":"2"},{"indikator_id":"99","indikator_res":"S","value":"3"},{"indikator_id":"100","indikator_res":"TS","value":"2"},{"indikator_id":"101","indikator_res":"S","value":"3"},{"indikator_id":"102","indikator_res":"TS","value":"2"},{"indikator_id":"103","indikator_res":"S","value":"3"},{"indikator_id":"104","indikator_res":"SS","value":"4"},{"indikator_id":"105","indikator_res":"S","value":"3"},{"indikator_id":"106","indikator_res":"TS","value":"2"},{"indikator_id":"107","indikator_res":"S","value":"3"},{"indikator_id":"108","indikator_res":"TS","value":"2"},{"indikator_id":"109","indikator_res":"S","value":"3"},{"indikator_id":"110","indikator_res":"TS","value":"2"},{"indikator_id":"111","indikator_res":"S","value":"3"},{"indikator_id":"112","indikator_res":"TS","value":"2"},{"indikator_id":"113","indikator_res":"S","value":"3"},{"indikator_id":"114","indikator_res":"S","value":"3"},{"indikator_id":"115","indikator_res":"TS","value":"2"},{"indikator_id":"116","indikator_res":"S","value":"3"},{"indikator_id":"117","indikator_res":"S","value":"3"},{"indikator_id":"118","indikator_res":"TS","value":"2"},{"indikator_id":"119","indikator_res":"S","value":"3"},{"indikator_id":"120","indikator_res":"TS","value":"2"},{"indikator_id":"121","indikator_res":"TS","value":"2"},{"indikator_id":"122","indikator_res":"S","value":"3"},{"indikator_id":"123","indikator_res":"TS","value":"2"},{"indikator_id":"124","indikator_res":"SS","value":"4"},{"indikator_id":"125","indikator_res":"S","value":"3"},{"indikator_id":"126","indikator_res":"TS","value":"2"},{"indikator_id":"127","indikator_res":"S","value":"3"},{"indikator_id":"128","indikator_res":"S","value":"3"},{"indikator_id":"129","indikator_res":"S","value":"3"},{"indikator_id":"130","indikator_res":"S","value":"3"},{"indikator_id":"131","indikator_res":"TS","value":"2"},{"indikator_id":"132","indikator_res":"S","value":"3"},{"indikator_id":"133","indikator_res":"TS","value":"2"}];
+
+  var dataDummyTesKecerdasan = [{"indikator_id":"1","indikator_res":"SS","value":"4"},{"indikator_id":"2","indikator_res":"S","value":"3"},{"indikator_id":"3","indikator_res":"TS","value":"2"},{"indikator_id":"4","indikator_res":"S","value":"3"},{"indikator_id":"5","indikator_res":"S","value":"3"},{"indikator_id":"6","indikator_res":"SS","value":"4"},{"indikator_id":"7","indikator_res":"S","value":"3"},{"indikator_id":"8","indikator_res":"S","value":"3"},{"indikator_id":"9","indikator_res":"TS","value":"2"},{"indikator_id":"10","indikator_res":"S","value":"3"},{"indikator_id":"11","indikator_res":"S","value":"3"},{"indikator_id":"12","indikator_res":"SS","value":"4"},{"indikator_id":"13","indikator_res":"S","value":"3"},{"indikator_id":"14","indikator_res":"S","value":"3"},{"indikator_id":"15","indikator_res":"S","value":"3"},{"indikator_id":"16","indikator_res":"S","value":"3"},{"indikator_id":"17","indikator_res":"TS","value":"2"},{"indikator_id":"18","indikator_res":"S","value":"3"},{"indikator_id":"19","indikator_res":"TS","value":"2"},{"indikator_id":"20","indikator_res":"S","value":"3"},{"indikator_id":"21","indikator_res":"S","value":"3"},{"indikator_id":"22","indikator_res":"S","value":"3"},{"indikator_id":"23","indikator_res":"S","value":"3"},{"indikator_id":"24","indikator_res":"S","value":"3"},{"indikator_id":"25","indikator_res":"S","value":"3"},{"indikator_id":"26","indikator_res":"TS","value":"2"},{"indikator_id":"27","indikator_res":"S","value":"3"},{"indikator_id":"28","indikator_res":"S","value":"3"},{"indikator_id":"29","indikator_res":"TS","value":"2"},{"indikator_id":"30","indikator_res":"S","value":"3"},{"indikator_id":"31","indikator_res":"S","value":"3"},{"indikator_id":"32","indikator_res":"S","value":"3"},{"indikator_id":"33","indikator_res":"TS","value":"2"},{"indikator_id":"34","indikator_res":"S","value":"3"},{"indikator_id":"35","indikator_res":"TS","value":"2"},{"indikator_id":"36","indikator_res":"S","value":"3"},{"indikator_id":"37","indikator_res":"TS","value":"2"},{"indikator_id":"38","indikator_res":"S","value":"3"},{"indikator_id":"39","indikator_res":"TS","value":"2"},{"indikator_id":"40","indikator_res":"S","value":"3"},{"indikator_id":"41","indikator_res":"SS","value":"4"},{"indikator_id":"42","indikator_res":"SS","value":"4"},{"indikator_id":"43","indikator_res":"S","value":"3"},{"indikator_id":"44","indikator_res":"TS","value":"2"},{"indikator_id":"45","indikator_res":"S","value":"3"},{"indikator_id":"46","indikator_res":"S","value":"3"},{"indikator_id":"47","indikator_res":"TS","value":"2"},{"indikator_id":"48","indikator_res":"S","value":"3"},{"indikator_id":"49","indikator_res":"TS","value":"2"},{"indikator_id":"50","indikator_res":"S","value":"3"},{"indikator_id":"51","indikator_res":"SS","value":"4"},{"indikator_id":"52","indikator_res":"S","value":"3"},{"indikator_id":"53","indikator_res":"TS","value":"2"},{"indikator_id":"54","indikator_res":"S","value":"3"},{"indikator_id":"55","indikator_res":"TS","value":"2"},{"indikator_id":"56","indikator_res":"S","value":"3"},{"indikator_id":"57","indikator_res":"TS","value":"2"},{"indikator_id":"58","indikator_res":"SS","value":"4"},{"indikator_id":"59","indikator_res":"S","value":"3"},{"indikator_id":"60","indikator_res":"S","value":"3"},{"indikator_id":"61","indikator_res":"SS","value":"4"},{"indikator_id":"62","indikator_res":"S","value":"3"},{"indikator_id":"63","indikator_res":"TS","value":"2"},{"indikator_id":"64","indikator_res":"S","value":"3"},{"indikator_id":"65","indikator_res":"TS","value":"2"},{"indikator_id":"66","indikator_res":"S","value":"3"},{"indikator_id":"67","indikator_res":"S","value":"3"},{"indikator_id":"68","indikator_res":"S","value":"3"},{"indikator_id":"69","indikator_res":"TS","value":"2"},{"indikator_id":"70","indikator_res":"S","value":"3"},{"indikator_id":"71","indikator_res":"S","value":"3"},{"indikator_id":"72","indikator_res":"TS","value":"2"},{"indikator_id":"134","indikator_res":"S","value":"3"},{"indikator_id":"73","indikator_res":"TS","value":"2"},{"indikator_id":"135","indikator_res":"S","value":"3"},{"indikator_id":"136","indikator_res":"S","value":"3"},{"indikator_id":"137","indikator_res":"S","value":"3"},{"indikator_id":"138","indikator_res":"TS","value":"2"},{"indikator_id":"139","indikator_res":"S","value":"3"},{"indikator_id":"140","indikator_res":"TS","value":"2"},{"indikator_id":"141","indikator_res":"S","value":"3"},{"indikator_id":"142","indikator_res":"TS","value":"2"},{"indikator_id":"143","indikator_res":"TS","value":"2"},{"indikator_id":"144","indikator_res":"S","value":"3"},{"indikator_id":"145","indikator_res":"S","value":"3"},{"indikator_id":"146","indikator_res":"TS","value":"2"},{"indikator_id":"147","indikator_res":"S","value":"3"},{"indikator_id":"148","indikator_res":"S","value":"3"},{"indikator_id":"149","indikator_res":"TS","value":"2"},{"indikator_id":"150","indikator_res":"S","value":"3"}];
 
   const stepButtons = document.querySelectorAll('.step-button');
   var dataOption = [];
@@ -823,6 +851,7 @@
     var container_pagination_tes_bakat = $('#container-pagination-tes-bakat');
 
     var LKPD_QUESTION_MASTER = $('#LKPD_QUESTION_MASTER');
+    var btn_download_lkpd = $('#btn_download_lkpd');
     var btn_print_lkpd = $('#btn_print_lkpd');
     var btn_save_lkpd = $('#btn_save_lkpd');
 
@@ -831,6 +860,8 @@
 
     var btn_ulang = $('#btn_ulang');
     var btn_print = $('#btn_print');
+
+    var END_RESULT = $('#END_RESULT');
 
     var progress_status = [0, 34, 60, 80, 100];
 </script>
@@ -855,7 +886,27 @@
 {{-- consultation and validation --}}
 <script>
   $(document).ready(function () {
-    var step = localStorage.getItem('step') ?? localStorage.setItem('step', 1);
+    localStorage.setItem('step', step);
+
+    $('.dummy-tes-kecerdasan').on('click',function(){
+      var dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan');
+      localStorage.setItem('dataTestKecerdasan', JSON.stringify(dataDummyTesKecerdasan));
+      
+     // wait 1 sec
+     setTimeout(function(){
+        window.location.reload();
+      }, 1000);
+    })
+
+    $('.dummy-tes-bakat').on('click',function(){
+      var dataTestbakat = localStorage.getItem('dataTestbakat');
+      localStorage.setItem('dataTestbakat', JSON.stringify(dataDummyTesBakat));
+      
+      // wait 1 sec
+      setTimeout(function(){
+        window.location.reload();
+      }, 1000);
+    })
 
     switchBtn(false);
 
@@ -912,35 +963,56 @@
         collapseTwo.collapse('hide');
         collapseThree.collapse('hide');
         collapseFour.collapse('hide');
+        collapseFive.collapse('hide');
         collapseSix.collapse('show');
-        btnCollapseOne.addClass('done');
-        btnCollapseTwo.addClass('done');
-        btnCollapseThree.addClass('done');
-        btnCollapseFour.addClass('done');
-        btnCollapseSix.addClass('done');
-        progress.val(progress_status[3]);
-      break;
-      case '10':
-        collapseOne.collapse('hide');
-        collapseTwo.collapse('hide');
-        collapseThree.collapse('hide');
-        collapseFour.collapse('hide');
-        collapseSix.collapse('hide');
-        collapseFive.collapse('show');
         btnCollapseOne.addClass('done');
         btnCollapseTwo.addClass('done');
         btnCollapseThree.addClass('done');
         btnCollapseFour.addClass('done');
         btnCollapseFive.addClass('done');
         btnCollapseSix.addClass('done');
+        
+        checkCodeTestInLKPD();
         progress.val(progress_status[4]);
+      break;
+      case '10':
+        collapseOne.collapse('hide');
+        collapseTwo.collapse('hide');
+        collapseThree.collapse('hide');
+        collapseFour.collapse('hide');
+        // collapseSix.collapse('hide');
+        collapseFive.collapse('show');
+        btnCollapseOne.addClass('done');
+        btnCollapseTwo.addClass('done');
+        btnCollapseThree.addClass('done');
+        btnCollapseFour.addClass('done');
+        btnCollapseFive.addClass('done');
+        // btnCollapseSix.addClass('done');
+        progress.val(progress_status[3]);
 
         // hide button get result
-        get_result.prop('disabled', true);
-        switchBtn(true);
+        // get_result.prop('disabled', true);
 
+        var status_result = localStorage.getItem('get_result');
+
+        switchBtn(true);
         // load result
         loadResult();
+
+        btn_print_lkpd.prop('disabled', true);
+        btn_print.prop('disabled', true);
+
+        if(status_result == '1'){
+          get_result.prop('disabled', true);
+          btn_print_lkpd.prop('disabled', false);
+
+          //wait 1 sec
+          setTimeout(function(){
+            btn_print.prop('disabled', false);
+          }, 1000);
+
+          // btn_print.prop('disabled', false);
+        }
         break;
       default:
         collapseOne.collapse('show');
@@ -955,7 +1027,8 @@
     updateDataConsultation();
     validation1()
     // setiap inputan selesai di isi
-    $('#name, #date, #education, #email').on('blur', function() {
+    $('#name, #date, #education, #email').on('blur', function() 
+    {
       updateDataConsultation();
     });
       
@@ -991,12 +1064,12 @@
         btnCollapseThree.addClass('done');
         btnCollapseFour.addClass('done');
 
-        localStorage.setItem('step', 4);
+        updateStep(codeTest,4);
 
       });
 
       btn_submit_bakat.click(function () {
-        progress.val(progress_status[4]);
+        progress.val(progress_status[3]);
         var totalIndikator_bakat = localStorage.getItem('totalIndikator_bakat') ?? 0;
         var dataTestbakat = localStorage.getItem('dataTestbakat') ?? null;
         var dataTestbakatTemp = (dataTestbakat != null) ? JSON.parse(dataTestbakat) : [];
@@ -1038,13 +1111,21 @@
         }
 
         collapseFour.collapse('hide');
-        collapseSix.collapse('show');
+        // collapseSix.collapse('show');
+        collapseFive.collapse('show');
 
         // beri class "done" pada button yang mempunyai data-bs-target = collapseThree
         btnCollapseFour.addClass('done');
-        btnCollapseSix.addClass('done');
+        // btnCollapseSix.addClass('done');
+        btnCollapseFive.addClass('done');
 
-        localStorage.setItem('step', 6);
+        // updateStep(codeTest,6);
+        updateStep(codeTest,10); // step result
+
+        // wait 1 sec
+        setTimeout(function(){
+          window.location.href = "{{ url('consultation') }}/"+codeTest;
+        }, 1000);
       });
 
   });
@@ -1054,8 +1135,6 @@
 
   function next1() {
     // tombol save and next step 1 di klik
-         
-    
           updateDataConsultation();
 
           if(!validation1()){
@@ -1075,8 +1154,8 @@
 
           // beri class "done" pada button yang mempunyai data-bs-target = collapseThree
           btnCollapseOne.addClass('done');
-
-          localStorage.setItem('step', 3);
+          
+          updateStep(codeTest,3);
   }
 
   function validation1(){
@@ -1324,16 +1403,16 @@
   }
 
   function stringTemplateIndikator(indikator,option){
-
     let optionHtml = '';
     let indikator_id = indikator.ID;
     let row_number = indikator.row_number;
     let indikator_desc = indikator.INDIKATOR;
-
+    
     // cek di dataTestKecerdasan berdasaarkan indikator_id, jika ada maka active
+    let dataTestKecerdasan = localStorage.getItem('dataTestKecerdasan');
     let dataTestKecerdasanTemp = JSON.parse(dataTestKecerdasan);
     let temp = (dataTestKecerdasanTemp !=null) ? dataTestKecerdasanTemp.find(x => x.indikator_id == indikator_id) : undefined;
-
+    
     option.forEach(function(item,index){
        let active = (temp != undefined && temp.indikator_res == item.CODE) ? 'checked' : '';
 
@@ -1604,7 +1683,11 @@
         success: function(result){
           if(result.success == true){
             toastr.success(result.message);
-            localStorage.setItem('step', 5);
+            // updateStep(codeTest,5);
+            LKPD_QUESTION_MASTER.hide();
+            END_RESULT.show();
+
+
             window.location.reload();
           }else{
             toastr.error(result.message);
@@ -1653,6 +1736,38 @@
             </div>`;
 
     return html;
+  }
+
+  function checkCodeTestInLKPD(){
+    var data = {
+      'codeTest' : codeTest
+    }
+
+    $.ajax({
+      url: "{{ url('api/lkpd/checkCodeTest') }}",
+      type: "POST",
+      data : data,
+      success: function(result){
+        console.log(result);
+        if(result.success == true){
+          if(result.data == true){
+            LKPD_QUESTION_MASTER.hide();
+            END_RESULT.show();
+            btn_save_lkpd.hide();
+
+            btn_print.prop('disabled', false);
+          }else{
+            LKPD_QUESTION_MASTER.show();
+            END_RESULT.hide();
+            btn_save_lkpd.show();
+
+            btn_print.prop('disabled', true);
+          }
+        }else{
+          toastr.error(result.message);
+        }
+      }
+    });
   }
 </script>
 
@@ -1707,6 +1822,8 @@
           // hide #get_result
           get_result.prop('disabled', true);
 
+          localStorage.setItem('get_result',1);
+
           localStorage.removeItem('dataTestKecerdasan');
           localStorage.removeItem('dataTestbakat');
           localStorage.removeItem('totalIndikator_bakat');
@@ -1714,10 +1831,16 @@
           localStorage.removeItem('errNumber');
           localStorage.removeItem('data');
 
-          localStorage.setItem('step', 10);
+          updateStep(codeTest,10);
+
+          // wait for 1 second
+          setTimeout(function(){
+            window.location.reload();
+          },1000);
+
           // localStorage.setItem('codeTest', result.data.codeTest);
 
-          window.location.reload();
+          
         }else{
           get_result.prop('disabled', false);
           toastr.error(result.message);
@@ -1748,7 +1871,7 @@
         success: function(result){
         if(result.success == true){
 
-            localStorage.setItem('step', 10);
+            updateStep(codeTest,10);
             resultInterface(result.data);
             // localStorage.setItem('codeTest', result.data.codeTest);
 
@@ -1764,47 +1887,124 @@
     if($status == true){
       btn_print.prop('disabled', false);
       btn_print_lkpd.prop('disabled', false);
-      btn_ulang.prop('disabled', false);
+      // btn_ulang.prop('disabled', false);
     }else{
       btn_print.prop('disabled', true);
       btn_print_lkpd.prop('disabled', true);
-      btn_ulang.prop('disabled', true);
+      // btn_ulang.prop('disabled', true);
     }
   }
 
+  // btn_print.on('click',function(){
+  //   $.ajax({
+  //     url: "{{ url('api/report/downloadReportWithDomPDFByHTML') }}",
+  //     type: "POST",
+  //     data : {
+  //       'codeTest' : codeTest
+  //     },
+  //     success: function(result){
+  //       if(result.success == true){
+  //         toastr.success(result.message);
+  //       }else{
+  //         toastr.error(result.message);
+  //       }
+  //     }
+  //   });
+  // })
+
   btn_print.on('click',function(){
     $.ajax({
-      url: "{{ url('api/report/downloadReportWithDomPDFByHTML') }}",
-      type: "POST",
-      data : {
-        'codeTest' : codeTest
-      },
-      success: function(result){
-        if(result.success == true){
-          toastr.success(result.message);
-        }else{
-          toastr.error(result.message);
+        url: "{{ url('api/report/downloadReportWithDomPDFByHTML') }}",
+        type: "POST",
+        data: {
+            'codeTest': codeTest
+        },
+        success: function(response){
+            if(response.download_link){
+                // Jika berhasil, tampilkan pesan sukses dan buat tautan unduhan
+                toastr.success("Laporan berhasil di-generate. Silakan unduh.");
+                // Buat elemen tautan unduhan
+                var downloadLink = document.createElement('a');
+                downloadLink.href = response.download_link;
+                // downloadLink.click();
+
+                window.open(response.download_link, '_blank');
+            } else {
+                // Jika gagal, tampilkan pesan error
+                toastr.error("Gagal meng-generate laporan.");
+            }
+        },
+        error: function(xhr, status, error){
+            // Tangani kesalahan
+            toastr.error("Terjadi kesalahan saat memproses permintaan.");
+            console.error(xhr.responseText);
         }
-      }
     });
-  })
+});
+
 
   btn_print_lkpd.on('click',function(){
-    $.ajax({
-      url: "{{ url('api/report/downloadResultLkdp') }}",
-      type: "POST",
-      data : {
-        'codeTest' : codeTest
-      },
-      success: function(result){
-        if(result.success == true){
-          toastr.success(result.message);
-        }else{
-          toastr.error(result.message);
-        }
-      }
-    });
+    updateStep(codeTest,6);
+
+    // wait for 1 second
+    setTimeout(function(){
+      window.location.reload();
+    },1000);
   })
+
+  btn_download_lkpd.on('click',function(){
+    downloadLKPD();
+  })
+
+  // function downloadLKPD(){
+  //   $.ajax({
+  //     url: "{{ url('api/report/downloadResultLkdp') }}",
+  //     type: "POST",
+  //     data : {
+  //       'codeTest' : codeTest
+  //     },
+  //     success: function(result){
+  //       if(result.success == true){
+  //         toastr.success(result.message);
+  //       }else{
+  //         toastr.error(result.message);
+  //       }
+  //     }
+  //   });
+  // }
+
+  function downloadLKPD(){
+    $.ajax({
+        url: "{{ url('api/report/downloadResultLkdp') }}",
+        type: "POST",
+        data: {
+            'codeTest': codeTest
+        },
+        success: function(response){
+            if(response.download_link){
+                // Jika berhasil, tampilkan pesan sukses dan buat tautan unduhan
+                toastr.success("Laporan LKPD berhasil di-generate. Silakan unduh.");
+                // Buat elemen tautan unduhan
+                var downloadLink = document.createElement('a');
+                downloadLink.href = response.download_link;
+                // downloadLink.download = 'laporan_lkpd.pdf';
+                // downloadLink.click();
+
+                // open new tab
+                window.open(response.download_link, '_blank');
+            } else {
+                // Jika gagal, tampilkan pesan error
+                toastr.error("Gagal meng-generate laporan LKPD.");
+            }
+        },
+        error: function(xhr, status, error){
+            // Tangani kesalahan
+            toastr.error("Terjadi kesalahan saat memproses permintaan.");
+            console.error(xhr.responseText);
+        }
+    });
+}
+
 
   btn_ulang.on('click',function(){
 
@@ -1820,8 +2020,10 @@
           localStorage.removeItem('totalIndikator_kecerdasan');
           localStorage.removeItem('errNumber');
           localStorage.removeItem('data');
+          localStorage.removeItem('get_result');
 
-          localStorage.setItem('step', 1);
+
+          updateStep(codeTest,1);
           localStorage.setItem('resultHTML', '');
 
           switchBtn(false);
@@ -1829,7 +2031,10 @@
           // hide button get result
           get_result.prop('disabled', false);
 
-          window.location.href = "{{ url('consultation') }}/"+result.data.codeTest;
+          // wait for 1 second
+          setTimeout(function(){
+            window.location.href = "{{ url('consultation') }}/"+result.data.codeTest;
+          },1000);
         }else{
           toastr.error(result.message);
         }
@@ -1905,7 +2110,7 @@
     // tes bakat
     html += `{{-- RESULT TES BAKAT --}}
                 <div class="row mt-5 estetik-background-RIASEC-header">
-                  Hasil Tes Bakat :
+                  Hasil Tes Minat :
                 </div>`;
 
     html+= `<div class="row mt-2">
@@ -1995,6 +2200,28 @@
     })
 
     return html;
+  }
+
+  function updateStep(codeTest,step){
+    var data = {
+      'codeTest' : codeTest,
+      'step' : step
+    }
+
+    $.ajax({
+      url: "{{ url('api/report/updateStep') }}",
+      type: "POST",
+      data : data,
+      success: function(result){
+        if(result.success == true){
+          localStorage.setItem('step', step);
+
+          
+        }else{
+          console.log(result.message);
+        }
+      }
+    });
   }
 
 </script>

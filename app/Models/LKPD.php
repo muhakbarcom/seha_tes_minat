@@ -14,4 +14,12 @@ class LKPD extends Model
 
     // Tidak menggunakan timestamp (created_at, updated_at)
     public $timestamps = false;
+
+    // check if codeTest is exist
+    public static function checkCodeTest($codeTest)
+    {
+        $checkCodeTest = LKPD_answer::where('CODE_TEST', $codeTest)->first();
+        $result = $checkCodeTest ? true : false;
+        return $result;
+    }
 }

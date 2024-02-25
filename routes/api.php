@@ -52,11 +52,14 @@ Route::get('/report/getLastCodeTestbyUserId/{user_id}', [ReportController::class
 Route::post('/report/downloadReportWithDomPDFByHTML', [ReportController::class, 'downloadReportWithDomPDFByHTML']);
 Route::post('/report/downloadResultLkdp', [ReportController::class, 'downloadResultLkdp']);
 Route::get('/report/generateCodeTest', [ReportController::class, 'generateCodeTest']);
+Route::get('/report/getStep/{codeTest}', [ReportController::class, 'getStep']);
+Route::post('/report/updateStep', [ReportController::class, 'updateStep']);
 
 Route::get('/prodi', [ProdiController::class, 'index']);
 Route::get('/prodi/{id}', [ProdiController::class, 'getById']);
 
 Route::get('/lkpd', [LKPDController::class, 'getAll']);
+Route::post('/lkpd/checkCodeTest', [ReportController::class, 'checkCodeTest']);
 Route::post('/lkpd/saveAnswer', [LKPDController::class, 'saveAnswer']);
 
 Route::get('/info/{type}', [InfoController::class, 'getByType']);

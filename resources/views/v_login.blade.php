@@ -82,6 +82,15 @@
           if(success){
             toastr.success(message, 'Success');
 
+            localStorage.removeItem('dataTestKecerdasan');
+            localStorage.removeItem('dataTestbakat');
+            localStorage.removeItem('totalIndikator_bakat');
+            localStorage.removeItem('totalIndikator_kecerdasan');
+            localStorage.removeItem('errNumber');
+            localStorage.removeItem('data');
+            localStorage.removeItem('get_result');
+            localStorage.setItem('resultHTML', '');
+
             // setTimeout(function(){
               window.location.href = "{{ url('/') }}";
             // }, 1000);
