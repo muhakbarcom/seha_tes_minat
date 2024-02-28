@@ -54,10 +54,11 @@
 
 @section('script')
 <script>
+  var btn_signin = $('#signin');
   $(document).ready(function(){
-    $('#signin').click(function(e){
+    btn_signin.click(function(e){
       // ubah tombol jadi spinner
-      $('#signin').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      btn_signin.html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
       Loading...`);
       
       e.preventDefault();
@@ -91,23 +92,23 @@
             localStorage.removeItem('get_result');
             localStorage.setItem('resultHTML', '');
 
-            // setTimeout(function(){
+            btn_signin.html('Sign in');
+
               window.location.href = "{{ url('/') }}";
-            // }, 1000);
           }else{
-            // object to array
             message = Object.values(message);
 
+            toastr.error(message, 'Error');
 
-            for(let i=0; i<message.length; i++){
-              toastr.error(message[i], 'Error');
-            }
+            btn_signin.html('Sign in');
           }
         },
         error: function(xhr, status, error){
-          let message = xhr.responseJSON.message;
+          let message = xhr.responseJSON;
           let errors = xhr.responseJSON.errors;
           let success = xhr.responseJSON.success;
+
+          btn_signin.html('Sign in');
 
           if(success == false){
             $.each(errors, function(key, value){

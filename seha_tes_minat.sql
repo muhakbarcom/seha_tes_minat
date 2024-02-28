@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 05, 2024 at 07:47 AM
+-- Generation Time: Feb 28, 2024 at 10:41 AM
 -- Server version: 10.4.30-MariaDB-log
--- PHP Version: 8.1.10
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -136,7 +136,27 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (39, 'App\\Models\\User', 3, 'auth_token', 'f1e55c2841a5a062affdf71056fc7c3d90bc17ee243d9d88505de690d500b9ea', '[\"*\"]', NULL, '2024-02-04 19:51:05', '2024-02-04 19:51:05'),
 (42, 'App\\Models\\User', 4, 'auth_token', 'ce9abc2487e3b11d6d2ac70f0a68a6158ccfdf226f595098a22c084b360c2321', '[\"*\"]', NULL, '2024-02-04 20:44:43', '2024-02-04 20:44:43'),
 (43, 'App\\Models\\User', 4, 'auth_token', 'ddfba9fe9e77955ac5c7dcf5a84cbf5176069d583ced2c4dd4ab3cb20c98c254', '[\"*\"]', NULL, '2024-02-04 20:44:54', '2024-02-04 20:44:54'),
-(44, 'App\\Models\\User', 2, 'auth_token', 'c87b19273a26116baae7087ee573c9d2cb2fad5e14fd61e5bd3ef99fdc362ddc', '[\"*\"]', NULL, '2024-02-04 23:32:16', '2024-02-04 23:32:16');
+(44, 'App\\Models\\User', 2, 'auth_token', 'c87b19273a26116baae7087ee573c9d2cb2fad5e14fd61e5bd3ef99fdc362ddc', '[\"*\"]', NULL, '2024-02-04 23:32:16', '2024-02-04 23:32:16'),
+(45, 'App\\Models\\User', 5, 'auth_token', '5c2ba7d8d0c823c45a5c6582cecf3b26b5040793880b08e052a9e596f5c1e9ef', '[\"*\"]', NULL, '2024-02-15 07:07:02', '2024-02-15 07:07:02'),
+(46, 'App\\Models\\User', 5, 'auth_token', 'db1df9aefedd192c0523859cea7373ddcbcbb5f344ab3ff03334dd179ac10d5b', '[\"*\"]', NULL, '2024-02-15 07:07:31', '2024-02-15 07:07:31'),
+(47, 'App\\Models\\User', 5, 'auth_token', 'cddbfb6a054dc0c04996f70533c76acb25a98a03ca39af95bd7829e8ea49cdb1', '[\"*\"]', NULL, '2024-02-15 08:48:37', '2024-02-15 08:48:37'),
+(48, 'App\\Models\\User', 5, 'auth_token', 'c571cac0b8954e6dc4744122221efc005ce7e5928786c71ffce04ee7459b6e03', '[\"*\"]', NULL, '2024-02-15 08:50:57', '2024-02-15 08:50:57'),
+(49, 'App\\Models\\User', 6, 'auth_token', '590b398766705672338bf9f5a347d07a90c3c25b635a2bb8bb6201fce35ccfdc', '[\"*\"]', NULL, '2024-02-15 08:52:05', '2024-02-15 08:52:05'),
+(52, 'App\\Models\\User', 7, 'auth_token', 'c68f7b486a4b1af0b3848d039ec106745a7052ba1bbe58512d727147bcf07782', '[\"*\"]', NULL, '2024-02-15 17:28:17', '2024-02-15 17:28:17'),
+(54, 'App\\Models\\User', 7, 'auth_token', 'dd1aeb9f71fd97dcceb10bbe04b1c3ad8cfeb1a0db485360cee51eae029d4edc', '[\"*\"]', NULL, '2024-02-15 17:33:24', '2024-02-15 17:33:24'),
+(55, 'App\\Models\\User', 3, 'auth_token', '35fdb4c5a4ffe2779ed3ccee67216bcdf90d9c74c8bbd88c392424f88ae18414', '[\"*\"]', NULL, '2024-02-15 20:02:27', '2024-02-15 20:02:27'),
+(58, 'App\\Models\\User', 7, 'auth_token', '6fee64de9c69167ae7c75dc8329b004857eb9adee27e9026c8ac89015ca964bf', '[\"*\"]', NULL, '2024-02-15 20:23:15', '2024-02-15 20:23:15'),
+(59, 'App\\Models\\User', 7, 'auth_token', 'b4fce1326e0790186225796c7f828bd14c8319ef4f00fbb2383fa21d120cbea9', '[\"*\"]', NULL, '2024-02-15 21:29:07', '2024-02-15 21:29:07'),
+(60, 'App\\Models\\User', 7, 'auth_token', 'ea100d6636f74f5580ec75c84bb41ba4e364e386aeeb871d97a0c20667cc28c0', '[\"*\"]', NULL, '2024-02-24 18:00:28', '2024-02-24 18:00:28'),
+(61, 'App\\Models\\User', 7, 'auth_token', 'b22fffdb374f5c052e285a4da5f6f4bdf97be15f78bc772d3f8ee34d60b415e5', '[\"*\"]', NULL, '2024-02-24 18:14:24', '2024-02-24 18:14:24'),
+(62, 'App\\Models\\User', 7, 'auth_token', '82851d15361d8422dc9cce904d5509d3a5a9595aaff9245b85143aed870221f7', '[\"*\"]', NULL, '2024-02-26 00:34:26', '2024-02-26 00:34:26'),
+(63, 'App\\Models\\User', 7, 'auth_token', '7211d6a224d542c7eb9e0565d12782538f79323e2dd2720deb16cb68a9b07355', '[\"*\"]', NULL, '2024-02-26 00:36:37', '2024-02-26 00:36:37'),
+(64, 'App\\Models\\User', 7, 'auth_token', 'db2c2866833dc732a2d087c9c0b19af8eb87e7563838154990120f45ea0c7f42', '[\"*\"]', NULL, '2024-02-26 06:01:21', '2024-02-26 06:01:21'),
+(65, 'App\\Models\\User', 7, 'auth_token', '06b113150479adf80c13f4497a7e3ab393c208219df8a16372d4462993403a8c', '[\"*\"]', NULL, '2024-02-26 06:27:13', '2024-02-26 06:27:13'),
+(66, 'App\\Models\\User', 7, 'auth_token', 'cb883703791ddddc27a537a71925d12422200a7790964d12a294ab5c94563984', '[\"*\"]', NULL, '2024-02-26 06:56:22', '2024-02-26 06:56:22'),
+(67, 'App\\Models\\User', 7, 'auth_token', 'ec56d3a83a8675f4c9efa573bc5cd5d7fd2619321288ce5676d3a8bdf6a3fb84', '[\"*\"]', NULL, '2024-02-27 21:18:59', '2024-02-27 21:18:59'),
+(68, 'App\\Models\\User', 7, 'auth_token', '7afdae33cb8f4148ff01aa1f5cbf97e2d9367f306eb15d36a169b8d3fc40f721', '[\"*\"]', NULL, '2024-02-28 00:05:12', '2024-02-28 00:05:12'),
+(69, 'App\\Models\\User', 7, 'auth_token', '8b1f9bd763527a7318af260bac686db0e8820ffe9bdd3df74b0e799f20dde2bc', '[\"*\"]', NULL, '2024-02-28 01:10:10', '2024-02-28 01:10:10');
 
 -- --------------------------------------------------------
 
@@ -169,7 +189,7 @@ INSERT INTO `tb_m_aspek` (`ID`, `NAME`, `TYPE`, `DESKRIPSI_HASIL_TES`) VALUES
 (12, 'Artistic', 2, 'Hai sobat karier, berdasarkan hasil tes kamu masuk dalam type Artistic! Kamu adalah pribadi yang suka menggunakan kata-kata, menyukai unsur seni, seperti music dan drama untuk berkomunikasi, dan senang berekpresi melalui seni. Kamu memiliki keterampilan yang cukup baik dalam bidang seni seperti menyanyi, merancang, menyajikan, merencanakan, Menyusun karya seni. Kamu cocok bekerja dalam banyak bidang lho! Seperti artis, illustrator, fotografer, penulis lagu, actor, reporter perancang busana dan banyak lainnya!'),
 (13, 'SOCIAL', 2, 'Hai sobat karier, berdasarkan hasil tes kamu masuk dalam type Social! Kamu termasuk pada pribadi yang memiliki empati cukup tinggi. Kamu suka mengajar, melatih dan memberi informasi kamu sangat peduli pada kesejahteraan orang-orang disekitarmu. Kamu punya keterampilan yang cukup baik dalam berkomunikasi secara lisan dan tertulis. Kamu cocok bekerja dalam bancocok bekerja sebagai guru, perawat, pekerja sosial, dan masih banyak lagi! '),
 (14, 'Enterprising', 2, 'Hai sobat karier, berdasarkan hasil tes kamu masuk dalam type Enterprising! Kamu adalah pribadi yang cukup menyenangkan dan suka bertemu dengan orang, kamu mampu memimpin, berbicara dan mempengaruhi orang lain, membangun Kerjasama dan berbisnis. Kamu memiliki keterampilan yang cukup menarik seperti menjual, mempromosikan, membujuk mengembangkan ide, berbicara didepan umum dan merencanakan sesuatu dengan baik. Kamu bisa bekerja sebagai tenaga penjual, pengacara, politisi, akuntan dan masih banyak lagi!'),
-(15, 'Conventional', 2, 'Hai sobat karier, berdasarkan hasil tes kamu masuk dalam type Enterprising! Kamu adalah pribadi yang cukup menyenangkan dan suka bertemu dengan orang, kamu mampu memimpin, berbicara dan mempengaruhi orang lain, membangun Kerjasama dan berbisnis. Kamu memiliki keterampilan yang cukup menarik seperti menjual, mempromosikan, membujuk mengembangkan ide, berbicara didepan umum dan merencanakan sesuatu dengan baik. Kamu bisa bekerja sebagai tenaga penjual, pengacara, politisi, akuntan dan masih banyak lagi!'),
+(15, 'Conventional', 2, 'Hai sobat karier, berdasarkan hasil tes kamu masuk dalam type Conventional! kamu lebih suka bekerja didalam ruangan pada tugas-tugas yang melibatkan pengorganisasian dan akurasi. Kamu juga sosok yang selalu mengikuti prosedur, memiliki kemampuan yang baik dalam pengolahan data dan angka loh! Selain itu kamu  pribadi yang sangat detail teliti dan penuh perencanaan. Kamu bisa bekerja pada banyak bidang diantaranya sekretaris, resepsionis, pustakawan, petugas Bank, operator computer dan lainnya.'),
 (16, 'Eksistensial', 1, 'Kamu memiliki ketertarikan untuk memahami pertanyaan abstrak tentang keberadaan, makna dan tujuan hidup. Kamu juga memiliki kecenderungan untuk mengekplorasi pertanyaan-pertanyaan filosofis selain itu kamu juga sangat peka terhadap masalah sosial. Dengan kemampuan yang kamu miliki kamu sangat cocok bekerja sebagai psikolog atau ahli filsuf.');
 
 -- --------------------------------------------------------
@@ -609,25 +629,11 @@ CREATE TABLE `tb_r_lkpd` (
 --
 
 INSERT INTO `tb_r_lkpd` (`ID`, `CODE_TEST`, `ANSWER`, `QUESTION_ID`) VALUES
-(7, '65afe1b19af71', 'iya', 1),
-(8, '65afe1b19af71', 'iya', 2),
-(9, '65b51efa97242', 'engga', 1),
-(10, '65b51efa97242', 'iya', 2),
-(13, '65c051d347b68', 'asdsa', 1),
-(14, '65c051d347b68', 'asdasd', 2),
-(15, '65c051d347b68', 'asdsad', 3),
-(16, '65c051d347b68', 'asdsad', 4),
-(17, '65c051d347b68', 'asdsad', 5),
-(18, '65c059baab712', 'sad', 1),
-(19, '65c059baab712', 'asd', 2),
-(20, '65c059baab712', 'asd', 3),
-(21, '65c059baab712', 'asd', 4),
-(22, '65c059baab712', 'asdsad', 5),
-(23, '65b60e052b194', 'asdsa', 1),
-(24, '65b60e052b194', 'asdas', 2),
-(25, '65b60e052b194', 'sadasd', 3),
-(26, '65b60e052b194', 'asdas', 4),
-(27, '65b60e052b194', 'asdasd', 5);
+(98, '65dedb8e611df', 'jkasnd', 1),
+(99, '65dedb8e611df', 'akjsdn', 2),
+(100, '65dedb8e611df', 'asdkj', 3),
+(101, '65dedb8e611df', 'askjdn', 4),
+(102, '65dedb8e611df', 'asdkj', 5);
 
 -- --------------------------------------------------------
 
@@ -654,6 +660,7 @@ CREATE TABLE `tb_r_test` (
   `SCHOOL` text DEFAULT NULL,
   `EMAIL` text DEFAULT NULL,
   `STEP` int(11) DEFAULT 1,
+  `PRESENTAGE` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`PRESENTAGE`)),
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -662,26 +669,9 @@ CREATE TABLE `tb_r_test` (
 -- Dumping data for table `tb_r_test`
 --
 
-INSERT INTO `tb_r_test` (`ID`, `USER_ID`, `CODE_TEST`, `KC_ASPEK_ID`, `KC_PRESENTASE`, `KC_2_ASPEK_ID`, `KC_2_PRESENTASE`, `BK_1_ASPEK_ID`, `BK_1_PRESENTASE`, `BK_2_ASPEK_ID`, `BK_2_PRESENTASE`, `BK_3_ASPEK_ID`, `BK_3_PRESENTASE`, `FULL_NAME`, `BIRTHDAY`, `SCHOOL`, `EMAIL`, `STEP`, `created_at`, `updated_at`) VALUES
-(11, 2, '65aa99de65fda', 9, '82.5', NULL, NULL, 12, '80.0', 10, '77.5', 13, '72.5', '', '0000-00-00', '', '', NULL, '2024-01-19 15:48:46', '2024-01-19 15:48:46'),
-(12, 2, '65afdf5c86b1a', 6, '72.5', NULL, NULL, 15, '72.5', 13, '70.0', 14, '67.5', '', '0000-00-00', '', '', NULL, '2024-01-23 15:46:36', '2024-01-23 15:46:36'),
-(13, 2, '65afe1b19af71', 9, '75.0', 3, '72.5', 12, '70.0', 13, '67.5', 10, '62.5', '', '0000-00-00', '', '', NULL, '2024-01-23 15:56:33', '2024-01-27 14:49:05'),
-(14, 2, '65b51dc3b8775', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:14:11', '2024-01-27 15:14:11'),
-(15, 2, '65b51e055985c', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:15:17', '2024-01-27 15:15:17'),
-(16, 2, '65b51e3c986c2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:16:12', '2024-01-27 15:16:12'),
-(17, 2, '65b51e40952a4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:16:16', '2024-01-27 15:16:16'),
-(18, 2, '65b51e442190e', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:16:20', '2024-01-27 15:16:20'),
-(19, 2, '65b51e750a18c', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:17:09', '2024-01-27 15:17:09'),
-(20, 2, '65b51e880cc75', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:17:28', '2024-01-27 15:17:28'),
-(21, 2, '65b51ea6d0849', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:17:58', '2024-01-27 15:17:58'),
-(22, 2, '65b51ec5c2491', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:18:29', '2024-01-27 15:18:29'),
-(23, 2, '65b51ed47f1a4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:18:44', '2024-01-27 15:18:44'),
-(24, 2, '65b51ed7433c9', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-27 15:18:47', '2024-01-27 15:18:47'),
-(25, 2, '65b51efa97242', 8, '80.0', 7, '70.0', 12, '77.5', 10, '62.5', 11, '62.5', 'asdasd', '2014-04-02', 'asdasd', 'asdasd@asdas.comn', NULL, '2024-01-27 15:19:22', '2024-01-27 15:50:29'),
-(26, 2, '65b60e052b194', 7, '80.0', 4, '70.0', 11, '77.5', 14, '77.5', 10, '70.0', 'Akbar Muhammad', '2024-01-17', 'Poltekpos', 'akbar@gmail.com', 1, '2024-01-28 08:19:17', '2024-02-05 07:45:19'),
-(29, 3, '65c051d347b68', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, '2024-02-05 03:11:15', '2024-02-05 03:29:19'),
-(30, 4, '65c059baab712', 6, '80.0', 7, '77.5', 10, '75.0', 12, '72.5', 11, '70.0', 'akbar20', '1998-02-10', 'Poltekpos', 'akbar20@gmail.com', 5, '2024-02-05 03:44:58', '2024-02-05 03:47:42'),
-(31, 2, '65c0920f14423', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-02-05 07:45:19', '2024-02-05 07:45:19');
+INSERT INTO `tb_r_test` (`ID`, `USER_ID`, `CODE_TEST`, `KC_ASPEK_ID`, `KC_PRESENTASE`, `KC_2_ASPEK_ID`, `KC_2_PRESENTASE`, `BK_1_ASPEK_ID`, `BK_1_PRESENTASE`, `BK_2_ASPEK_ID`, `BK_2_PRESENTASE`, `BK_3_ASPEK_ID`, `BK_3_PRESENTASE`, `FULL_NAME`, `BIRTHDAY`, `SCHOOL`, `EMAIL`, `STEP`, `PRESENTAGE`, `created_at`, `updated_at`) VALUES
+(50, 7, '65dedb8e611df', 2, '75.0', 3, '75.0', 15, '70.0', 10, '67.5', 13, '67.5', 'asdasd', '2023-09-14', 'asdasdasd', 'admin@muhakbar.com', 1, '{\"tes_minat\":[{\"aspek_id\":10,\"aspek_name\":\"REALISTIC\",\"total_point\":27,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":67.5,\"presentase_all\":16.98},{\"aspek_id\":11,\"aspek_name\":\"Investigative \",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":65,\"presentase_all\":16.35},{\"aspek_id\":12,\"aspek_name\":\"Artistic\",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":65,\"presentase_all\":16.35},{\"aspek_id\":13,\"aspek_name\":\"SOCIAL\",\"total_point\":27,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":67.5,\"presentase_all\":16.98},{\"aspek_id\":14,\"aspek_name\":\"Enterprising\",\"total_point\":25,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":62.5,\"presentase_all\":15.72},{\"aspek_id\":15,\"aspek_name\":\"Conventional\",\"total_point\":28,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":70,\"presentase_all\":17.61}],\"tes_riasec\":[{\"aspek_id\":2,\"aspek_name\":\"Linguistic-Bahasa\",\"total_point\":30,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":75,\"presentase_all\":11.95},{\"aspek_id\":3,\"aspek_name\":\"Logical-matematik\",\"total_point\":30,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":75,\"presentase_all\":11.95},{\"aspek_id\":4,\"aspek_name\":\"Visual-Spatial\",\"total_point\":28,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":70,\"presentase_all\":11.16},{\"aspek_id\":5,\"aspek_name\":\"Bodily- Kinesthetic\",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":65,\"presentase_all\":10.36},{\"aspek_id\":6,\"aspek_name\":\"Musical\",\"total_point\":29,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":72.5,\"presentase_all\":11.55},{\"aspek_id\":7,\"aspek_name\":\"Interpersonal\",\"total_point\":27,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":67.5,\"presentase_all\":10.76},{\"aspek_id\":8,\"aspek_name\":\"Intrapersonal\",\"total_point\":29,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":72.5,\"presentase_all\":11.55},{\"aspek_id\":9,\"aspek_name\":\"Naturalistik\",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":65,\"presentase_all\":10.36},{\"aspek_id\":16,\"aspek_name\":\"Eksistensial\",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":65,\"presentase_all\":10.36}]}', '2024-02-28 07:06:54', '2024-02-28 08:10:15'),
+(51, 7, '65deea66d48fc', 2, '75.0', 3, '75.0', 15, '70.0', 10, '67.5', 13, '67.5', 'asdasd', '2023-09-14', 'asdasdasd', 'admin@muhakbar.com', 10, '{\"tes_minat\":[{\"aspek_id\":15,\"aspek_name\":\"Conventional\",\"total_point\":28,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":70,\"presentase_all\":17.61},{\"aspek_id\":10,\"aspek_name\":\"REALISTIC\",\"total_point\":27,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":67.5,\"presentase_all\":16.98},{\"aspek_id\":13,\"aspek_name\":\"SOCIAL\",\"total_point\":27,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":67.5,\"presentase_all\":16.98},{\"aspek_id\":11,\"aspek_name\":\"Investigative \",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":65,\"presentase_all\":16.35},{\"aspek_id\":12,\"aspek_name\":\"Artistic\",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":65,\"presentase_all\":16.35},{\"aspek_id\":14,\"aspek_name\":\"Enterprising\",\"total_point\":25,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":62.5,\"presentase_all\":15.72}],\"tes_riasec\":[{\"aspek_id\":2,\"aspek_name\":\"Linguistic-Bahasa\",\"total_point\":30,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":75,\"presentase_all\":11.95},{\"aspek_id\":3,\"aspek_name\":\"Logical-matematik\",\"total_point\":30,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":75,\"presentase_all\":11.95},{\"aspek_id\":6,\"aspek_name\":\"Musical\",\"total_point\":29,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":72.5,\"presentase_all\":11.55},{\"aspek_id\":8,\"aspek_name\":\"Intrapersonal\",\"total_point\":29,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":72.5,\"presentase_all\":11.55},{\"aspek_id\":4,\"aspek_name\":\"Visual-Spatial\",\"total_point\":28,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":70,\"presentase_all\":11.16},{\"aspek_id\":7,\"aspek_name\":\"Interpersonal\",\"total_point\":27,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":67.5,\"presentase_all\":10.76},{\"aspek_id\":5,\"aspek_name\":\"Bodily- Kinesthetic\",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":65,\"presentase_all\":10.36},{\"aspek_id\":9,\"aspek_name\":\"Naturalistik\",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":65,\"presentase_all\":10.36},{\"aspek_id\":16,\"aspek_name\":\"Eksistensial\",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":65,\"presentase_all\":10.36}]}', '2024-02-28 08:10:14', '2024-02-28 08:10:36');
 
 -- --------------------------------------------------------
 
@@ -709,7 +699,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `tanggal_lahir`, `asal_sekolah`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (2, 'Akbar Muhammad', 'akbar@gmail.com', NULL, '2024-01-17', 'Poltekpos', '$2y$10$me3xQftFEvk8LxKLUvYYUuH70hWB7n3PLjR1uyjeSgdqlihNKp7OC', NULL, '2024-01-16 21:31:36', '2024-01-16 21:31:36'),
 (3, 'coba2', 'coba2@gmail.com', NULL, '2024-02-06', 'Poltekpos', '$2y$10$itTgourO/8r46PzsJ0Ccc.OpvVp3S01qAgvQV0.fdlXNjh8ACVdNa', NULL, '2024-02-04 19:50:02', '2024-02-04 19:50:02'),
-(4, 'akbar20', 'akbar20@gmail.com', NULL, '1998-02-10', 'Poltekpos', '$2y$10$BjH2.3h.9r6NTm/EYZQv6eSs1ZvliJVUMiTWcDcNNfQ8iuBgjm4f6', NULL, '2024-02-04 20:44:43', '2024-02-04 20:44:43');
+(4, 'akbar20', 'akbar20@gmail.com', NULL, '1998-02-10', 'Poltekpos', '$2y$10$BjH2.3h.9r6NTm/EYZQv6eSs1ZvliJVUMiTWcDcNNfQ8iuBgjm4f6', NULL, '2024-02-04 20:44:43', '2024-02-04 20:44:43'),
+(5, 'coba test', 'coba123@gmail.com', NULL, '2023-11-16', 'Poltekpos', '$2y$10$F/PV52Dx9sxAd14YERKwReGU6g0EYsrW/G1tc4JE7.dV09HzT97CG', NULL, '2024-02-15 07:07:02', '2024-02-15 07:07:02'),
+(6, '123', 'akbar1@gmail.com', NULL, '2023-10-11', 'asdasdasdasdasd', '$2y$10$004Q8pAX0pbhMKKpvKNA9.t.hmFCoQPOhSOXQxliOKKVPXYE0hkuu', NULL, '2024-02-15 08:52:05', '2024-02-15 08:52:05'),
+(7, 'asdasd', 'admin@muhakbar.com', NULL, '2023-09-14', 'asdasdasd', '$2y$10$icnJ6XizJQBOCHgZEGUdtek8pyKFj9qf./zl7t/uZqHoBqDIIdPeO', NULL, '2024-02-15 17:28:17', '2024-02-15 17:28:17');
 
 --
 -- Indexes for dumped tables
@@ -826,7 +819,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `tb_m_aspek`
@@ -874,19 +867,19 @@ ALTER TABLE `tb_m_skor`
 -- AUTO_INCREMENT for table `tb_r_lkpd`
 --
 ALTER TABLE `tb_r_lkpd`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `tb_r_test`
 --
 ALTER TABLE `tb_r_test`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

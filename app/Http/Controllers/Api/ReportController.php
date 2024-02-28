@@ -77,6 +77,10 @@ class ReportController extends Controller
             $dataTestBakat = $req->dataTestBakat;
             $dataForm = $req->dataForm;
             $codeTest = $req->codeTest;
+            $PRESENTAGE = [
+                'tes_minat' => [],
+                'tes_riasec' => [],
+            ];
 
             // ubah string object json ke array
             $dataTestKecerdasan = json_decode($dataTestKecerdasan, true);
@@ -93,14 +97,44 @@ class ReportController extends Controller
             // set point data test kecerdasan
             $dataTestBakat_point = $this->getBulkPointByCode($dataTestBakat);
             $dataTestKecerdasan_point = $this->getBulkPointByCode($dataTestKecerdasan);
+
             
             // set aspek id data test kecerdasan
-            $set_dataTestBakat = $this->getBulkAspekIdByIndikatorId($dataTestBakat_point);
-            $set_dataTestKecerdasan = $this->getBulkAspekIdByIndikatorId($dataTestKecerdasan_point);
-
+            $set_dataTestBakat = $this->getBulkAspekIdByIndikatorId($dataTestBakat_point)['data'];
+            $set_dataTestKecerdasan = $this->getBulkAspekIdByIndikatorId($dataTestKecerdasan_point)['data'];
+            
             // grouping data test kecerdasan berdasarkan aspek id
             $group_dataTestBakat = $this->groupByAspekId($set_dataTestBakat);
             $group_dataTestKecerdasan = $this->groupByAspekId($set_dataTestKecerdasan);
+            
+            $PRESENTAGE['tes_minat'] = [];
+            $PRESENTAGE['tes_riasec'] = [];
+            foreach ($group_dataTestBakat as $data) {
+                $PRESENTAGE['tes_minat'][] = [
+                    'aspek_id' => $data['aspek_id'],
+                    'aspek_name' =>$this->getDataAspekByID($data['aspek_id'])->NAME,
+                    'total_point' => $data['total_point'],
+                    'jumlah_soal' => $data['jumlah_soal'],
+                    'max_point' => $data['max_poin'],
+                    'presentase' => $data['presentase'],
+                    'presentase_all' => $data['presentase_all']
+                ];
+            }
+            foreach ($group_dataTestKecerdasan as $data) {
+                $PRESENTAGE['tes_riasec'][] = [
+                    'aspek_id' => $data['aspek_id'],
+                    'aspek_name' =>$this->getDataAspekByID($data['aspek_id'])->NAME,
+                    'total_point' => $data['total_point'],
+                    'jumlah_soal' => $data['jumlah_soal'],
+                    'max_point' => $data['max_poin'],
+                    'presentase' => $data['presentase'],
+                    'presentase_all' => $data['presentase_all']
+                ];
+            }
+
+            // urutkan PRESENTAGE berdasarkan presentase_all
+            $PRESENTAGE['tes_minat'] = $this->sortByBiggest($PRESENTAGE['tes_minat']);
+            $PRESENTAGE['tes_riasec'] = $this->sortByBiggest($PRESENTAGE['tes_riasec']);
 
             // ambil aspek_id dari $group_dataTestKecerdasan berdasarkan presentase tertinggi
             $max_presentase_dataTestKecerdasan = $this->sortByBiggest($group_dataTestKecerdasan);
@@ -116,16 +150,10 @@ class ReportController extends Controller
                     'aspek_id' => $data['aspek_id'],
                     'info' => $this->getDataInfoByAspekId($data['aspek_id']),
                     'presentase' => $data['presentase'],
+                    'presentase_all' => $data['presentase_all'], 
                     'aspek_name' => $this->getDataAspekByID($data['aspek_id'])->NAME
                 ];
             }
-
-            // $result_tes_kecerdasan = [
-            //     'aspek_id' => $max_presentase_dataTestKecerdasan,
-            //     'info' => $this->getDataInfoByAspekId($max_presentase_dataTestKecerdasan),
-            //     'presentase' => $group_dataTestKecerdasan[$max_presentase_dataTestKecerdasan]['presentase'],
-            //     'aspek_name' => $this->getDataAspekByID($max_presentase_dataTestKecerdasan)->NAME
-            // ];
 
             $result_tes_bakat = [];
             foreach ($max_presentase_dataTestBakat as $data) {
@@ -133,6 +161,7 @@ class ReportController extends Controller
                     'aspek_id' => $data['aspek_id'],
                     'info' => $this->getDataInfoByAspekId($data['aspek_id']),
                     'presentase' => $data['presentase'],
+                    'presentase_all' => $data['presentase_all'],
                     'aspek_name' => $this->getDataAspekByID($data['aspek_id'])->NAME
                 ];
             }
@@ -152,6 +181,7 @@ class ReportController extends Controller
                 'BIRTHDAY' => $BIRTHDAY ?? '',
                 'SCHOOL' => $SCHOOL ?? '',
                 'EMAIL' => $EMAIL ?? '',
+                'PRESENTAGE' => json_encode($PRESENTAGE) ?? '',
             ];
 
             $save = $this->saveToTest($prepareDataToSave,$codeTest);
@@ -247,10 +277,13 @@ class ReportController extends Controller
                 'EMAIL' => $data->EMAIL,
             ];
 
+            $getPresentage = json_decode($data->PRESENTAGE, true);
+
             $result_final = [
                 'tes_kecerdasan' => $result_tes_kecerdasan,
                 'tes_bakat' => $result_tes_bakat,
                 'data_form' => $result_data_form,
+                'presentageJson' => $getPresentage,
                 'CodeTest' => $code_test
             ];
 
@@ -287,6 +320,7 @@ class ReportController extends Controller
                 'BIRTHDAY' => $data['BIRTHDAY'],
                 'SCHOOL' => $data['SCHOOL'],
                 'EMAIL' => $data['EMAIL'],
+                'PRESENTAGE' => $data['PRESENTAGE'],
             ];
             
             // update
@@ -346,7 +380,7 @@ class ReportController extends Controller
     {
         $res = [];
         foreach ($array as $key => $value) {
-            $res[$key] = $value['presentase'];
+            $res[$key] = $value['presentase_all'];
         }
 
         array_multisort($res, SORT_DESC, $array);
@@ -389,8 +423,10 @@ class ReportController extends Controller
     private function getBulkAspekIdByIndikatorId($array)
     {
         $res = [];
+        $total_point = 0;
         foreach ($array as $data) {
             $aspek_id = $this->getAspekIdByIndikatorId($data['indikator_id']);
+            $total_point += $data['point'];
 
             $res[] = [
                 'indikator_id' => $data['indikator_id'],
@@ -399,20 +435,47 @@ class ReportController extends Controller
             ];
         }
 
-        return $res;
+        return [
+            'total_point' => $total_point,
+            'data' => $res
+        ];
     }
 
     private function groupByAspekId($array)
     {
         $res = [];
+        $max_point_all = 0;
+
         foreach ($array as $data) {
             $max_point_by_aspek_id = $this->getTotalPointFromSkorByAspekId($data['aspek_id']);
             $res[$data['aspek_id']][] = $data;
             $res[$data['aspek_id']]['total_point'] = array_sum(array_column($res[$data['aspek_id']], 'point'));
+            $res[$data['aspek_id']]['max_point'] = $max_point_by_aspek_id;
             // hitung presentase
             $res[$data['aspek_id']]['presentase'] = $res[$data['aspek_id']]['total_point'] / $max_point_by_aspek_id * 100;
+            // $res[$data['aspek_id']]['presentase_all'] = round($res[$data['aspek_id']]['total_point'] / $max_point_all * 100, 2);
             $res[$data['aspek_id']]['aspek_id'] = $data['aspek_id'];
         }
+
+        foreach ($res as $key => $value) {
+            $max_point_all += $res[$key]['total_point'];
+        }
+
+        foreach ($res as $data) {
+            $data['presentase_all'] = round($data['total_point'] / $max_point_all * 100, 2);
+            $res[$data['aspek_id']]['presentase_all'] = $data['presentase_all'];
+            $res[$data['aspek_id']]['max_poin'] = $max_point_all;
+            $res[$data['aspek_id']]['jumlah_soal'] = $this->jumlahSoalPerAspekID($data['aspek_id']);
+        }
+
+        return $res;
+    }
+
+    function jumlahSoalPerAspekID($aspek_id)
+    {
+        $res = DB::table('tb_m_indikator')
+            ->where('ASPEK_ID', $aspek_id)
+            ->count();
 
         return $res;
     }
@@ -433,82 +496,55 @@ class ReportController extends Controller
         return $max_point;
     }
 
-    // public function downloadReportWithDomPDFByHTML(Request $req)
-    // {
-    //     $data = $this->getResultByCodeTest($req);
-    //     $data = json_decode($data->getContent(), true);
-
-    //     if(!$data['success']){
-    //         return response()->json($data, 500);
-    //     }
-
-    //     $data = $data['data'];
-
-    //     // return view('v_report', ['data' => $data]);
-
-    //     $dompdf = new Dompdf();
-    //     $options = $dompdf->getOptions();
-    //     $options->setDefaultFont('Courier');
-    //     $dompdf->setOptions($options);
-    //     $dompdf->setPaper('A4', 'potrait');
-
-    //     $datetime = date('YmdHis');
-
-    //     $filename = 'report_'.$data['CodeTest'].'_'.$datetime;
-    //     // load view
-    //     $html = View::make('v_report', ['data' => $data, 'filename' => $filename]);
-    //     $html = $html->render();
-
-    //     // load html
-    //     $dompdf->loadHtml($html);
-
-    //     // file name
-
-    //     // Render the HTML as PDF
-    //     $dompdf->render();
-
-    //     $dompdf->stream($filename);
-    // }
+    
 
     public function downloadReportWithDomPDFByHTML(Request $req)
-{
-    $data = $this->getResultByCodeTest($req);
-    $data = json_decode($data->getContent(), true);
+    {
+        //For test
+        $codeTest = request()->query('codeTest');
+        $req->codeTest = $codeTest;
 
-    if(!$data['success']){
-        return response()->json($data, 500);
+        $data = $this->getResultByCodeTest($req);
+        $data = json_decode($data->getContent(), true);
+
+        if(!$data['success']){
+            return response()->json($data, 500);
+        }
+
+        $data = $data['data'];
+
+        $dompdf = new Dompdf();
+        $options = $dompdf->getOptions();
+        $options->setDefaultFont('Courier');
+        $dompdf->setOptions($options);
+        $dompdf->setPaper('A4', 'portrait');
+
+        $datetime = date('YmdHis');
+
+        $filename = 'report_'.$data['CodeTest'].'_'.$datetime.'.pdf';
+
+        // Load view
+        $html = View::make('v_report', ['data' => $data, 'filename' => $filename]);
+        $html = $html->render();
+
+        // return $html;
+
+        // Load HTML
+        $dompdf->loadHtml($html);
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Save PDF to server
+        $output = $dompdf->output();
+
+        file_put_contents(public_path('pdf/' . $filename), $output);
+
+        // Provide download link to the user
+        $download_link = url('pdf/' . $filename);
+        // print_r($download_link);die;
+        return response()->json(['download_link' => $download_link], 200);
     }
-
-    $data = $data['data'];
-
-    $dompdf = new Dompdf();
-    $options = $dompdf->getOptions();
-    $options->setDefaultFont('Courier');
-    $dompdf->setOptions($options);
-    $dompdf->setPaper('A4', 'portrait');
-
-    $datetime = date('YmdHis');
-
-    $filename = 'report_'.$data['CodeTest'].'_'.$datetime.'.pdf';
-
-    // Load view
-    $html = View::make('v_report', ['data' => $data, 'filename' => $filename]);
-    $html = $html->render();
-
-    // Load HTML
-    $dompdf->loadHtml($html);
-
-    // Render the HTML as PDF
-    $dompdf->render();
-
-    // Save PDF to server
-    $output = $dompdf->output();
-    file_put_contents(public_path('pdf/' . $filename), $output);
-
-    // Provide download link to the user
-    $download_link = url('pdf/' . $filename);
-    return response()->json(['download_link' => $download_link], 200);
-}
 
 public function downloadResultLkdp(Request $req)
 {

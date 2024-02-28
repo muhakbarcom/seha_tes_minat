@@ -594,7 +594,7 @@
 
             <div class="row ">
               <div class="col d-flex justify-content-center">
-                <button type="button" class="btn btn-success" id="btn-submit"><i class="fa fa-arrow-right"></i>
+                <button type="button" class="btn btn-success d-none" id="btn-submit"><i class="fa fa-arrow-right"></i>
                   Next Test</button>
               </div>
               <a href="#" class="dummy-tes-kecerdasan">dummy</a>
@@ -672,7 +672,8 @@
 
             <div class="row ">
               <div class="col d-flex justify-content-center">
-                <button type="button" class="btn btn-success" id="btn-submit-bakat"><i class="fa fa-arrow-right"></i>
+                <button type="button" class="btn btn-success d-none" id="btn-submit-bakat"><i
+                    class="fa fa-arrow-right"></i>
                   Next</button> <br>
               </div>
               <a href="#" class="dummy-tes-bakat">dummy</a>
@@ -690,7 +691,7 @@
               <div class="row">
                 <div class="d-flex col justify-content-center">
                   <button class="btn btn-sm btn-warning" id="btn_download_lkpd">
-                    <i class="fa fa-download"></i> Download LKDP (PDF)
+                    <i class="fa fa-download"></i> Download LKPD (PDF)
                   </button>
                   &nbsp;
                   <button class="btn btn-sm btn-danger" id="btn_print">
@@ -699,6 +700,13 @@
                   &nbsp;
                   <button class="btn btn-sm btn-secondary" id="btn_ulang">
                     <i class="bi bi-arrow-counterclockwise"></i> Test Ulang
+                  </button>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="d-flex col justify-content-center">
+                  <button onclick="movePage(10)" class="btn btn-sm btn-default">
+                    <i class="fa fa-arrow-left"></i> Kembali ke halaman Hasil
                   </button>
                 </div>
               </div>
@@ -738,16 +746,17 @@
             <div class="row">
               <div class="d-flex col justify-content-end">
                 <button class="btn btn-sm btn-warning" id="btn_print_lkpd">
-                  <i class="fa fa-pencil"></i> LKDP
+                  <i class="fa fa-pencil"></i> LKPD
                 </button>
                 &nbsp;
-                <button class="btn btn-sm btn-danger" id="btn_print" disabled>
-                  <i class="fa fa-download"></i> PDF
+                <button onclick="movePage(6)" class="btn btn-sm btn-danger" id="btn_to_download_page">
+                  <i class="fa fa-download"></i> Halaman Download Result
                 </button>
                 &nbsp;
                 <button class="btn btn-sm btn-secondary" id="btn_ulang">
                   <i class="bi bi-arrow-counterclockwise"></i> Test Ulang
                 </button>
+
               </div>
             </div>
             <div class="row mt-2">
@@ -854,6 +863,7 @@
     var btn_download_lkpd = $('#btn_download_lkpd');
     var btn_print_lkpd = $('#btn_print_lkpd');
     var btn_save_lkpd = $('#btn_save_lkpd');
+    var btn_to_download_page = $('#btn_to_download_page');
 
     var get_result = $('#get_result');
     var get_result_icon = $('#get_result_icon');
@@ -976,6 +986,7 @@
         progress.val(progress_status[4]);
       break;
       case '10':
+      checkCodeTestInLKPD();
         collapseOne.collapse('hide');
         collapseTwo.collapse('hide');
         collapseThree.collapse('hide');
@@ -1063,6 +1074,8 @@
         // beri class "done" pada button yang mempunyai data-bs-target = collapseThree
         btnCollapseThree.addClass('done');
         btnCollapseFour.addClass('done');
+
+        btn_submit_bakat.hide();
 
         updateStep(codeTest,4);
 
@@ -1306,7 +1319,6 @@
         'indikator_res' : indikator_res,
         'value' : value
       }
-      console.log(res)
       
       // update atau insert ke local storage
       updateDataTestKecerdasan(res);
@@ -1322,9 +1334,11 @@
     var dataTestKecerdasanTemp = (dataTestKecerdasan != null) ? JSON.parse(dataTestKecerdasan) : [];
 
     if(dataTestKecerdasanTemp.length == totalIndikator){
-      $('#btn-submit').prop('disabled', false);
+      btn_submit.removeClass('d-none');
+      btn_submit.show();
     }else{
-      $('#btn-submit').prop('disabled', true);
+      btn_submit.addClass('d-none');
+      btn_submit.hide();
     }
   }
 
@@ -1480,6 +1494,7 @@
       container_pagination_tes_bakat.show();
 
       start_4.hide();
+      btn_submit_bakat.hide();
       guide_tes_minat.hide();
 
       fillTestbakat(1)
@@ -1517,9 +1532,11 @@
     var dataTestbakatTemp = (dataTestbakat != null) ? JSON.parse(dataTestbakat) : [];
 
     if(dataTestbakatTemp.length == totalIndikator){
-      btn_submit_bakat.prop('disabled', false);
+      btn_submit_bakat.removeClass('d-none');
+      btn_submit_bakat.show();
     }else{
-      btn_submit_bakat.prop('disabled', true);
+      btn_submit_bakat.addClass('d-none');
+      btn_submit_bakat.hide();
     }
   }
 
@@ -1748,19 +1765,26 @@
       type: "POST",
       data : data,
       success: function(result){
-        console.log(result);
         if(result.success == true){
           if(result.data == true){
             LKPD_QUESTION_MASTER.hide();
             END_RESULT.show();
             btn_save_lkpd.hide();
+            get_result.hide();
 
+            btn_to_download_page.show();
+            btn_print_lkpd.hide();
+            
             btn_print.prop('disabled', false);
           }else{
+            get_result.show();
             LKPD_QUESTION_MASTER.show();
             END_RESULT.hide();
             btn_save_lkpd.show();
 
+            btn_to_download_page.hide();
+            btn_print_lkpd.show();
+            
             btn_print.prop('disabled', true);
           }
         }else{
@@ -2053,11 +2077,13 @@
     var prodi_bakat_1 = loopProdi(data.tes_bakat[0].info.JURUSAN);
     var prodi_bakat_2 = loopProdi(data.tes_bakat[1].info.JURUSAN);
     var prodi_bakat_3 = loopProdi(data.tes_bakat[2].info.JURUSAN);
-
+    
+    var prodi_bakat = loopProdi2(data.tes_bakat[0].info.JURUSAN);
     var html = '';
 
     // tes kecerdasan
     html += `{{-- RESULT TES KECERDASAN --}}
+    <p><b>Terimakasih sudah mengerjakan tes dengan baik, berikut 2 kecerdasan dominan yang kamu miliki:</b></p>
                 <div class="row mt-3">
                   <div
                     class="col-12 d-flex flex-column align-items-center text-white justify-content-center estetik-background-right"
@@ -2069,7 +2095,7 @@
                     </div>
 
                     <hr>
-                    <small>
+                    <small class="d-none">
                       Rekomendasi Program Studi :
                       ${prodi_kecerdasan_1}
                     </small>
@@ -2093,7 +2119,7 @@
                       <small class=" text-center mt-2 col-9">${data_tes_kecerdasan[1].info.DESKRIPSI_HASIL_TES}</small>
                     </div>
                     <hr>
-                    <small>
+                    <small class="d-none">
                       Rekomendasi Program Studi :
                       ${prodi_kecerdasan_2}
                     </small>
@@ -2109,7 +2135,9 @@
 
     // tes bakat
     html += `{{-- RESULT TES BAKAT --}}
-                <div class="row mt-5 estetik-background-RIASEC-header">
+
+    <div class="mt-5"><p><b>Terimakasih sudah mengerjakan tes dengan baik, berikut 3 minat dominan yang kamu miliki:</b></p></div>
+    <div class="row mt-2 estetik-background-RIASEC-header">
                   Hasil Tes Minat :
                 </div>`;
 
@@ -2127,10 +2155,10 @@
                       </div>
                       <div class="col-6 bg-secondary p-3 text-light">
                         
-                        <div class="custom-scrollbar" style="max-width:550px;max-height:100px">
+                        <div class="custom-scrollbar" style="max-width:550px;max-height:200px">
                           <p>${data_tes_bakat[0].info.DESKRIPSI_HASIL_TES}</p>
                         </div>
-                        <small class="mt-3">
+                        <small class="mt-3 d-none">
                           Rekomendasi Program Studi :
                           ${prodi_bakat_1}
                         </small>
@@ -2151,10 +2179,10 @@
                       </div>
                       <div class="col-6 bg-secondary p-3 text-light">
                         
-                        <div class="custom-scrollbar" style="max-width:550px;max-height:100px">
+                        <div class="custom-scrollbar" style="max-width:550px;max-height:200px">
                           <p>${data_tes_bakat[1].info.DESKRIPSI_HASIL_TES}</p>
                         </div>
-                        <small class="mt-3">
+                        <small class="mt-3 d-none">
                           Rekomendasi Program Studi :
                           ${prodi_bakat_2}
                         </small>
@@ -2174,15 +2202,17 @@
                       </div>
                       <div class="col-6 bg-secondary p-3 text-light">
                         
-                        <div class="custom-scrollbar" style="max-width:550px;max-height:100px">
+                        <div class="custom-scrollbar" style="max-width:550px;max-height:200px">
                           <p>${data_tes_bakat[2].info.DESKRIPSI_HASIL_TES}</p>
                         </div>
-                        <small class="mt-3">
+                        <small class="mt-3 d-none">
                           Rekomendasi Program Studi :
                           ${prodi_bakat_3}
                         </small>
                       </div>
                     </div>{{-- END RESULT TES BAKAT --}}`;
+
+        html+=`<div class="row mt-3"><p>Berikut rekomendasi jurusan berdasarkan hasil tes minat yang paling dominan:</p> ${prodi_bakat}</div>`;
 
                     html = `<div class="col">${html}</div>`;
 
@@ -2197,6 +2227,15 @@
     var html = '';
     prodi.forEach(function(item,index){
       html += `<a href="{{ url('program-study/') }}/${item.JURUSAN_ID}" target="_BLANK"><span class="badge bg-primary">${item.NAMA_JURUSAN}</span></a> &nbsp;`;
+    })
+
+    return html;
+  }
+
+  function loopProdi2(prodi){
+    var html = '';
+    prodi.forEach(function(item,index){
+      html += `<li><a href="{{ url('program-study/') }}/${item.JURUSAN_ID}" target="_BLANK"><span class="badge bg-primary">${item.NAMA_JURUSAN}</span></a></li>`;
     })
 
     return html;
@@ -2224,5 +2263,32 @@
     });
   }
 
+  function movePage(step){
+    var data = {
+      'codeTest' : codeTest,
+      'step' : step
+    }
+
+    updateStep(codeTest,step);
+
+    // wait for 1 second
+    setTimeout(function(){
+      window.location.reload();
+    },1000);
+  }
+
 </script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/65dc8df49131ed19d971ba99/1hniol1bu';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
+<!--End of Tawk.to Script-->
 @endsection
