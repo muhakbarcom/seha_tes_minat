@@ -34,7 +34,7 @@ Route::get('/', function () {
     return view('v_home');
 });
 
-Route::get('/report', [ReportController::class, 'downloadReportWithDomPDFByHTML'])->name('report');
+Route::get('/report', [ReportController::class, 'downloadReportWithDomPDFByHTML'])->name('report'); // FOR TESTING [DELETE LATER]
 Route::get('/report/lkpd', [ReportController::class, 'downloadResultLkdp'])->name('downloadResultLkdp');
 
 Route::get('/test-info', function () {

@@ -233,19 +233,22 @@ class ReportController extends Controller
                 ->where('CODE_TEST', $code_test)
                 ->first();
 
+
             $result_tes_kecerdasan = [];
             $result_tes_kecerdasan[] = [
                 'aspek_id' => $data->KC_ASPEK_ID,
                 'info' => $this->getDataInfoByAspekId($data->KC_ASPEK_ID),
                 'presentase' => $data->KC_PRESENTASE,
-                'aspek_name' => $this->getDataAspekByID($data->KC_ASPEK_ID)->NAME
+                'aspek_name' => $this->getDataAspekByID($data->KC_ASPEK_ID)->NAME ?? null,
+                'desc_karakteristik'=> $this->getDataAspekByID($data->KC_ASPEK_ID)->DESKRIPSI_PENGEMBANGAN_KARAKTERISTIK ?? null
             ];
 
             $result_tes_kecerdasan[] = [
                 'aspek_id' => $data->KC_2_ASPEK_ID,
                 'info' => $this->getDataInfoByAspekId($data->KC_2_ASPEK_ID) ?? null,
                 'presentase' => $data->KC_2_PRESENTASE,
-                'aspek_name' => $this->getDataAspekByID($data->KC_2_ASPEK_ID)->NAME ?? null
+                'aspek_name' => $this->getDataAspekByID($data->KC_2_ASPEK_ID)->NAME ?? null,
+                'desc_karakteristik'=> $this->getDataAspekByID($data->KC_2_ASPEK_ID)->DESKRIPSI_PENGEMBANGAN_KARAKTERISTIK ?? null
             ];
 
             $result_tes_bakat = [];
@@ -253,21 +256,25 @@ class ReportController extends Controller
                 'aspek_id' => $data->BK_1_ASPEK_ID,
                 'info' => $this->getDataInfoByAspekId($data->BK_1_ASPEK_ID),
                 'presentase' => $data->BK_1_PRESENTASE,
-                'aspek_name' => $this->getDataAspekByID($data->BK_1_ASPEK_ID)->NAME
+                'aspek_name' => $this->getDataAspekByID($data->BK_1_ASPEK_ID)->NAME ?? null,
+                'desc_karakteristik'=> $this->getDataAspekByID($data->BK_1_ASPEK_ID)->DESKRIPSI_PENGEMBANGAN_KARAKTERISTIK ?? null
             ];
 
             $result_tes_bakat[] = [
                 'aspek_id' => $data->BK_2_ASPEK_ID,
                 'info' => $this->getDataInfoByAspekId($data->BK_2_ASPEK_ID),
                 'presentase' => $data->BK_2_PRESENTASE,
-                'aspek_name' => $this->getDataAspekByID($data->BK_2_ASPEK_ID)->NAME
+                'aspek_name' => $this->getDataAspekByID($data->BK_2_ASPEK_ID)->NAME,
+                'desc_karakteristik'=> $this->getDataAspekByID($data->BK_2_ASPEK_ID)->DESKRIPSI_PENGEMBANGAN_KARAKTERISTIK ?? null
             ];
 
             $result_tes_bakat[] = [
                 'aspek_id' => $data->BK_3_ASPEK_ID,
                 'info' => $this->getDataInfoByAspekId($data->BK_3_ASPEK_ID),
                 'presentase' => $data->BK_3_PRESENTASE,
-                'aspek_name' => $this->getDataAspekByID($data->BK_3_ASPEK_ID)->NAME
+                'aspek_name' => $this->getDataAspekByID($data->BK_3_ASPEK_ID)->NAME ?? null,
+                'desc_karakteristik'=> $this->getDataAspekByID($data->BK_3_ASPEK_ID)->DESKRIPSI_PENGEMBANGAN_KARAKTERISTIK ?? null
+                
             ];
 
             $result_data_form = [
@@ -500,9 +507,10 @@ class ReportController extends Controller
 
     public function downloadReportWithDomPDFByHTML(Request $req)
     {
-        //For test
-        $codeTest = request()->query('codeTest');
-        $req->codeTest = $codeTest;
+        //For test [DELETE LATER]
+        // $codeTest = request()->query('codeTest');
+        // $req->codeTest = $codeTest;
+        // End For test [DELETE LATER]
 
         $data = $this->getResultByCodeTest($req);
         $data = json_decode($data->getContent(), true);

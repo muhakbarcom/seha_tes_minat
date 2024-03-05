@@ -65,6 +65,9 @@ Route::post('/lkpd/saveAnswer', [LKPDController::class, 'saveAnswer']);
 Route::get('/info/{type}', [InfoController::class, 'getByType']);
 Route::get('/info', [InfoController::class, 'getAll']);
 
+// FOR TEST [DELETE LATER]
+Route::get('/report/downloadReportWithDomPDFByHTML', [ReportController::class, 'downloadReportWithDomPDFByHTML']);
+
 
 
 

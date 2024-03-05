@@ -173,7 +173,7 @@
           <td style="border:1px solid #000">
             <p class="text-justify">
               <center>
-                (Deskripsi pengembangan karakteristik)
+                {{ $item['desc_karakteristik'] }}
               </center>
             </p>
           </td>
@@ -309,7 +309,7 @@
           <td style="border:1px solid #000">
             <p class="text-justify">
               <center>
-                (Deskripsi pengembangan karakteristik)
+                {{ $item['desc_karakteristik'] }}
               </center>
             </p>
           </td>
