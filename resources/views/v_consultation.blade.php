@@ -698,7 +698,7 @@
                     <i class="fa fa-download"></i> Download Hasil Tes (PDF)
                   </button>
                   &nbsp;
-                  <button class="btn btn-sm btn-secondary" id="btn_ulang">
+                  <button class="btn btn-sm btn-secondary" id="btn_ulang" onclick="ulang()">
                     <i class="bi bi-arrow-counterclockwise"></i> Test Ulang
                   </button>
                 </div>
@@ -743,6 +743,16 @@
                 of the overall development.
               </p>
             </div> --}}
+            <div class="row" id="notifResult">
+              <div class="col">
+                {{-- alert --}}
+                <div class="alert alert-warning" role="alert">
+                  <p class="alert-heading"><b>Selamat anda telah selesai mengerjakan tes!</b></p>
+                  <small>Silahkan klik tombol "Get Result" untuk mendapatkan hasil lalu anda bisa mengisi LKPD agar bisa
+                    mengunduh hasil.</small>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="d-flex col justify-content-end">
                 <button class="btn btn-sm btn-warning" id="btn_print_lkpd">
@@ -753,12 +763,13 @@
                   <i class="fa fa-download"></i> Halaman Download Result
                 </button>
                 &nbsp;
-                <button class="btn btn-sm btn-secondary" id="btn_ulang">
+                <button class="btn btn-sm btn-secondary" id="btn_ulang" onclick="ulang()">
                   <i class="bi bi-arrow-counterclockwise"></i> Test Ulang
                 </button>
 
               </div>
             </div>
+
             <div class="row mt-2">
               <div class="col d-flex justify-content-center">
                 <button class="btn btn-warning" id="get_result">
@@ -864,6 +875,7 @@
     var btn_print_lkpd = $('#btn_print_lkpd');
     var btn_save_lkpd = $('#btn_save_lkpd');
     var btn_to_download_page = $('#btn_to_download_page');
+    var notifResult = $('#notifResult');
 
     var get_result = $('#get_result');
     var get_result_icon = $('#get_result_icon');
@@ -1773,6 +1785,7 @@
             get_result.hide();
 
             btn_to_download_page.show();
+            notifResult.hide();
             btn_print_lkpd.hide();
             
             btn_print.prop('disabled', false);
@@ -1784,6 +1797,7 @@
 
             btn_to_download_page.hide();
             btn_print_lkpd.show();
+            notifResult.show();
             
             btn_print.prop('disabled', true);
           }
@@ -2029,11 +2043,9 @@
     });
 }
 
-
-  btn_ulang.on('click',function(){
-
-    // get to /api/report/generateCodeTest
-    $.ajax({
+function ulang(){
+  // get to /api/report/generateCodeTest
+  $.ajax({
       url: "{{ url('api/report/generateCodeTest') }}",
       type: "GET",
       success: function(result){
@@ -2064,8 +2076,7 @@
         }
       }
     });
-
-  })
+}
 
   function resultInterface(data){
     var bodyTestResult = $('#bodyTestResult');
