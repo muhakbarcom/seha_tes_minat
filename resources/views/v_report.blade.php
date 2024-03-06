@@ -142,9 +142,14 @@
   $i = 1;
   @endphp
 
+  @php
+  $limitDataTesBakat = 1;
+  $data['tes_bakat'] = array_slice($data['tes_bakat'], 0, $limitDataTesBakat);
+  @endphp
+
   {{-- foreach --}}
   @foreach ($data['tes_bakat'] as $item)
-  <div style="margin-bottom:100px">
+  <div style="margin-bottom:50px">
     <div style="text-align: center">
       <table style="width: 100%; border-collapse: collapse;">
         <tr>
@@ -277,17 +282,24 @@
   @php
   $i = 1;
   @endphp
+
+  @php
+  $limitDataTesKecerdasan = 1;
+  $data['tes_kecerdasan'] = array_slice($data['tes_kecerdasan'], 0, $limitDataTesKecerdasan);
+  @endphp
+
   {{-- foreach kecerdasan--}}
   @foreach ($data['tes_kecerdasan'] as $item)
-  <div style="margin-bottom:100px">
+  <div style="margin-bottom:50px">
     <div style="text-align: center">
-      <table style="width: 100%; border-collapse: collapse;margin:0 auto;">
+      <table style="width: 100%; border-collapse: collapse;">
         <tr>
           <td style="border-top: 5px solid #6578cf;"></td>
         </tr>
         <tr>
-          <td>
-            <h3 class="h3-green"><i>{{ strtoupper($item['aspek_name']) }}</i></h3>
+          <td style="padding: 10px;">
+            <h3 style="color: #6578cf; text-align: center; font-size: 1.2rem;"><i>{{ strtoupper($item['aspek_name'])
+                }}</i></h3>
 
             <p class="text-justify">
               <center> {{ $item['info']['DESKRIPSI_HASIL_TES'] }}</center>
