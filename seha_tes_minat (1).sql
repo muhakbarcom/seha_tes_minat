@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 05, 2024 at 03:24 PM
+-- Generation Time: Mar 06, 2024 at 03:45 AM
 -- Server version: 10.4.30-MariaDB-log
 -- PHP Version: 7.4.33
 
@@ -159,7 +159,9 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (69, 'App\\Models\\User', 7, 'auth_token', '8b1f9bd763527a7318af260bac686db0e8820ffe9bdd3df74b0e799f20dde2bc', '[\"*\"]', NULL, '2024-02-28 01:10:10', '2024-02-28 01:10:10'),
 (70, 'App\\Models\\User', 7, 'auth_token', '8601502f254572a61e4b08cbabfb2dd293d3dea753585cccda7ace744316c752', '[\"*\"]', NULL, '2024-03-05 04:58:06', '2024-03-05 04:58:06'),
 (71, 'App\\Models\\User', 7, 'auth_token', 'a38e18836caffb188c434172992e3660abd6afdb8b8006fd54755d769afc9fc6', '[\"*\"]', NULL, '2024-03-05 07:53:26', '2024-03-05 07:53:26'),
-(72, 'App\\Models\\User', 7, 'auth_token', 'b5db36a28e96feb0c0b288991f78a99c532729bef7f035c992473e918eb84354', '[\"*\"]', NULL, '2024-03-05 08:23:15', '2024-03-05 08:23:15');
+(72, 'App\\Models\\User', 7, 'auth_token', 'b5db36a28e96feb0c0b288991f78a99c532729bef7f035c992473e918eb84354', '[\"*\"]', NULL, '2024-03-05 08:23:15', '2024-03-05 08:23:15'),
+(73, 'App\\Models\\User', 7, 'auth_token', '9839333d612a8800c3f8a2600778fec1ca11338bdf2f693979fb95343ed23892', '[\"*\"]', NULL, '2024-03-05 08:47:40', '2024-03-05 08:47:40'),
+(74, 'App\\Models\\User', 7, 'auth_token', 'a5ff24e3e8b48802574944bc7853c4e54e5bfc8914e2ca1fdc0347b11f619fb5', '[\"*\"]', NULL, '2024-03-05 20:29:06', '2024-03-05 20:29:06');
 
 -- --------------------------------------------------------
 
@@ -191,7 +193,7 @@ INSERT INTO `tb_m_aspek` (`ID`, `NAME`, `TYPE`, `DESKRIPSI_HASIL_TES`, `DESKRIPS
 (10, 'REALISTIC', 2, 'Hai sobat karier, berdasarkan hasil tes minat kamu menonjol pada bidang Realistic! Kamu adalah pribadi yang suka bekerja dengan tangan dan lebih suka bekerja diluar ruangan. Kamu memiliki keterampilan menggunakan dan mengoperasikan alat, mengemudi, merawat hewan dan bekerja dengan tanaman. Kamu juga cocok bekerja sebagai pilot, petani, holtikultura, insinyur, mekanik, olahragawan dan lainnya. ', 'Lakukan kegiatan yang menunjang kemampuan mu dibidang realistic. Kamu bisa mempelajari lebih lanjut mengenai Teknik industry, teknik mesin. atau teknik pertanian dan lainnya. kamu bisa memulai untuk berfokus pada bidang yang kamu minati, dan mulailah belajar dari para ahlinya. '),
 (11, 'Investigative ', 2, 'Hai sobat karier, berdasarkan hasil tes minat kamu masuk dalam tipe Investigative! Kamu adalah pribadi yang suka menemukan dan meneliti ide, kamu suka bereksperimen, mengajukan pertanyaan dan suka menyelesaikan masalah. Kamu memiliki keterampilan berpikir analitis dan logis. Mampu menghitung, berkomunikasi dengan menulis dan berbicara, mendiagnosis dan menyelidiki. Kamu juga cocok bekerja dalam bidang Ilmu Pengetahuan, penelitian, pekerja medis atau Kesehatan, zoologi, laboran, pertanian dan lainnya.', 'Mulailah untuk mengikuti kegiatan yang menunjang kariermu dalam bidang ini. Tingkatkan kemampuan Bahasa inggrismu, lalu pelajari lebih jauh mengenai sains dan ilmu computer. Lakukanlah eksperimen-eksperimen kecil terlebih dahulu, kembangkan karakter investigative mu dengan banyak berdiskusi soal keilmuan dengan para ahli.'),
 (12, 'Artistic', 2, 'Hai sobat karier, berdasarkan hasil tes kamu masuk dalam type Artistic! Kamu adalah pribadi yang suka menggunakan kata-kata, menyukai unsur seni, seperti music dan drama untuk berkomunikasi, dan senang berekpresi melalui seni. Kamu memiliki keterampilan yang cukup baik dalam bidang seni seperti menyanyi, merancang, menyajikan, merencanakan, Menyusun karya seni. Kamu cocok bekerja dalam banyak bidang lho! Seperti artis, illustrator, fotografer, penulis lagu, actor, reporter perancang busana dan banyak lainnya!', 'Tingkatkan kemampuanmu dengan terus berlatih dalam bidang seni yang kamu sukai. Kamu bisa memulainya dengan berlatih melalui bantuan beberapa platform social media atau bisa melakukan les di sanggar seni agar kemampuanmu semakin baik. Kesenanganmu dalam berekspresi melalui seni harus dipertahankan ya sobat!'),
-(13, 'SOCIAL', 2, 'Hai sobat karier, berdasarkan hasil tes kamu masuk dalam type Social! Kamu termasuk pada pribadi yang memiliki empati cukup tinggi. Kamu suka mengajar, melatih dan memberi informasi kamu sangat peduli pada kesejahteraan orang-orang disekitarmu. Kamu punya keterampilan yang cukup baik dalam berkomunikasi secara lisan dan tertulis. Kamu cocok bekerja dalam bancocok bekerja sebagai guru, perawat, pekerja sosial, dan masih banyak lagi! ', 'Sobat karier, kamu adalah pribadi dengan empati yang cukup tinggi. Untuk meningkatkan kemampuanmu, mulailah untuk membuka les, bimbingan belajar dan aktif menjadi relawan. Beberapa kegiatan tersebut dapat menunjang kemampuan komunikasimu menjadi semakin baik dan memperluas relasi yang kamu miliki. '),
+(13, 'SOCIAL', 2, 'Hai sobat karier, berdasarkan hasil tes kamu masuk dalam type Social! Kamu termasuk pada pribadi yang memiliki empati cukup tinggi. Kamu suka mengajar, melatih dan memberi informasi kamu sangat peduli pada kesejahteraan orang-orang disekitarmu. Kamu punya keterampilan yang cukup baik dalam berkomunikasi secara lisan dan tertulis. Kamu cocok bekerja sebagai guru, perawat, pekerja sosial, dan masih banyak lagi! ', 'Sobat karier, kamu adalah pribadi dengan empati yang cukup tinggi. Untuk meningkatkan kemampuanmu, mulailah untuk membuka les, bimbingan belajar dan aktif menjadi relawan. Beberapa kegiatan tersebut dapat menunjang kemampuan komunikasimu menjadi semakin baik dan memperluas relasi yang kamu miliki. '),
 (14, 'Enterprising', 2, 'Hai sobat karier, berdasarkan hasil tes kamu masuk dalam type Enterprising! Kamu adalah pribadi yang cukup menyenangkan dan suka bertemu dengan orang, kamu mampu memimpin, berbicara dan mempengaruhi orang lain, membangun Kerjasama dan berbisnis. Kamu memiliki keterampilan yang cukup menarik seperti menjual, mempromosikan, membujuk mengembangkan ide, berbicara didepan umum dan merencanakan sesuatu dengan baik. Kamu bisa bekerja sebagai tenaga penjual, pengacara, politisi, akuntan dan masih banyak lagi!', 'Kemampuanmu untuk meyakinkan orang lain sangat baik. Mulailah untuk mengambil langkah untuk menjadi pemimpin atau pembicara dalam suatu forum. Bangunlah relasi yang luas dan mulailah berbisnis di bidang yang kamu minati. Bangun rasa percaya dirimu dengan baik, dan pelajari lebih jauh mengenai publik speaking yang baik.'),
 (15, 'Conventional', 2, 'Hai sobat karier, berdasarkan hasil tes kamu masuk dalam type Conventional! kamu lebih suka bekerja didalam ruangan pada tugas-tugas yang melibatkan pengorganisasian dan akurasi. Kamu juga sosok yang selalu mengikuti prosedur, memiliki kemampuan yang baik dalam pengolahan data dan angka loh! Selain itu kamu  pribadi yang sangat detail teliti dan penuh perencanaan. Kamu bisa bekerja pada banyak bidang diantaranya sekretaris, resepsionis, pustakawan, petugas Bank, operator computer dan lainnya.', 'Sobat karier, ketelitianmu dalam melakukan sesuatu sangat baik. Dari karakteristik yang kamu miliki, kamu bisa meningkatkan kemampuanmu dengan mempelajari Microsoft word, excel, power point dan lainnya. kamu juga bisa mulai belajar pengolahan data dan angka.'),
 (16, 'Eksistensial', 1, 'Kamu memiliki ketertarikan untuk memahami pertanyaan abstrak tentang keberadaan, makna dan tujuan hidup. Kamu juga memiliki kecenderungan untuk mengekplorasi pertanyaan-pertanyaan filosofis selain itu kamu juga sangat peka terhadap masalah sosial. Dengan kemampuan yang kamu miliki kamu sangat cocok bekerja sebagai psikolog atau ahli filsuf.', 'Pemikiran kritismu adalah senjata yang baik. Bacalah banyak buku dan seringlah berdiskusi soal keilmuan dengan para ahli. Mulailah membahas isu-isu yang terjadi, baik isu lokal ataupun global. Bertemulah dengan banyak orang untuk mengeksplorasi kehidupan.');
@@ -628,6 +630,17 @@ CREATE TABLE `tb_r_lkpd` (
   `QUESTION_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `tb_r_lkpd`
+--
+
+INSERT INTO `tb_r_lkpd` (`ID`, `CODE_TEST`, `ANSWER`, `QUESTION_ID`) VALUES
+(118, '65e73e9eb89ac', 'kjasdn', 1),
+(119, '65e73e9eb89ac', 'ajksnd', 2),
+(120, '65e73e9eb89ac', 'asjkdn', 3),
+(121, '65e73e9eb89ac', 'asjkdn', 4),
+(122, '65e73e9eb89ac', 'asdjkn', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -657,6 +670,13 @@ CREATE TABLE `tb_r_test` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `tb_r_test`
+--
+
+INSERT INTO `tb_r_test` (`ID`, `USER_ID`, `CODE_TEST`, `KC_ASPEK_ID`, `KC_PRESENTASE`, `KC_2_ASPEK_ID`, `KC_2_PRESENTASE`, `BK_1_ASPEK_ID`, `BK_1_PRESENTASE`, `BK_2_ASPEK_ID`, `BK_2_PRESENTASE`, `BK_3_ASPEK_ID`, `BK_3_PRESENTASE`, `FULL_NAME`, `BIRTHDAY`, `SCHOOL`, `EMAIL`, `STEP`, `PRESENTAGE`, `created_at`, `updated_at`) VALUES
+(56, 7, '65e73e9eb89ac', 2, '75.0', 3, '75.0', 15, '70.0', 10, '67.5', 13, '67.5', 'asdasd', '2023-09-14', 'asdasdasd', 'admin@muhakbar.com', 6, '{\"tes_minat\":[{\"aspek_id\":15,\"aspek_name\":\"Conventional\",\"total_point\":28,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":70,\"presentase_all\":17.61},{\"aspek_id\":10,\"aspek_name\":\"REALISTIC\",\"total_point\":27,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":67.5,\"presentase_all\":16.98},{\"aspek_id\":13,\"aspek_name\":\"SOCIAL\",\"total_point\":27,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":67.5,\"presentase_all\":16.98},{\"aspek_id\":11,\"aspek_name\":\"Investigative \",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":65,\"presentase_all\":16.35},{\"aspek_id\":12,\"aspek_name\":\"Artistic\",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":65,\"presentase_all\":16.35},{\"aspek_id\":14,\"aspek_name\":\"Enterprising\",\"total_point\":25,\"jumlah_soal\":10,\"max_point\":159,\"presentase\":62.5,\"presentase_all\":15.72}],\"tes_riasec\":[{\"aspek_id\":2,\"aspek_name\":\"Linguistic-Bahasa\",\"total_point\":30,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":75,\"presentase_all\":11.95},{\"aspek_id\":3,\"aspek_name\":\"Logical-matematik\",\"total_point\":30,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":75,\"presentase_all\":11.95},{\"aspek_id\":6,\"aspek_name\":\"Musical\",\"total_point\":29,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":72.5,\"presentase_all\":11.55},{\"aspek_id\":8,\"aspek_name\":\"Intrapersonal\",\"total_point\":29,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":72.5,\"presentase_all\":11.55},{\"aspek_id\":4,\"aspek_name\":\"Visual-Spatial\",\"total_point\":28,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":70,\"presentase_all\":11.16},{\"aspek_id\":7,\"aspek_name\":\"Interpersonal\",\"total_point\":27,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":67.5,\"presentase_all\":10.76},{\"aspek_id\":5,\"aspek_name\":\"Bodily- Kinesthetic\",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":65,\"presentase_all\":10.36},{\"aspek_id\":9,\"aspek_name\":\"Naturalistik\",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":65,\"presentase_all\":10.36},{\"aspek_id\":16,\"aspek_name\":\"Eksistensial\",\"total_point\":26,\"jumlah_soal\":10,\"max_point\":251,\"presentase\":65,\"presentase_all\":10.36}]}', '2024-03-05 15:47:42', '2024-03-06 03:29:37');
 
 -- --------------------------------------------------------
 
@@ -804,7 +824,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `tb_m_aspek`
@@ -852,13 +872,13 @@ ALTER TABLE `tb_m_skor`
 -- AUTO_INCREMENT for table `tb_r_lkpd`
 --
 ALTER TABLE `tb_r_lkpd`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `tb_r_test`
 --
 ALTER TABLE `tb_r_test`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `users`
