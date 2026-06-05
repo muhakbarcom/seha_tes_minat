@@ -499,8 +499,17 @@ class ReportController extends Controller
             ->max('POINT');
 
         $max_point = $max_point * $count_indikator;
-        
+
         return $max_point;
+    }
+
+    private function ensurePdfDirectory()
+    {
+        $path = public_path('pdf');
+
+        if (!is_dir($path)) {
+            mkdir($path, 0755, true);
+        }
     }
 
     
@@ -546,6 +555,7 @@ class ReportController extends Controller
         // Save PDF to server
         $output = $dompdf->output();
 
+        $this->ensurePdfDirectory();
         file_put_contents(public_path('pdf/' . $filename), $output);
 
         // Provide download link to the user
@@ -594,6 +604,7 @@ public function downloadResultLkdp(Request $req)
 
     // Save PDF to server
     $output = $dompdf->output();
+    $this->ensurePdfDirectory();
     file_put_contents(public_path('pdf/' . $filename), $output);
 
     // Provide download link to the user

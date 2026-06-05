@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Indikator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class IndikatorController extends Controller
 {
@@ -24,10 +23,17 @@ class IndikatorController extends Controller
 
             // Menggunakan Eloquent untuk melakukan join dan mengambil data dengan pagination
             $indikators = Indikator::join('tb_m_aspek', 'tb_m_indikator.ASPEK_ID', '=', 'tb_m_aspek.ID')
-                ->select(DB::raw('ROW_NUMBER() OVER () as row_number'), 'tb_m_indikator.*')
+                ->select('tb_m_indikator.*')
                 ->where('tb_m_aspek.TYPE', $type)
                 ->whereBetween('tb_m_indikator.ID', [$start, $end])
+                ->orderBy('tb_m_indikator.ID')
                 ->paginate(10); // You can change 10 to the number of items you want per page
+
+            $indikators->getCollection()->transform(function ($indikator, $index) use ($indikators) {
+                $indikator->row_number = $indikators->firstItem() + $index;
+
+                return $indikator;
+            });
 
             $this->response['success'] = true;
             $this->response['message'] = 'Success';
